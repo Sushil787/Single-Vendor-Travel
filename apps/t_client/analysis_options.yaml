@@ -1,0 +1,56 @@
+# This file configures the analyzer, which statically analyzes Dart code to
+# check for errors, warnings, and lints.
+#
+# The issues identified by the analyzer are surfaced in the UI of Dart-enabled
+# IDEs (https://dart.dev/tools#ides-and-editors). The analyzer can also be
+# invoked from the command line by running `flutter analyze`.
+
+# The following line activates a set of recommended lints for Flutter apps,
+# packages, and plugins designed to encourage good coding practices.
+include: package:very_good_analysis/analysis_options.yaml
+
+
+linter:
+  rules:
+    avoid_print: true
+    public_member_api_docs: true
+
+analyzer:
+#  plugins:
+#     - dart_code_metrics
+ exclude:
+    - "**.freezed.dart"
+    - "**.g.dart"
+    - "**.gr.dart"
+    - "**.config.dart"
+    - "*_test.dart"
+    - "**/generated_plugin_registrant.dart"
+    - "*.yaml"
+ errors:
+    invalid_annotation_target: ignore
+
+# dart_code_metrics:
+#   metrics:
+#     cyclomatic-complexity: 20
+#     number-of-parameters: 4
+#     maximum-nesting-level: 5
+#   metrics-exclude:
+#     - test/**
+#   rules:
+#     - avoid-dynamic
+#     - avoid-redundant-async
+#     - avoid-passing-async-when-sync-expected
+#     - avoid-redundant-async
+#     - avoid-unnecessary-type-assertions
+#     - avoid-unnecessary-type-casts
+#     - avoid-unrelated-type-assertions
+#     - avoid-unused-parameters
+#     - avoid-nested-conditional-expressions
+#     - newline-before-return
+#     - no-boolean-literal-compare
+#     - no-empty-block
+#     - prefer-trailing-comma
+#     - prefer-conditional-expressions
+#     - no-equal-then-else
+#     - prefer-moving-to-variable
+#     - prefer-match-file-name
