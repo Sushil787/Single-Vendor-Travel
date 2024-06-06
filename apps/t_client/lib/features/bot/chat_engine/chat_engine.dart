@@ -25,7 +25,7 @@ class ChatEngine {
     'hi',
     'hello!!',
     'refund',
-    'what kind of package you provide ?'
+    'what kind of package you provide ?',
   ];
 
   /// Chat Response
@@ -35,7 +35,7 @@ class ChatEngine {
     "I'm good, thank you. How about you?",
     'Would you like information about our travel packages?',
     'These are the pacakge category we provide holiday, honeymoon,travel,religious,camping,adventure,beach',
-    'If you cancel your order before 24 hours of the visit date, no refund is available. Cancel 48 hours before that 4% of the order cost will be deducted from your refund.'
+    'If you cancel your order before 24 hours of the visit date, no refund is available. Cancel 48 hours before that 4% of the order cost will be deducted from your refund.',
   ];
 
   /// Send Message

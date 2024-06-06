@@ -66,12 +66,12 @@ class _ProductWidgetState extends State<ProductWidget> {
                       ),
                     ],
                   ),
-                  VerticalGap.s,
+                  VerticalGap.xs,
                   Text(
                     widget.productModel.title,
                     style: context.textTheme.displaySmall,
                   ),
-                  VerticalGap.s,
+                  VerticalGap.xs,
                   Text(
                     widget.productModel.description,
                     style: context.textTheme.displaySmall,

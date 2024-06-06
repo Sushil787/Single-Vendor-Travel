@@ -44,7 +44,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
         elevation: 0,
         backgroundColor: Colors.white,
         title: const Text(
-          'Travel Bot',
+          'Travello Bot',
         ),
         automaticallyImplyLeading: false,
         leading: GestureDetector(
