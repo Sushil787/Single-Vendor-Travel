@@ -43,7 +43,7 @@ dependencies:
   cloud_firestore: ^4.7.1
   firebase_storage: ^11.2.1
   google_sign_in: ^6.1.0
-  image_picker: ^1.0.1
+  image_picker: ^1.1.0
   fluttertoast: ^8.2.1
   shared_preferences: ^2.0.20
   cupertino_icons: ^1.0.5

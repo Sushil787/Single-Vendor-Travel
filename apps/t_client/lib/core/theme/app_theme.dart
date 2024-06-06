@@ -9,7 +9,6 @@ class AppTheme {
     fontFamily: GoogleFonts.poppins().fontFamily,
     scaffoldBackgroundColor: Colors.white,
     primaryColor: LightColor.primaryColor,
-    // useMaterial3: true,
     iconTheme: const IconThemeData(color: LightColor.eclipse),
     appBarTheme: const AppBarTheme(
       backgroundColor: LightColor.backGroundColor,
@@ -28,12 +27,12 @@ class AppTheme {
     cardTheme: const CardTheme(
       color: Colors.white,
     ),
-  
     navigationBarTheme: const NavigationBarThemeData(
       backgroundColor: Colors.white,
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: LightColor.primaryColor,
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: Colors.white,
       selectedItemColor: LightColor.primaryColor,
       unselectedItemColor: LightColor.eclipse,
       showSelectedLabels: false,

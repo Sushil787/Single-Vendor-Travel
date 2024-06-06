@@ -21,6 +21,7 @@ import 'package:t_client/features/package/presentation/bloc/travel_bloc/travel_b
 import 'package:t_client/features/user/domain/repository/user_repository.dart';
 import 'package:t_client/features/user/presentation/cubit/credential/cubit/auth_cubit.dart';
 import 'package:t_client/features/user/presentation/cubit/profile/cubit/profile_cubit.dart';
+import 'package:t_client/features/user/presentation/cubit/profile/cubit/update_profile_cubit.dart';
 import 'package:t_client/firebase_options.dart';
 import 'package:t_client/observer.dart';
 
@@ -55,6 +56,7 @@ void main() async {
           BlocProvider(
             create: (context) => getIt<AuthCubit>(),
           ),
+          BlocProvider(create: (context) => getIt<UpdateProfileCubit>()),
           BlocProvider(
             create: (context) => getIt<ProfileCubit>(),
           ),

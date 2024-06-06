@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:t_client/features/user/domain/entities/user_entity.dart';
 
@@ -35,6 +37,9 @@ abstract class UserRemoteDataSource {
 
   /// Gets Current UniqueId
   Future<String> getCurrentUId();
+
+  /// Update Profile
+  Future<void> updateProfile({String? username, File? image});
 
   /// Get All User
   Stream<List<UserEntity>> getAllUsers({required UserEntity user});

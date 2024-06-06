@@ -50,6 +50,8 @@ abstract class AppModule {
   /// Fireabse Storage
   @singleton
   FirebaseStorage get firebaseStorage => FirebaseStorage.instance;
+
+
 }
 
 /// Singleton Shared preferences class

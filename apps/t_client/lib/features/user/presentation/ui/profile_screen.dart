@@ -1,14 +1,21 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:t_client/core/constants/route_constants.dart';
 import 'package:t_client/core/helper/extension/context_extension.dart';
 import 'package:t_client/core/helper/gap.dart';
 import 'package:t_client/core/theme/app_colors.dart';
 import 'package:t_client/core/widgets/custom_button.dart';
+import 'package:t_client/core/widgets/custom_textfield.dart';
 import 'package:t_client/features/user/domain/entities/user_entity.dart';
 import 'package:t_client/features/user/presentation/cubit/credential/cubit/auth_cubit.dart';
 import 'package:t_client/features/user/presentation/cubit/profile/cubit/profile_cubit.dart';
+import 'package:t_client/features/user/presentation/cubit/profile/cubit/update_profile_cubit.dart';
 
 /// Profile Screen
 class ProfileScreen extends StatefulWidget {
@@ -40,13 +47,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         elevation: 0.6,
         centerTitle: true,
-        // leading: GestureDetector(
-        //   onTap: () => context.pop(),
-        //   child: const Icon(
-        //     Icons.arrow_back,
-        //     color: LightColor.eclipse,
-        //   ),
-        // ),
         title: Text(
           'Profile',
           style: context.textTheme.headlineLarge?.copyWith(
@@ -93,7 +93,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 }
 
 /// Build Profile Detail Widget
-class BuildProfileDetail extends StatelessWidget {
+class BuildProfileDetail extends StatefulWidget {
   ///
   const BuildProfileDetail({
     required this.user,
@@ -104,11 +104,109 @@ class BuildProfileDetail extends StatelessWidget {
   final UserEntity user;
 
   @override
+  State<BuildProfileDetail> createState() => _BuildProfileDetailState();
+}
+
+class _BuildProfileDetailState extends State<BuildProfileDetail> {
+  File? profileImage;
+
+  String uname = '';
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ProfileImage(user: user),
+        SizedBox(
+          height: context.height * .4,
+          width: double.maxFinite,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              VerticalGap.s,
+              SizedBox(
+                width: context.width * .2,
+                child: Stack(
+                  fit: StackFit.passthrough,
+                  children: [
+                    CircleAvatar(
+                      radius: 44,
+                      backgroundColor: context.secondary,
+                      child: profileImage != null
+                          ? CircleAvatar(
+                              radius: 40,
+                              backgroundColor: context.primary,
+                              backgroundImage: FileImage(profileImage!),
+                            )
+                          : widget.user.profileUrl != null
+                              ? CircleAvatar(
+                                  radius: 40,
+                                  backgroundColor: context.primary,
+                                  backgroundImage:
+                                      NetworkImage(widget.user.profileUrl!),
+                                )
+                              : CircleAvatar(
+                                  backgroundColor: context.primary,
+                                  child: Text(
+                                    widget.user.uname![0],
+                                    style: context.textTheme.headlineLarge,
+                                  ),
+                                ),
+                    ),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: InkWell(
+                        onTap: () async {
+                          final file = await ImagePicker.platform
+                              .pickImage(source: ImageSource.gallery);
+
+                          if (file != null) {
+                            profileImage = File(file.path);
+                            setState(() {});
+                          }
+                        },
+                        child: const CircleAvatar(
+                          radius: 14,
+                          backgroundColor: Colors.white,
+                          child: Icon(
+                            Icons.edit,
+                            color: LightColor.eclipse,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              VerticalGap.exl,
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'uname',
+                  style: context.textTheme.bodySmall,
+                ),
+              ),
+              CustomTextField(
+                hintText: widget.user.uname!,
+                onChanged: (value) {
+                  uname = value;
+                },
+              ),
+              VerticalGap.s,
+              customText(
+                type: 'uid',
+                text: widget.user.uid!,
+                context: context,
+              ),
+              VerticalGap.s,
+              customText(
+                type: 'email',
+                text: widget.user.email!,
+                context: context,
+              ),
+            ],
+          ),
+        ),
         CustomElevatedButton(
           onButtonPressed: () async {
             await context.read<AuthCubit>().signOut();
@@ -119,77 +217,40 @@ class BuildProfileDetail extends StatelessWidget {
           buttonText: 'signout',
         ),
         VerticalGap.m,
-        // CustomElevatedButton(
-        //   onButtonPressed: () async {
-        //     if (context.mounted) {
-        //       GoRouter.of(context).pop();
-        //     }
-        //     await context.read<ProfileCubit>().deleteAccount(uid: user.uid!);
-        //   },
-        //   buttonText: 'delete account',
-        // ),
+        BlocConsumer<UpdateProfileCubit, UpdateProfileState>(
+          listener: (context, state) {
+            if (state is UpdateSuccess) {
+              context.read<ProfileCubit>().getProfile(uid: widget.user.uid!);
+              context.showSnackBar(
+                message: 'Profile Updated Successfully',
+                toastType: ToastType.success,
+              );
+            }
+            if (state is UpdateError) {
+              context.showSnackBar(
+                message: state.message,
+                toastType: ToastType.error,
+              );
+            }
+          },
+          builder: (context, state) => CustomElevatedButton(
+            isLoading: state is UpdateLoading,
+            onButtonPressed: () async {
+              if (profileImage == null && uname.isEmpty) {
+                context.showSnackBar(
+                  message: 'Please update something',
+                  toastType: ToastType.message,
+                );
+              } else {
+                await context
+                    .read<UpdateProfileCubit>()
+                    .updateProfile(uname: uname, image: profileImage);
+              }
+            },
+            buttonText: 'Update Profile',
+          ),
+        ),
       ],
-    );
-  }
-}
-
-/// Profile Image
-class ProfileImage extends StatelessWidget {
-  ///
-  const ProfileImage({
-    required this.user,
-    super.key,
-  });
-
-  /// User Entity
-  final UserEntity user;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: context.height * .4,
-      width: double.maxFinite,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          VerticalGap.s,
-          CircleAvatar(
-            radius: 44,
-            backgroundColor: context.secondary,
-            child: user.profileUrl != null
-                ? CircleAvatar(
-                    radius: 40,
-                    backgroundColor: context.primary,
-                    backgroundImage: NetworkImage(user.profileUrl!),
-                  )
-                : CircleAvatar(
-                    backgroundColor: context.primary,
-                    child: Text(
-                      user.uname![0],
-                      style: context.textTheme.headlineLarge,
-                    ),
-                  ),
-          ),
-          VerticalGap.l,
-          customText(
-            type: 'username',
-            text: user.uname!,
-            context: context,
-          ),
-          VerticalGap.s,
-          customText(
-            type: 'uid',
-            text: user.uid!,
-            context: context,
-          ),
-          VerticalGap.s,
-          customText(
-            type: 'email',
-            text: user.email!,
-            context: context,
-          ),
-        ],
-      ),
     );
   }
 }

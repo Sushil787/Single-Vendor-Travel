@@ -111,6 +111,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   const RegisterText(),
                   VerticalGap.l,
                   const GoogleSigninButton(),
+                  VerticalGap.m,
+                  InkWell(
+                    onTap: () => context.push(AppRoutes.forgotPassword),
+                    child: Text(
+                      'Forgot Password ?',
+                      style: context.textTheme.bodySmall!.copyWith(
+                        color: Colors.blue,
+                      ),
+                    ),
+                  )
                 ],
               ),
             );
@@ -170,7 +180,7 @@ class RegisterText extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text("don't have account "),
+          const Text("Don't have account "),
           SizedBox(
             width: 100,
             child: GestureDetector(

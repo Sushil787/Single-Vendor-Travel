@@ -107,6 +107,7 @@ class _HomeScreenState extends State<HomeScreen>
         curve: Curves.easeOutQuint,
         child: isVisible
             ? BottomNavigationBar(
+            
                 onTap: (value) {
                   selectedIndex = value;
                   pageController.animateToPage(

@@ -1,8 +1,10 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:t_client/core/constants/firebase_collections.dart';
@@ -14,14 +16,17 @@ import 'package:t_client/features/user/domain/repository/user_remote_data_source
 @Injectable(as: UserRemoteDataSource)
 class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   /// User Remote DataSource Impl
-  UserRemoteDataSourceImpl({
-    required this.firebaseFirestore,
-    required this.firebaseAuth,
-    required this.googleSignIn,
-  });
+  UserRemoteDataSourceImpl(
+      {required this.firebaseFirestore,
+      required this.firebaseAuth,
+      required this.googleSignIn,
+      required this.firebaseStorage});
 
   /// Firebase Firestore Instance
   final FirebaseFirestore firebaseFirestore;
+
+  /// FirebaseStorage Instance
+  final FirebaseStorage firebaseStorage;
 
   /// Firebase Auth Instance
   final FirebaseAuth firebaseAuth;
@@ -292,4 +297,51 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       await search.add({'uid': uid, 'search': searchQuery});
     }
   }
+
+  @override
+  Future<void> updateProfile({String? username, File? image}) async {
+    try {
+      final uid = firebaseAuth.currentUser!.uid;
+      final userCollection = firebaseFirestore.collection(users);
+      if (image != null && username != null) {
+        final downloadUrl = await getDownloadUrl(image);
+        await userCollection.doc(uid).update({
+          'uname': username,
+          'profileUrl': downloadUrl,
+        });
+        return;
+      }
+      if (image == null && username != null) {
+        await userCollection.doc(uid).update({
+          'uname': username,
+        });
+      }
+      if (image != null && username == null) {
+        final downloadUrl = await getDownloadUrl(image);
+        await userCollection.doc(uid).update({
+          'profileUrl': downloadUrl,
+        });
+        return;
+      }
+    } on FirebaseAuthException catch (e) {
+      throw FirebaseAuthException(code: e.code);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+}
+
+/// Retrieves the download URL for a given [File] object.
+///
+/// The [File] parameter represents the file for which the download URL is needed.
+///
+/// Returns a [Future] that resolves to a [String] representing the download URL.
+Future<String> getDownloadUrl(File image) async {
+  final storageRef = FirebaseStorage.instance
+      .ref()
+      .child('userImage/${image.path.split('/').last}');
+  final uploadTask = storageRef.putFile(image);
+  final downloadUrl = await (await uploadTask).ref.getDownloadURL();
+
+  return downloadUrl;
 }

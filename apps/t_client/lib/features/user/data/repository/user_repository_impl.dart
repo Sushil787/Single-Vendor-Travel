@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:t_client/features/user/domain/entities/user_entity.dart';
@@ -168,6 +170,18 @@ class UserRepositoryImpl implements UserRepository {
   }) async {
     try {
       await userRemoteDataSource.addSearchHistory(searchQuery: searchQuery);
+    } on FirebaseAuthException catch (e) {
+      throw FirebaseAuthException(code: e.code);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  @override
+  Future<void> updateProfile({String? username, File? image}) async {
+    try {
+      await userRemoteDataSource.updateProfile(
+          username: username, image: image);
     } on FirebaseAuthException catch (e) {
       throw FirebaseAuthException(code: e.code);
     } catch (e) {

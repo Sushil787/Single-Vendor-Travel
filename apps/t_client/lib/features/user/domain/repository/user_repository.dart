@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:t_client/features/user/domain/entities/user_entity.dart';
 
@@ -8,6 +10,9 @@ abstract class UserRepository {
 
   /// Google Auth
   Future<void> googleAuth();
+
+  /// Update Profile
+  Future<void> updateProfile({String? username, File? image});
 
   /// Delete Account
   Future<void> deleteAccount({required String uid});

@@ -22,22 +22,22 @@ import '../features/bookmark/data/bookmark_data_source_impl.dart' as _i16;
 import '../features/bookmark/data/bookmark_repo_impl.dart' as _i18;
 import '../features/bookmark/domain/bookmark_data_source.dart' as _i15;
 import '../features/bookmark/domain/bookmark_repo.dart' as _i17;
-import '../features/bookmark/presentation/bloc/bloc/bookmark_bloc.dart' as _i27;
+import '../features/bookmark/presentation/bloc/bloc/bookmark_bloc.dart' as _i28;
 import '../features/chat/data/remote/chat_data_repo_impl.dart' as _i20;
 import '../features/chat/domain/chat_data_repo.dart' as _i19;
-import '../features/chat/presentation/cubit/chat_cubit.dart' as _i28;
+import '../features/chat/presentation/cubit/chat_cubit.dart' as _i29;
 import '../features/orders/data/repo/order_repo_impl.dart' as _i21;
-import '../features/orders/presentation/bloc/order_bloc.dart' as _i29;
+import '../features/orders/presentation/bloc/order_bloc.dart' as _i30;
 import '../features/package/data/repo/travel_datasource_impl.dart' as _i24;
 import '../features/package/data/repo/travel_repo_impl.dart' as _i26;
 import '../features/package/domain/repo/travel_data_source.dart' as _i23;
 import '../features/package/domain/repo/travel_repo.dart' as _i25;
 import '../features/package/presentation/bloc/recommend/recommend_bloc.dart'
-    as _i30;
-import '../features/package/presentation/bloc/search_bloc/bloc/search_bloc.dart'
     as _i31;
-import '../features/package/presentation/bloc/travel_bloc/travel_bloc.dart'
+import '../features/package/presentation/bloc/search_bloc/bloc/search_bloc.dart'
     as _i32;
+import '../features/package/presentation/bloc/travel_bloc/travel_bloc.dart'
+    as _i33;
 import '../features/user/data/remote_data_source/user_remote_data_source_impl.dart'
     as _i11;
 import '../features/user/data/repository/user_repository_impl.dart' as _i13;
@@ -48,7 +48,9 @@ import '../features/user/presentation/cubit/credential/cubit/auth_cubit.dart'
     as _i14;
 import '../features/user/presentation/cubit/profile/cubit/profile_cubit.dart'
     as _i22;
-import 'app_module.dart' as _i33;
+import '../features/user/presentation/cubit/profile/cubit/update_profile_cubit.dart'
+    as _i27;
+import 'app_module.dart' as _i34;
 
 // initializes the registration of main-scope dependencies inside of GetIt
 Future<_i1.GetIt> $initGetIt(
@@ -77,6 +79,7 @@ Future<_i1.GetIt> $initGetIt(
         firebaseFirestore: gh<_i5.FirebaseFirestore>(),
         firebaseAuth: gh<_i4.FirebaseAuth>(),
         googleSignIn: gh<_i7.GoogleSignIn>(),
+        firebaseStorage: gh<_i6.FirebaseStorage>(),
       ));
   gh.factory<_i12.UserRepository>(() => _i13.UserRepositoryImpl(
       userRemoteDataSource: gh<_i10.UserRemoteDataSource>()));
@@ -109,21 +112,23 @@ Future<_i1.GetIt> $initGetIt(
       ));
   gh.factory<_i25.TravelRepo>(
       () => _i26.TravelRepoImpl(travelDataSource: gh<_i23.TravelDataSource>()));
-  gh.factory<_i27.BookmarkBloc>(
-      () => _i27.BookmarkBloc(gh<_i17.BookmarkRepo>()));
-  gh.factory<_i28.ChatCubit>(
-      () => _i28.ChatCubit(chatDataRepository: gh<_i19.ChatDataRepository>()));
-  gh.factory<_i29.OrderBloc>(
-      () => _i29.OrderBloc(orderRepo: gh<_i21.OrderRepo>()));
-  gh.factory<_i30.RecommendBloc>(
-      () => _i30.RecommendBloc(travelRepo: gh<_i25.TravelRepo>()));
-  gh.factory<_i31.SearchBloc>(
-      () => _i31.SearchBloc(travelRepo: gh<_i25.TravelRepo>()));
-  gh.factory<_i32.TravelBloc>(
-      () => _i32.TravelBloc(travelRepo: gh<_i25.TravelRepo>()));
+  gh.factory<_i27.UpdateProfileCubit>(
+      () => _i27.UpdateProfileCubit(userRepository: gh<_i12.UserRepository>()));
+  gh.factory<_i28.BookmarkBloc>(
+      () => _i28.BookmarkBloc(gh<_i17.BookmarkRepo>()));
+  gh.factory<_i29.ChatCubit>(
+      () => _i29.ChatCubit(chatDataRepository: gh<_i19.ChatDataRepository>()));
+  gh.factory<_i30.OrderBloc>(
+      () => _i30.OrderBloc(orderRepo: gh<_i21.OrderRepo>()));
+  gh.factory<_i31.RecommendBloc>(
+      () => _i31.RecommendBloc(travelRepo: gh<_i25.TravelRepo>()));
+  gh.factory<_i32.SearchBloc>(
+      () => _i32.SearchBloc(travelRepo: gh<_i25.TravelRepo>()));
+  gh.factory<_i33.TravelBloc>(
+      () => _i33.TravelBloc(travelRepo: gh<_i25.TravelRepo>()));
   return getIt;
 }
 
-class _$AppModule extends _i33.AppModule {}
+class _$AppModule extends _i34.AppModule {}
 
-class _$SharedPrefsInjectionModule extends _i33.SharedPrefsInjectionModule {}
+class _$SharedPrefsInjectionModule extends _i34.SharedPrefsInjectionModule {}
