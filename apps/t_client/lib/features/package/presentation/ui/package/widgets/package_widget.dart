@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -6,7 +5,6 @@ import 'package:t_client/core/constants/route_constants.dart';
 import 'package:t_client/core/helper/extension/context_extension.dart';
 import 'package:t_client/core/helper/gap.dart';
 import 'package:t_client/core/theme/app_colors.dart';
-import 'package:t_client/core/widgets/custom_button.dart';
 import 'package:t_client/core/widgets/custom_image_widget.dart';
 import 'package:t_client/features/package/data/model/travel_package_model.dart';
 import 'package:t_client/features/package/presentation/ui/package/widgets/discount_widget.dart';
@@ -20,7 +18,7 @@ class PackageWidget extends StatelessWidget {
       super.key,
       this.isMapScreen = false,
       this.onTap,
-      this.distance = 0});
+      this.distance = 0,});
 
   /// [TravelPackageModel] for Package Widget
   final TravelPackageModel travelPackageModel;

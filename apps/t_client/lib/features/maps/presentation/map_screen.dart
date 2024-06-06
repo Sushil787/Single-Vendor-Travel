@@ -1,22 +1,17 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_cached_tile_provider/flutter_map_cached_tile_provider.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:t_client/core/helper/extension/context_extension.dart';
 import 'package:t_client/core/helper/gap.dart';
 import 'package:t_client/core/helper/haver_sin_formula.dart';
-import 'package:t_client/core/theme/app_colors.dart';
 import 'package:t_client/core/widgets/ios_back_button.dart';
 import 'package:t_client/features/package/data/model/travel_package_model.dart';
 import 'package:t_client/features/package/presentation/bloc/travel_bloc/travel_bloc.dart';
 import 'package:t_client/features/package/presentation/ui/home/home_screen.dart';
-import 'package:t_client/features/package/presentation/ui/package/package_screen.dart';
-import 'package:t_client/features/package/presentation/ui/package/widgets/icon_text_row.dart';
 import 'package:t_client/features/package/presentation/ui/package/widgets/package_widget.dart';
 
 /// Map Screen
@@ -180,7 +175,7 @@ class _MapScreenState extends State<MapScreen> {
                                 packages[index].latitude,
                                 packages[index].longitude,
                               ),
-                              8);
+                              8,);
                           setState(() {});
                         },
                       ),
@@ -203,6 +198,6 @@ class _MapScreenState extends State<MapScreen> {
           ),
         ],
       ),
-    ));
+    ),);
   }
 }

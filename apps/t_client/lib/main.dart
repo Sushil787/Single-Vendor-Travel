@@ -16,7 +16,7 @@ import 'package:t_client/features/chat/domain/chat_data_repo.dart';
 import 'package:t_client/features/chat/presentation/cubit/chat_cubit.dart';
 import 'package:t_client/features/orders/presentation/bloc/order_bloc.dart';
 import 'package:t_client/features/package/domain/repo/travel_data_source.dart';
-import 'package:t_client/features/package/presentation/bloc/recommend/recommend_bloc.dart';
+import 'package:t_client/features/package/presentation/bloc/comment/comment_cubit.dart';
 import 'package:t_client/features/package/presentation/bloc/travel_bloc/travel_bloc.dart';
 import 'package:t_client/features/user/domain/repository/user_repository.dart';
 import 'package:t_client/features/user/presentation/cubit/credential/cubit/auth_cubit.dart';
@@ -66,6 +66,9 @@ void main() async {
             create: (context) => getIt<ProfileCubit>(),
           ),
           BlocProvider(
+            create: (context) => getIt<CommentCubit>(),
+          ),
+          BlocProvider(
             create: (context) => getIt<OrderBloc>(),
           ),
           BlocProvider(
@@ -77,9 +80,7 @@ void main() async {
           BlocProvider(
             create: (context) => getIt<BookmarkBloc>(),
           ),
-          BlocProvider(
-            create: (context) => getIt<RecommendBloc>(),
-          ),
+
         ],
         child: DevicePreview(
           enabled: false,

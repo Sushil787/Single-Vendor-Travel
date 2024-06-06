@@ -1,19 +1,15 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:t_client/core/constants/route_constants.dart';
 import 'package:t_client/core/helper/geolocator_permission.dart';
 import 'package:t_client/core/theme/app_colors.dart';
-import 'package:t_client/di/di_setup.dart';
 import 'package:t_client/features/bookmark/presentation/bookmark_screen.dart';
 import 'package:t_client/features/chat/presentation/chat_screen.dart';
 import 'package:t_client/features/orders/presentation/order_screen.dart';
-import 'package:t_client/features/package/presentation/bloc/recommend/recommend_bloc.dart';
 import 'package:t_client/features/package/presentation/bloc/travel_bloc/travel_bloc.dart';
 import 'package:t_client/features/package/presentation/ui/home/widget/selected_widget.dart';
 import 'package:t_client/features/package/presentation/ui/package/package_screen.dart';

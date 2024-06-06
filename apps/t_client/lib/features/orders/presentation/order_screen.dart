@@ -168,8 +168,8 @@ Widget buildOrderWidget(
               color: LightColor.eclipse,
             ),
             child: const Text('Visited',
-                style: TextStyle(color: Colors.white, fontSize: 14)),
-          )
+                style: TextStyle(color: Colors.white, fontSize: 14),),
+          ),
       ],
     ),
   );
@@ -183,7 +183,7 @@ CustomElevatedButton cancleRequestButton(
 ) {
   return CustomElevatedButton(
     onButtonPressed: () async {
-      await showDialog(
+      await showDialog<String>(
         context: context,
         builder: (context) {
           return Dialog(
@@ -244,7 +244,7 @@ Note, after cancelation of the travel package you will be refunded after deducti
                           },
                           buttonText: 'Cancel Package',
                           btnFontSize: 12,
-                        )
+                        ),
                     ],
                   ),
                 ],

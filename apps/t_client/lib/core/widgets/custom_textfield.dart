@@ -73,8 +73,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   void dispose() {
     super.dispose();
-
-
   }
 
   @override
@@ -117,13 +115,15 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     ? const Icon(Icons.visibility)
                     : const Icon(Icons.visibility_off),
               )
-            : InkWell(
-                onTap: () {
-                  widget.onSuffixTap?.call(widget.controller.text);
-                  widget.controller.clear();
-                },
-                child: Icon(widget.suffixIcon),
-              ),
+            : widget.suffixIcon != null
+                ? InkWell(
+                    onTap: () {
+                      widget.onSuffixTap?.call(widget.controller.text);
+                      widget.controller.clear();
+                    },
+                    child: Icon(widget.suffixIcon),
+                  )
+                : null,
 
         prefixIcon: widget.prefixIcon != null ? Icon(widget.prefixIcon) : null,
         border: OutlineInputBorder(

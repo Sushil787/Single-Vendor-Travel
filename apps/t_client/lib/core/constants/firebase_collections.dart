@@ -2,6 +2,9 @@
 /// Collection for packages
 const String pakcages = 'packages';
 
+/// Collection for comment
+const String comments = 'comments';
+
 /// Collection for chats
 const String chats = 'chats';
 

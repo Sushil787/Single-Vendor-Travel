@@ -9,8 +9,7 @@ abstract class TravelRepo {
   Stream<List<TravelPackageModel>> searchPackage({required String search});
 
   /// Add Category
-  Future<void> addTravelCategory({required String category});
-
-  /// Add Category
   Future<List<TravelPackageModel>?> getRecommended();
+
+
 }

@@ -20,10 +20,12 @@ CommentModel _$CommentModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CommentModel {
+  String get commentId => throw _privateConstructorUsedError;
+  String get uuid => throw _privateConstructorUsedError;
+  String get packageId => throw _privateConstructorUsedError;
   String get uname => throw _privateConstructorUsedError;
-  String get profileUrl => throw _privateConstructorUsedError;
   String get comment => throw _privateConstructorUsedError;
-  double get rating => throw _privateConstructorUsedError;
+  String? get profileUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +39,13 @@ abstract class $CommentModelCopyWith<$Res> {
           CommentModel value, $Res Function(CommentModel) then) =
       _$CommentModelCopyWithImpl<$Res, CommentModel>;
   @useResult
-  $Res call({String uname, String profileUrl, String comment, double rating});
+  $Res call(
+      {String commentId,
+      String uuid,
+      String packageId,
+      String uname,
+      String comment,
+      String? profileUrl});
 }
 
 /// @nodoc
@@ -53,28 +61,38 @@ class _$CommentModelCopyWithImpl<$Res, $Val extends CommentModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? commentId = null,
+    Object? uuid = null,
+    Object? packageId = null,
     Object? uname = null,
-    Object? profileUrl = null,
     Object? comment = null,
-    Object? rating = null,
+    Object? profileUrl = freezed,
   }) {
     return _then(_value.copyWith(
+      commentId: null == commentId
+          ? _value.commentId
+          : commentId // ignore: cast_nullable_to_non_nullable
+              as String,
+      uuid: null == uuid
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String,
+      packageId: null == packageId
+          ? _value.packageId
+          : packageId // ignore: cast_nullable_to_non_nullable
+              as String,
       uname: null == uname
           ? _value.uname
           : uname // ignore: cast_nullable_to_non_nullable
-              as String,
-      profileUrl: null == profileUrl
-          ? _value.profileUrl
-          : profileUrl // ignore: cast_nullable_to_non_nullable
               as String,
       comment: null == comment
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String,
-      rating: null == rating
-          ? _value.rating
-          : rating // ignore: cast_nullable_to_non_nullable
-              as double,
+      profileUrl: freezed == profileUrl
+          ? _value.profileUrl
+          : profileUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -87,7 +105,13 @@ abstract class _$$CommentModelImplCopyWith<$Res>
       __$$CommentModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String uname, String profileUrl, String comment, double rating});
+  $Res call(
+      {String commentId,
+      String uuid,
+      String packageId,
+      String uname,
+      String comment,
+      String? profileUrl});
 }
 
 /// @nodoc
@@ -101,28 +125,38 @@ class __$$CommentModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? commentId = null,
+    Object? uuid = null,
+    Object? packageId = null,
     Object? uname = null,
-    Object? profileUrl = null,
     Object? comment = null,
-    Object? rating = null,
+    Object? profileUrl = freezed,
   }) {
     return _then(_$CommentModelImpl(
+      commentId: null == commentId
+          ? _value.commentId
+          : commentId // ignore: cast_nullable_to_non_nullable
+              as String,
+      uuid: null == uuid
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String,
+      packageId: null == packageId
+          ? _value.packageId
+          : packageId // ignore: cast_nullable_to_non_nullable
+              as String,
       uname: null == uname
           ? _value.uname
           : uname // ignore: cast_nullable_to_non_nullable
-              as String,
-      profileUrl: null == profileUrl
-          ? _value.profileUrl
-          : profileUrl // ignore: cast_nullable_to_non_nullable
               as String,
       comment: null == comment
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String,
-      rating: null == rating
-          ? _value.rating
-          : rating // ignore: cast_nullable_to_non_nullable
-              as double,
+      profileUrl: freezed == profileUrl
+          ? _value.profileUrl
+          : profileUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -131,26 +165,33 @@ class __$$CommentModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CommentModelImpl implements _CommentModel {
   _$CommentModelImpl(
-      {required this.uname,
-      required this.profileUrl,
+      {required this.commentId,
+      required this.uuid,
+      required this.packageId,
+      required this.uname,
       required this.comment,
-      required this.rating});
+      this.profileUrl = null});
 
   factory _$CommentModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CommentModelImplFromJson(json);
 
   @override
-  final String uname;
+  final String commentId;
   @override
-  final String profileUrl;
+  final String uuid;
+  @override
+  final String packageId;
+  @override
+  final String uname;
   @override
   final String comment;
   @override
-  final double rating;
+  @JsonKey()
+  final String? profileUrl;
 
   @override
   String toString() {
-    return 'CommentModel(uname: $uname, profileUrl: $profileUrl, comment: $comment, rating: $rating)';
+    return 'CommentModel(commentId: $commentId, uuid: $uuid, packageId: $packageId, uname: $uname, comment: $comment, profileUrl: $profileUrl)';
   }
 
   @override
@@ -158,17 +199,21 @@ class _$CommentModelImpl implements _CommentModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CommentModelImpl &&
+            (identical(other.commentId, commentId) ||
+                other.commentId == commentId) &&
+            (identical(other.uuid, uuid) || other.uuid == uuid) &&
+            (identical(other.packageId, packageId) ||
+                other.packageId == packageId) &&
             (identical(other.uname, uname) || other.uname == uname) &&
-            (identical(other.profileUrl, profileUrl) ||
-                other.profileUrl == profileUrl) &&
             (identical(other.comment, comment) || other.comment == comment) &&
-            (identical(other.rating, rating) || other.rating == rating));
+            (identical(other.profileUrl, profileUrl) ||
+                other.profileUrl == profileUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, uname, profileUrl, comment, rating);
+  int get hashCode => Object.hash(
+      runtimeType, commentId, uuid, packageId, uname, comment, profileUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -186,22 +231,28 @@ class _$CommentModelImpl implements _CommentModel {
 
 abstract class _CommentModel implements CommentModel {
   factory _CommentModel(
-      {required final String uname,
-      required final String profileUrl,
+      {required final String commentId,
+      required final String uuid,
+      required final String packageId,
+      required final String uname,
       required final String comment,
-      required final double rating}) = _$CommentModelImpl;
+      final String? profileUrl}) = _$CommentModelImpl;
 
   factory _CommentModel.fromJson(Map<String, dynamic> json) =
       _$CommentModelImpl.fromJson;
 
   @override
-  String get uname;
+  String get commentId;
   @override
-  String get profileUrl;
+  String get uuid;
+  @override
+  String get packageId;
+  @override
+  String get uname;
   @override
   String get comment;
   @override
-  double get rating;
+  String? get profileUrl;
   @override
   @JsonKey(ignore: true)
   _$$CommentModelImplCopyWith<_$CommentModelImpl> get copyWith =>

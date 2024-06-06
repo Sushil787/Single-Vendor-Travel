@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:t_client/core/constants/route_constants.dart';
@@ -10,11 +13,14 @@ import 'package:t_client/core/helper/gap.dart';
 import 'package:t_client/core/theme/app_colors.dart';
 import 'package:t_client/core/widgets/custom_button.dart';
 import 'package:t_client/core/widgets/custom_image_widget.dart';
+import 'package:t_client/core/widgets/custom_textfield.dart';
 import 'package:t_client/core/widgets/ios_back_button.dart';
 import 'package:t_client/features/bookmark/presentation/bloc/bloc/bookmark_bloc.dart';
+import 'package:t_client/features/package/data/model/comment_model.dart';
 import 'package:t_client/features/package/data/model/travel_package_model.dart';
-import 'package:t_client/features/package/presentation/bloc/recommend/recommend_bloc.dart';
+import 'package:t_client/features/package/presentation/bloc/comment/comment_cubit.dart';
 import 'package:t_client/features/package/presentation/ui/package/detail/widget/build_add_favourite.dart';
+import 'package:t_client/features/package/presentation/ui/package/detail/widget/comment_lists.dart';
 import 'package:t_client/features/package/presentation/ui/package/detail/widget/item_row.dart';
 import 'package:t_client/features/package/presentation/ui/package/widgets/build_package_price.dart';
 import 'package:t_client/features/package/presentation/ui/package/widgets/icon_text_row.dart';
@@ -38,6 +44,8 @@ class PackageDetailScreen extends StatefulWidget {
 class _PackageDetailScreenState extends State<PackageDetailScreen> {
   late PageController _pageController;
   late Timer _timer;
+  String? uuid;
+  TextEditingController commenTController = TextEditingController();
   void startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 4), (Timer timer) {
       if (_index < 4 - 1) {
@@ -57,18 +65,16 @@ class _PackageDetailScreenState extends State<PackageDetailScreen> {
   void initState() {
     super.initState();
     context.read<BookmarkBloc>().getBookMarks();
-
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      uuid = await context.read<UserRepository>().getCurrentUId();
+    });
+    context
+        .read<CommentCubit>()
+        .getComments(packageId: widget.travelPackageModel.uuid);
     if (mounted) {
       startTimer();
       _pageController = PageController();
     }
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await context.read<UserRepository>().addSearchHistory(
-            searchQuery: widget.travelPackageModel.packageName,
-          );
-      // ignore: use_build_context_synchronously
-      context.read<RecommendBloc>().add(const Recommend());
-    });
   }
 
   @override
@@ -87,19 +93,6 @@ class _PackageDetailScreenState extends State<PackageDetailScreen> {
         statusBarColor: Colors.transparent,
       ),
       child: Scaffold(
-        bottomNavigationBar: Container(
-          height: context.height * .08,
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 4),
-          child: CustomElevatedButton(
-            onButtonPressed: () {
-              context.push(
-                AppRoutes.checkout,
-                extra: widget.travelPackageModel,
-              );
-            },
-            buttonText: 'Book Now',
-          ),
-        ),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -162,23 +155,6 @@ class _PackageDetailScreenState extends State<PackageDetailScreen> {
                           ),
                         ),
                         HorizontalGap.l,
-                 
-                 
-                        // BuildIconTextRow(
-                        //   first: const Icon(
-                        //     Icons.comment,
-                        //     size: 24,
-                        //     color: LightColor.orange,
-                        //   ),
-                        //   text: Text(
-                        //     (widget.travelPackageModel.reviews?.length ?? 0)
-                        //         .toString(),
-                        //     style: context.textTheme.bodySmall?.copyWith(
-                        //       fontSize: 14,
-                        //       color: LightColor.grey,
-                        //     ),
-                        //   ),
-                        // ),
                         const Expanded(child: SizedBox.shrink()),
                         buildProductPrice(
                           context,
@@ -226,6 +202,52 @@ class _PackageDetailScreenState extends State<PackageDetailScreen> {
                       title: 'Highlights',
                       items: widget.travelPackageModel.highlights,
                     ),
+                    VerticalGap.m,
+                    SizedBox(
+                      height: 40,
+                      child: CustomElevatedButton(
+                        btnVerticalPadding: 8,
+                        btnFontSize: 16,
+                        onButtonPressed: () {
+                          context.push(
+                            AppRoutes.checkout,
+                            extra: widget.travelPackageModel,
+                          );
+                        },
+                        buttonText: 'Book Now',
+                      ),
+                    ),
+                    VerticalGap.m,
+                    Text(
+                      'Comments',
+                      style: context.textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    VerticalGap.s,
+                    SizedBox(
+                      height: 50,
+                      child: CustomTextField(
+                        suffixIcon: Icons.add,
+                        onSuffixTap: (value) {
+                          context.read<CommentCubit>().addComment(
+                                comment: value,
+                                packageId: widget.travelPackageModel.uuid,
+                              );
+                          commenTController.clear();
+                        },
+                        controller: commenTController,
+                        hintText: 'Add Comment',
+                      ),
+                    ),
+                    if (uuid != null)
+                      BuildComments(
+                        packageId: widget.travelPackageModel.uuid,
+                      )
+                    else
+                      const Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      ),
                   ],
                 ),
               ),

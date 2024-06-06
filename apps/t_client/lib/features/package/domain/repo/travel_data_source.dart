@@ -8,11 +8,6 @@ abstract class TravelDataSource {
   /// Update Pacakge
   Stream<List<TravelPackageModel>> searchPackage({required String search});
 
-  /// Delete Package
-  Future<void> deletePackage({required String id});
-
-  /// Add Category
-  Future<void> addTravelCategory({required String category});
 
   /// Add Category
   Future<List<TravelPackageModel>> getRecommended();

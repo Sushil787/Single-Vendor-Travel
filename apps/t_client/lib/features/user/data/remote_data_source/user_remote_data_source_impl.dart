@@ -20,7 +20,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       {required this.firebaseFirestore,
       required this.firebaseAuth,
       required this.googleSignIn,
-      required this.firebaseStorage});
+      required this.firebaseStorage,});
 
   /// Firebase Firestore Instance
   final FirebaseFirestore firebaseFirestore;

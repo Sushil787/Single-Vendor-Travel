@@ -176,7 +176,7 @@ If you cancel your order within 24 hours of the visit date, no refund is availab
                                                 amount: int.parse(
                                                   double.parse(
                                                           (totalCost! * 100)
-                                                              .toString())
+                                                              .toString(),)
                                                       .toStringAsFixed(0),
                                                 ),
                                                 productIdentity:
@@ -193,7 +193,7 @@ If you cancel your order within 24 hours of the visit date, no refund is availab
                                                 context.read<OrderBloc>().add(
                                                       MakeOrder(
                                                           orderPackageModel:
-                                                              orderPackageModel),
+                                                              orderPackageModel,),
                                                     );
                                               },
                                               onFailure: (_) {
@@ -221,7 +221,7 @@ If you cancel your order within 24 hours of the visit date, no refund is availab
                                           buttonText: 'Continue',
                                         ),
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -340,7 +340,7 @@ If you cancel your order within 24 hours of the visit date, no refund is availab
               ),
             ),
           );
-        });
+        },);
   }
 
   Card receitCard() {

@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,7 +6,6 @@ import 'package:t_client/core/helper/extension/context_extension.dart';
 import 'package:t_client/core/helper/gap.dart';
 import 'package:t_client/core/widgets/custom_button.dart';
 import 'package:t_client/core/widgets/custom_textfield.dart';
-import 'package:t_client/features/package/presentation/ui/package/widgets/app_bar.dart';
 import 'package:t_client/features/user/presentation/cubit/credential/cubit/auth_cubit.dart';
 
 ///
@@ -70,7 +68,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               },
               buttonText: 'Proceed',
               // isLoading: true,
-            )
+            ),
           ],
         ),
       ),

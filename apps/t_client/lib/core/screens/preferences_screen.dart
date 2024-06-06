@@ -8,7 +8,6 @@ import 'package:t_client/core/helper/gap.dart';
 import 'package:t_client/core/theme/app_colors.dart';
 import 'package:t_client/core/widgets/custom_button.dart';
 import 'package:t_client/di/di_setup.dart';
-import 'package:t_client/features/package/presentation/bloc/recommend/recommend_bloc.dart';
 import 'package:t_client/features/user/domain/repository/user_repository.dart';
 
 /// Get User Preferences If first time Visit
@@ -125,7 +124,6 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
                       searchQuery: element,
                     );
               });
-              context.read<RecommendBloc>().add(const Recommend());
               await context.push(AppRoutes.main);
               return;
             }

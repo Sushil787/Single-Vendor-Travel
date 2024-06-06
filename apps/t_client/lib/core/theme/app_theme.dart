@@ -111,6 +111,13 @@ class AppTheme {
         fontWeight: FontWeight.w500,
       ),
     ),
+    chipTheme: const ChipThemeData(
+      backgroundColor: Colors.white,
+      side: BorderSide(
+        color: LightColor.eclipse,
+        width: 1,
+      ),
+    ),
     colorScheme: ColorScheme.fromSwatch().copyWith(
       primary: LightColor.primaryColor,
       secondary: LightColor.primaryColor,

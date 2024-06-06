@@ -12,10 +12,7 @@ class TravelRepoImpl implements TravelRepo {
   /// Travel Package Data Source
   final TravelDataSource travelDataSource;
 
-  @override
-  Future<void> addTravelCategory({required String category}) {
-    throw UnimplementedError();
-  }
+
 
   @override
   Stream<List<TravelPackageModel>> getTravelPackages() {

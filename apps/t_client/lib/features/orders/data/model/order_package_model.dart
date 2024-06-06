@@ -108,7 +108,7 @@ class OrderPackageModel {
       'orderStatus': orderStatus,
       'fcmToken': fcmToken,
       'userId': userId,
-      'createdAt': DateTime.now().toString()
+      'createdAt': DateTime.now().toString(),
     };
   }
 

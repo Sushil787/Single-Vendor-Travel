@@ -181,7 +181,7 @@ class UserRepositoryImpl implements UserRepository {
   Future<void> updateProfile({String? username, File? image}) async {
     try {
       await userRemoteDataSource.updateProfile(
-          username: username, image: image);
+          username: username, image: image,);
     } on FirebaseAuthException catch (e) {
       throw FirebaseAuthException(code: e.code);
     } catch (e) {
