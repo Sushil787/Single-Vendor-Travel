@@ -81,7 +81,7 @@ class ProductWidget extends StatelessWidget {
                         productModel.description,
                         style: context.textTheme.displaySmall,
                         overflow: TextOverflow.ellipsis,
-                        maxLines: 3,
+                        maxLines: isOrder?5:3
                       ),
                     ],
                   ),

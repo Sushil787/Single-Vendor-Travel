@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:t_admin/core/helper/extension/context_extension.dart';
 import 'package:t_admin/core/helper/gap.dart';
@@ -46,8 +43,8 @@ class _OrderWidgetState extends State<OrderWidget> {
         //   bottom: 8,
         // ),
         padding: const EdgeInsets.symmetric(
-          horizontal: 8,
-          vertical: 6,
+          horizontal: 6,
+          vertical: 1,
         ),
         child: Column(
           children: [
@@ -58,9 +55,10 @@ class _OrderWidgetState extends State<OrderWidget> {
                   child: Text(
                     widget.order.packageName ?? '',
                     style: context.textTheme.bodyMedium?.copyWith(
-                        color: LightColor.grey,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12),
+                      color: LightColor.grey,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12
+                    ),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
@@ -147,142 +145,41 @@ class _OrderWidgetState extends State<OrderWidget> {
               first: 'Order Id: ${widget.order.orderId}',
               second: ' ',
             ),
-            if (widget.order.productModel != null)
+            if (widget.order.productModel != null && widget.order.productModel!.isNotEmpty)
               InkWell(
                   onTap: () async {
-                    await showDialog<String>(
+                    await showDialog(
                       context: context,
                       builder: (context) {
-                        return AlertDialog(
-                          backgroundColor: Colors.white,
-                          scrollable: true,
-                          surfaceTintColor: Colors.white,
-                          contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 4),
-                          content: SizedBox(
-                            height: context.height * .4,
-                            width: context.width * 0.3, //
+                        return Container(
+                          margin: EdgeInsets.symmetric(
+                            horizontal: context.width * .10,
+                            vertical: context.height * .23,
+                          ),
 
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  ...widget.order.productModel!.map(
-                                    (e) => Container(
-                                      color: Colors.white,
-                                      width: context.width * .3,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(12)),
-                                            child: Container(
-                                              height: context.height * .2,
-                                              decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                  image: NetworkImage(
-                                                    e.image,
-                                                  ),
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          VerticalGap.s,
-                                          Text('Rs. ${e.price}'),
-                                          VerticalGap.s,
-                                          Text(e.title),
-                                          VerticalGap.s,
-                                          Text(e.description)
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                  // Add more containers if needed
-                                ],
+                          // margin: const EdgeInsets.only(top: 4),
+                          height: context.height * .12,
+                          width: context.width * .15,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: [
+                              ...widget.order.productModel!.map(
+                                (e) => Container(
+                                  margin: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                  ),
+                                  width: context.width * .15,
+                                  child: ProductWidget(
+                                    productModel: e,
+                                    isOrder: true,
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
                         );
                       },
                     );
-
-                    // await showDialog<String>(
-                    //   context: context,
-                    //   builder: (context) {
-                    //     return Container(
-                    //       margin: EdgeInsets.symmetric(
-                    //         horizontal: context.width * .3,
-                    //         vertical: context.height * .3,
-                    //       ),
-                    //       child: ListView(
-                    //         shrinkWrap: true,
-                    //         padding: EdgeInsets.zero,
-                    //         physics: const BouncingScrollPhysics(),
-                    //         scrollDirection: Axis.horizontal,
-                    //         children: [
-                    //           Container(
-                    //             height: 100,
-                    //             width: 200,
-                    //             color: Colors.red,
-                    //           ),
-                    //           Container(
-                    //             height: 100,
-                    //             width: 200,
-                    //             color: Colors.red,
-                    //           )
-
-                    //           // ...widget.order.productModel!.map(
-                    //           //   (e) => Container(
-                    //           //     color: Colors.white,
-                    //           //     margin: const EdgeInsets.symmetric(
-                    //           //       horizontal: 8,
-                    //           //     ),
-                    //           //     padding: const EdgeInsets.all(4),
-                    //           //     width: context.width * .3,
-                    //           //     height: context.height * .1,
-                    //           //     child: Column(
-                    //           //       crossAxisAlignment:
-                    //           //           CrossAxisAlignment.start,
-                    //           //       mainAxisSize: MainAxisSize.min,
-                    //           //       children: [
-                    //           //         ClipRRect(
-                    //           //           borderRadius: const BorderRadius.only(
-                    //           //             bottomLeft: Radius.circular(12),
-                    //           //             bottomRight: Radius.circular(12),
-                    //           //           ),
-                    //           //           child: Container(
-                    //           //             height: context.height * .2,
-                    //           //             decoration: BoxDecoration(
-                    //           //               image: DecorationImage(
-                    //           //                 image: NetworkImage(
-                    //           //                   e.image,
-                    //           //                 ),
-                    //           //                 fit: BoxFit.cover,
-                    //           //               ),
-                    //           //             ),
-                    //           //           ),
-                    //           //         ),
-                    //           //         VerticalGap.s,
-                    //           //         Text('Rs. ${e.price}'),
-                    //           //         VerticalGap.s,
-                    //           //         Text(e.title),
-                    //           //         VerticalGap.s,
-                    //           //         Text(e.description)
-                    //           //       ],
-                    //           //     ),
-                    //           //   ),
-                    //           // ),
-                    //         ],
-                    //       ),
-                    //     );
-                    // },
-                    // );
                   },
                   child: const Text('product ordered'))
           ],
@@ -303,23 +200,23 @@ Widget buildRow(
       Expanded(
         child: Text(
           first,
-          maxLines: 2,
+          maxLines: 10,
 
           // 'Total days: ${order.totalDays}',
           style: context.textTheme.bodyMedium?.copyWith(
             color: LightColor.grey,
-            fontWeight: FontWeight.w300,
+            fontWeight: FontWeight.w200,
             fontSize: 12,
           ),
           overflow: TextOverflow.ellipsis,
         ),
       ),
-      HorizontalGap.m,
+      HorizontalGap.s,
       Text(
         second,
         style: context.textTheme.bodyMedium?.copyWith(
           color: LightColor.grey,
-          fontWeight: FontWeight.w300,
+          fontWeight: FontWeight.w200,
           fontSize: 12,
         ),
         overflow: TextOverflow.ellipsis,
