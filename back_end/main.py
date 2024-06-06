@@ -21,6 +21,9 @@ user_search_history = []
 travel_packages = []
 recommendations = []
 
+'''
+Use main.py as 
+'''
 
 '''
 Get user search history from firebase database

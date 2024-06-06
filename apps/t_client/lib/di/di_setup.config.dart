@@ -4,8 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_lambdas
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: type=lint
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
@@ -51,8 +50,6 @@ import '../features/user/presentation/cubit/profile/cubit/profile_cubit.dart'
     as _i22;
 import 'app_module.dart' as _i33;
 
-// ignore_for_file: unnecessary_lambdas
-// ignore_for_file: lines_longer_than_80_chars
 // initializes the registration of main-scope dependencies inside of GetIt
 Future<_i1.GetIt> $initGetIt(
   _i1.GetIt getIt, {
@@ -66,11 +63,11 @@ Future<_i1.GetIt> $initGetIt(
   );
   final appModule = _$AppModule();
   final sharedPrefsInjectionModule = _$SharedPrefsInjectionModule();
-  gh.singleton<_i3.Dio>(appModule.dio);
-  gh.singleton<_i4.FirebaseAuth>(appModule.auth);
-  gh.singleton<_i5.FirebaseFirestore>(appModule.store);
-  gh.singleton<_i6.FirebaseStorage>(appModule.firebaseStorage);
-  gh.singleton<_i7.GoogleSignIn>(appModule.googleSignin);
+  gh.singleton<_i3.Dio>(() => appModule.dio);
+  gh.singleton<_i4.FirebaseAuth>(() => appModule.auth);
+  gh.singleton<_i5.FirebaseFirestore>(() => appModule.store);
+  gh.singleton<_i6.FirebaseStorage>(() => appModule.firebaseStorage);
+  gh.singleton<_i7.GoogleSignIn>(() => appModule.googleSignin);
   gh.factory<_i8.NetworkInfo>(() => _i8.NetworkInfoImpl());
   await gh.factoryAsync<_i9.SharedPreferences>(
     () => sharedPrefsInjectionModule.prefs,
@@ -83,10 +80,10 @@ Future<_i1.GetIt> $initGetIt(
       ));
   gh.factory<_i12.UserRepository>(() => _i13.UserRepositoryImpl(
       userRemoteDataSource: gh<_i10.UserRemoteDataSource>()));
-  gh.singleton<_i14.AuthCubit>(_i14.AuthCubit(
-    userRepository: gh<_i12.UserRepository>(),
-    networkInfo: gh<_i8.NetworkInfo>(),
-  ));
+  gh.singleton<_i14.AuthCubit>(() => _i14.AuthCubit(
+        userRepository: gh<_i12.UserRepository>(),
+        networkInfo: gh<_i8.NetworkInfo>(),
+      ));
   gh.factory<_i15.BookmarkDataSource>(() => _i16.BookmarkDataSourceImpl(
         gh<_i12.UserRepository>(),
         firebaseFirestore: gh<_i5.FirebaseFirestore>(),
