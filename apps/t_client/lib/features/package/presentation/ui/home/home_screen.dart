@@ -57,26 +57,30 @@ class _HomeScreenState extends State<HomeScreen>
     pageController = PageController();
     context.read<ProfileCubit>().getProfile(uid: widget.uid);
     context.read<TravelBloc>().add(const Get());
-    context.read<RecommendBloc>().add(const Recommend());
+    // context.read<RecommendBloc>().add(const Recommend());
     uid = widget.uid;
-    scrollController.addListener(() {
-      if (scrollController.position.userScrollDirection ==
-          ScrollDirection.reverse) {
-        setState(() {
-          isVisible = false;
-        });
-      }
-      if (scrollController.position.userScrollDirection ==
-          ScrollDirection.forward) {
-        setState(() {
-          isVisible = true;
-        });
-      }
-    });
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      final position = await determinePosition();
-      userLocation.value = LatLng(position.latitude, position.longitude);
-    });
+    scrollController.addListener(
+      () {
+        if (scrollController.position.userScrollDirection ==
+            ScrollDirection.reverse) {
+          setState(() {
+            isVisible = false;
+          });
+        }
+        if (scrollController.position.userScrollDirection ==
+            ScrollDirection.forward) {
+          setState(() {
+            isVisible = true;
+          });
+        }
+      },
+    );
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) async {
+        final position = await determinePosition();
+        userLocation.value = LatLng(position.latitude, position.longitude);
+      },
+    );
     screens = [
       PackageScreen(
         uid: uid,
@@ -107,7 +111,6 @@ class _HomeScreenState extends State<HomeScreen>
         curve: Curves.easeOutQuint,
         child: isVisible
             ? BottomNavigationBar(
-            
                 onTap: (value) {
                   selectedIndex = value;
                   pageController.animateToPage(

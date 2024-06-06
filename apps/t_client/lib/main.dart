@@ -30,14 +30,19 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  /// Shows Local Notification
+
   await NotificationService.initialize();
+
+  /// Initializes Firebase Notification
+
   FcmServices.initializeFirebase();
   await configureDependencies();
   Bloc.observer = SimpleBlocObserver();
   runApp(
     MultiRepositoryProvider(
       providers: [
-        // getRecommended
         RepositoryProvider(
           create: (context) => getIt<ChatDataRepository>(),
         ),

@@ -14,7 +14,7 @@ class FcmServices {
     /// Subscription for topics
     FirebaseMessaging.instance.subscribeToTopic(AppConstants.topic);
 
-    /// Listen to Background Messages
+    /// Listen to Background Messages after app is closed
     FirebaseMessaging.onBackgroundMessage(handleBackground);
     FirebaseMessaging.onMessage.listen((event) {
       NotificationService.sendNotification(

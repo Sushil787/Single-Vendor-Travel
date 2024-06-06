@@ -13,7 +13,10 @@ import 'package:uuid/uuid.dart';
 @injectable
 class OrderRepo {
   ///
-  OrderRepo({required this.firestore, required this.userRepository});
+  OrderRepo({
+    required this.firestore,
+    required this.userRepository,
+  });
 
   /// Firestore instance
   final FirebaseFirestore firestore;
@@ -33,7 +36,7 @@ class OrderRepo {
         fcmToken: fcm,
         orderStatus: 'confirmed',
       );
-      
+
       /// Add the order to Firestore
       await firestore.collection('order').add(orderModel.toJson());
 

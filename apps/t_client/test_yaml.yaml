@@ -1,0 +1,79 @@
+name: t_client  # Name of the Flutter project
+description: A comprehensive Flutter project template for client-side applications.  # Description of the project
+publish_to: "none"  # Prevents accidental publishing to pub.dev
+
+version: 1.0.0+1  # Version number of the project
+
+environment:
+  sdk: ">=3.0.5 <4.0.0"  # Minimum SDK version required for the project
+
+dependencies:
+  flutter:
+    sdk: flutter  # Flutter SDK dependency
+
+  # State Management
+  flutter_bloc: ^8.1.2  # Facilitates state management using the BLoC pattern
+  
+  # Dependency Injection
+  get_it: ^7.0.0  # Service locator for dependency injection
+  
+  # Utility
+  equatable: 2.0.5  # Simplifies value-based equality for Dart classes
+  
+  # Network Communication
+  network_image: ^0.1.1  # Support for loading images over the network with caching
+  
+  # Firebase Integration
+  firebase_auth: ^4.6.1  # Authentication via Firebase
+  cloud_firestore: ^4.7.1  # Cloud-hosted NoSQL database service
+  firebase_storage: ^11.2.1  # Storage and retrieval of user-generated content
+  google_sign_in: ^6.1.0  # User authentication via Google accounts
+  firebase_messaging: ^14.7.9  # Sending and receiving push notifications
+  
+  # UI Components and Design
+  cupertino_icons: ^1.0.5  # Cupertino (iOS-style) icons
+  google_fonts: ^4.0.4  # Google Fonts for typography
+  animated_text_kit: ^4.2.2  # Animated text effects
+  flutter_svg: ^2.0.9  # Rendering SVG images
+  
+  # Navigation
+  go_router: ^9.0.3  # Declarative and type-safe routing solution
+  
+  # Data Serialization
+  json_serializable: ^6.7.1  # Code generation for JSON serialization
+  freezed_annotation: ^2.4.1  # Simplifies implementation of immutable classes
+  
+  # Device Features
+  image_picker: ^1.1.0  # Picking images from gallery or camera
+  geolocator: ^11.0.0  # Geolocation services
+  connectivity_plus: ^4.0.1  # Cross-platform connectivity information
+  panorama_viewer: ^1.0.2  # Panorama viewer widget
+  webview_flutter: ^4.4.4  # Embedding web views
+  
+  # Other Utilities
+  shared_preferences: ^2.0.20  # Persistent storage for simple data types
+  uuid: ^3.0.7  # Generating universally unique identifiers
+  path_provider: ^2.1.2  # Platform-specific locations for storing app data
+  dio: ^5.4.1  # HTTP client for making network requests
+  http: ^1.1.0  # HTTP client for Dart applications
+  
+  # Map Integration
+  flutter_osm_plugin: ^0.70.1  # OpenStreetMap (OSM) integration
+  flutter_map: ^6.1.0  # Interactive maps
+  flutter_map_cache: ^1.5.0  # Caching capabilities for flutter_map
+  flutter_map_cached_tile_provider: ^0.0.2  # Cached tile provider for flutter_map
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter  # Testing utilities for Flutter applications
+  flutter_lints: ^2.0.0  # Set of recommended lint rules
+  build_runner: ^2.4.6  # Tools for generating code
+  injectable_generator: ^2.1.6  # Code generation for dependency injection
+  freezed: ^2.4.6  # Code generation for immutable classes and value types
+
+flutter:
+  uses-material-design: true  # Includes Material Icons font with the application
+  
+  assets:
+    - assets/images/  # Asset directory for images
+

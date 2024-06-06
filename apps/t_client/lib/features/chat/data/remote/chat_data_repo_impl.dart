@@ -8,7 +8,6 @@ import 'package:t_client/features/chat/domain/chat_data_repo.dart';
 import 'package:t_client/features/user/data/model/user_model.dart';
 
 @Injectable(as: ChatDataRepository)
-
 /// Chat Data Impl
 class ChatDataRepositoryImpl implements ChatDataRepository {
   ///

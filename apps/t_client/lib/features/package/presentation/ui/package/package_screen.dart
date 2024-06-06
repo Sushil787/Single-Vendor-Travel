@@ -106,29 +106,29 @@ class _PackageScreenState extends State<PackageScreen> {
                       ),
                     ),
                   ),
-                  SliverToBoxAdapter(
-                    child: BlocBuilder<RecommendBloc, RecommendState>(
-                      builder: (context, state) {
-                        if (state is RecommendLoaded) {
-                          return state.packages.isEmpty
-                              ? const SizedBox.shrink()
-                              : Container(
-                                  margin: const EdgeInsets.only(bottom: 8),
-                                  child: RecentlyAddedPackages(
-                                    travelPackageModels: state.packages,
-                                    title: 'Package Recommended',
-                                  ),
-                                );
-                        }
-                        if (state is RecommendLoading) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                        return const SizedBox.shrink();
-                      },
-                    ),
-                  ),
+                  // SliverToBoxAdapter(
+                  //   child: BlocBuilder<RecommendBloc, RecommendState>(
+                  //     builder: (context, state) {
+                  //       if (state is RecommendLoaded) {
+                  //         return state.packages.isEmpty
+                  //             ? const SizedBox.shrink()
+                  //             : Container(
+                  //                 margin: const EdgeInsets.only(bottom: 8),
+                  //                 child: RecentlyAddedPackages(
+                  //                   travelPackageModels: state.packages,
+                  //                   title: 'Package Recommended',
+                  //                 ),
+                  //               );
+                  //       }
+                  //       if (state is RecommendLoading) {
+                  //         return const Center(
+                  //           child: CircularProgressIndicator(),
+                  //         );
+                  //       }
+                  //       return const SizedBox.shrink();
+                  //     },
+                  //   ),
+                  // ),
                   SliverToBoxAdapter(
                     child: RecentlyAddedPackages(
                       travelPackageModels: state.packages,
