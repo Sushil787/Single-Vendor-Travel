@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:t_client/core/theme/app_colors.dart';
 
 /// [ToastType] enum
 enum ToastType {
@@ -16,9 +17,10 @@ enum ToastType {
 extension HelperExtension on BuildContext {
   /// Theme
   ThemeData get theme => Theme.of(this);
+
   /// Device Height
   double get height => MediaQuery.of(this).size.height;
-  
+
   /// Device Width
   double get width => MediaQuery.of(this).size.width;
 
@@ -87,10 +89,11 @@ extension HelperExtension on BuildContext {
   }) {
     return ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         content: Text(message),
         behavior: SnackBarBehavior.floating,
         backgroundColor: toastType == ToastType.message
-            ? Colors.black
+            ? LightColor.eclipse
             : toastType == ToastType.success
                 ? Colors.green
                 : Colors.red,

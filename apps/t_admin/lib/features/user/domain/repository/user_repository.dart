@@ -29,4 +29,7 @@ abstract class UserRepository {
 
   /// Get Single User
   Stream<List<UserEntity>> getSingleUser({required String uid});
+
+  /// Get Admin Earning
+  Future<String?> getEarning();
 }

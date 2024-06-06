@@ -60,8 +60,7 @@ class RecentlyAddedPackages extends StatelessWidget {
                           fit: StackFit.expand,
                           children: [
                             CustomImageWidget(
-                              urlImage:
-                                  travelPackageModels[index].featuredImage,
+                              urlImage: travelPackageModels[index].images.first,
                             ),
                             Positioned(
                               right: 10,

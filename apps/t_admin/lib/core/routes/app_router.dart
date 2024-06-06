@@ -10,6 +10,8 @@ import 'package:t_admin/features/chat/presentation/ui/chat_screen.dart';
 import 'package:t_admin/features/dashboard/presentation/ui/dashboard_screen.dart';
 import 'package:t_admin/features/home/home_screen.dart';
 import 'package:t_admin/features/order/presentation/ui/booking_screen.dart';
+import 'package:t_admin/features/order/presentation/ui/cancle_request.dart';
+import 'package:t_admin/features/package/data/model/travel_package_model.dart';
 
 import 'package:t_admin/features/package/presentation/ui/add_package_screen.dart';
 import 'package:t_admin/features/package/presentation/ui/package_screen.dart';
@@ -43,13 +45,20 @@ class AppRouter {
                 builder: (context, state) => const AllUserScreen(),
               ),
               GoRoute(
+                path: AppRoutes.cancleRequest,
+                builder: (context, state) => const CancleRequestScreen(),
+              ),
+              GoRoute(
                 path: AppRoutes.package,
                 builder: (context, state) => const PackageScreen(),
                 routes: [
                   GoRoute(
                     parentNavigatorKey: _parentKey,
-                    path: AppRoutes.addPackage,
-                    builder: (context, state) => const AddPackageScreen(),
+                    path: '${AppRoutes.addPackage}/:mode',
+                    builder: (context, state) => AddPackageScreen(
+                      createMode: bool.parse(state.pathParameters['mode']!),
+                      travelPackageModel: state.extra as TravelPackageModel?,
+                    ),
                   ),
                 ],
               ),
@@ -76,7 +85,6 @@ class AppRouter {
           uid: state.extra! as String,
         ),
       ),
-     
     ],
     redirect: (context, state) {
       final user = getIt<FirebaseAuth>().currentUser;

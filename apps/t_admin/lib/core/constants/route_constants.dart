@@ -2,8 +2,6 @@
 class AppRoutes {
   AppRoutes._();
 
-
-
   /// Home Route
   static const String home = '/';
 
@@ -24,13 +22,15 @@ class AppRoutes {
 
   /// Sub Routes for Shell Routes
 
+  /// Cancle Request Screen
+  static const String cancleRequest = 'cancle';
+
   /// User Booked Screen
   static const String bookedScreen = 'bookedScreen';
 
-  /// Add Package Screen 
+  /// Add Package Screen
 
   static const String addPackage = 'addPackage';
-
 
   /// Pakcage Screen
   static const String package = 'package';

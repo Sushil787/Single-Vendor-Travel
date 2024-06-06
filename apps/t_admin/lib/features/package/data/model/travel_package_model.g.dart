@@ -27,6 +27,10 @@ _$TravelPackageModelImpl _$$TravelPackageModelImplFromJson(
               ?.map((e) => e as String)
               .toList() ??
           const [],
+      pickupAddress: (json['pickupAddress'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
       discount: (json['discount'] as num?)?.toDouble() ?? 0,
       favourite: json['favourite'] as int? ?? 0,
       inclusive: (json['inclusive'] as List<dynamic>?)
@@ -57,6 +61,7 @@ Map<String, dynamic> _$$TravelPackageModelImplToJson(
       'location': instance.location,
       'createdAt': instance.createdAt.toIso8601String(),
       'highlights': instance.highlights,
+      'pickupAddress': instance.pickupAddress,
       'discount': instance.discount,
       'favourite': instance.favourite,
       'inclusive': instance.inclusive,

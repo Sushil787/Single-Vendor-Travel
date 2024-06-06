@@ -31,8 +31,14 @@ class TravelBloc extends Bloc<TravelEvent, TravelPackageState> {
           vrImage,
           featuredImage,
         ),
-        updatePacakge: (TravelPackageModel package) =>
-            _updatePackage(emit, package),
+        updatePacakge: (vrImage, images, featuredImage, travelPackageModel) =>
+            _updatePackage(
+          emit,
+          vrImage,
+          images,
+          featuredImage,
+          travelPackageModel,
+        ),
         get: () => _get(emit),
       );
     });
@@ -48,8 +54,7 @@ class TravelBloc extends Bloc<TravelEvent, TravelPackageState> {
     String id,
   ) async {
     try {
-      emit(const Loading());
-      // travelRepo
+      await travelRepo.deletePackage(id: id);
     } catch (e) {
       emit(TravelPackageState.error(message: e.toString()));
     }
@@ -80,13 +85,21 @@ class TravelBloc extends Bloc<TravelEvent, TravelPackageState> {
   /// Update Packages
   Future<void> _updatePackage(
     Emitter<TravelPackageState> emit,
-    TravelPackageModel pacakge,
+    Uint8List vrImage,
+    List<Uint8List> images,
+    Uint8List featuredImage,
+    TravelPackageModel travelPackageModel,
   ) async {
     try {
       emit(const Loading());
-
-      // travelRepo
-    } catch (e) {
+      await travelRepo.updatePacakage(
+        vrImage: vrImage,
+        images: images,
+        featuredImage: featuredImage,
+        travelPackageModel: travelPackageModel,
+      );
+    } catch (e, s) {
+      debugPrint(s.toString() + e.toString());
       emit(TravelPackageState.error(message: e.toString()));
     }
   }

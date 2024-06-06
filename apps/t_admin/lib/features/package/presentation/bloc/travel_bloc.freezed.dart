@@ -22,7 +22,8 @@ mixin _$TravelEvent {
     required TResult Function(Uint8List vrImage, List<Uint8List> images,
             Uint8List featuredImage, TravelPackageModel travelPackageModel)
         addPackage,
-    required TResult Function(TravelPackageModel travelPackageModel)
+    required TResult Function(Uint8List vrImage, List<Uint8List> images,
+            Uint8List featuredImage, TravelPackageModel travelPackageModel)
         updatePacakge,
     required TResult Function() get,
   }) =>
@@ -33,7 +34,9 @@ mixin _$TravelEvent {
     TResult? Function(Uint8List vrImage, List<Uint8List> images,
             Uint8List featuredImage, TravelPackageModel travelPackageModel)?
         addPackage,
-    TResult? Function(TravelPackageModel travelPackageModel)? updatePacakge,
+    TResult? Function(Uint8List vrImage, List<Uint8List> images,
+            Uint8List featuredImage, TravelPackageModel travelPackageModel)?
+        updatePacakge,
     TResult? Function()? get,
   }) =>
       throw _privateConstructorUsedError;
@@ -43,7 +46,9 @@ mixin _$TravelEvent {
     TResult Function(Uint8List vrImage, List<Uint8List> images,
             Uint8List featuredImage, TravelPackageModel travelPackageModel)?
         addPackage,
-    TResult Function(TravelPackageModel travelPackageModel)? updatePacakge,
+    TResult Function(Uint8List vrImage, List<Uint8List> images,
+            Uint8List featuredImage, TravelPackageModel travelPackageModel)?
+        updatePacakge,
     TResult Function()? get,
     required TResult orElse(),
   }) =>
@@ -169,7 +174,8 @@ class _$DeleteImpl with DiagnosticableTreeMixin implements Delete {
     required TResult Function(Uint8List vrImage, List<Uint8List> images,
             Uint8List featuredImage, TravelPackageModel travelPackageModel)
         addPackage,
-    required TResult Function(TravelPackageModel travelPackageModel)
+    required TResult Function(Uint8List vrImage, List<Uint8List> images,
+            Uint8List featuredImage, TravelPackageModel travelPackageModel)
         updatePacakge,
     required TResult Function() get,
   }) {
@@ -183,7 +189,9 @@ class _$DeleteImpl with DiagnosticableTreeMixin implements Delete {
     TResult? Function(Uint8List vrImage, List<Uint8List> images,
             Uint8List featuredImage, TravelPackageModel travelPackageModel)?
         addPackage,
-    TResult? Function(TravelPackageModel travelPackageModel)? updatePacakge,
+    TResult? Function(Uint8List vrImage, List<Uint8List> images,
+            Uint8List featuredImage, TravelPackageModel travelPackageModel)?
+        updatePacakge,
     TResult? Function()? get,
   }) {
     return delete?.call(id);
@@ -196,7 +204,9 @@ class _$DeleteImpl with DiagnosticableTreeMixin implements Delete {
     TResult Function(Uint8List vrImage, List<Uint8List> images,
             Uint8List featuredImage, TravelPackageModel travelPackageModel)?
         addPackage,
-    TResult Function(TravelPackageModel travelPackageModel)? updatePacakge,
+    TResult Function(Uint8List vrImage, List<Uint8List> images,
+            Uint8List featuredImage, TravelPackageModel travelPackageModel)?
+        updatePacakge,
     TResult Function()? get,
     required TResult orElse(),
   }) {
@@ -389,7 +399,8 @@ class _$AddPackageImpl with DiagnosticableTreeMixin implements _AddPackage {
     required TResult Function(Uint8List vrImage, List<Uint8List> images,
             Uint8List featuredImage, TravelPackageModel travelPackageModel)
         addPackage,
-    required TResult Function(TravelPackageModel travelPackageModel)
+    required TResult Function(Uint8List vrImage, List<Uint8List> images,
+            Uint8List featuredImage, TravelPackageModel travelPackageModel)
         updatePacakge,
     required TResult Function() get,
   }) {
@@ -403,7 +414,9 @@ class _$AddPackageImpl with DiagnosticableTreeMixin implements _AddPackage {
     TResult? Function(Uint8List vrImage, List<Uint8List> images,
             Uint8List featuredImage, TravelPackageModel travelPackageModel)?
         addPackage,
-    TResult? Function(TravelPackageModel travelPackageModel)? updatePacakge,
+    TResult? Function(Uint8List vrImage, List<Uint8List> images,
+            Uint8List featuredImage, TravelPackageModel travelPackageModel)?
+        updatePacakge,
     TResult? Function()? get,
   }) {
     return addPackage?.call(vrImage, images, featuredImage, travelPackageModel);
@@ -416,7 +429,9 @@ class _$AddPackageImpl with DiagnosticableTreeMixin implements _AddPackage {
     TResult Function(Uint8List vrImage, List<Uint8List> images,
             Uint8List featuredImage, TravelPackageModel travelPackageModel)?
         addPackage,
-    TResult Function(TravelPackageModel travelPackageModel)? updatePacakge,
+    TResult Function(Uint8List vrImage, List<Uint8List> images,
+            Uint8List featuredImage, TravelPackageModel travelPackageModel)?
+        updatePacakge,
     TResult Function()? get,
     required TResult orElse(),
   }) {
@@ -486,7 +501,11 @@ abstract class _$$UpdatePackgeImplCopyWith<$Res> {
           _$UpdatePackgeImpl value, $Res Function(_$UpdatePackgeImpl) then) =
       __$$UpdatePackgeImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({TravelPackageModel travelPackageModel});
+  $Res call(
+      {Uint8List vrImage,
+      List<Uint8List> images,
+      Uint8List featuredImage,
+      TravelPackageModel travelPackageModel});
 
   $TravelPackageModelCopyWith<$Res> get travelPackageModel;
 }
@@ -502,9 +521,24 @@ class __$$UpdatePackgeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? vrImage = null,
+    Object? images = null,
+    Object? featuredImage = null,
     Object? travelPackageModel = null,
   }) {
     return _then(_$UpdatePackgeImpl(
+      vrImage: null == vrImage
+          ? _value.vrImage
+          : vrImage // ignore: cast_nullable_to_non_nullable
+              as Uint8List,
+      images: null == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<Uint8List>,
+      featuredImage: null == featuredImage
+          ? _value.featuredImage
+          : featuredImage // ignore: cast_nullable_to_non_nullable
+              as Uint8List,
       travelPackageModel: null == travelPackageModel
           ? _value.travelPackageModel
           : travelPackageModel // ignore: cast_nullable_to_non_nullable
@@ -525,14 +559,31 @@ class __$$UpdatePackgeImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UpdatePackgeImpl with DiagnosticableTreeMixin implements _UpdatePackge {
-  const _$UpdatePackgeImpl({required this.travelPackageModel});
+  const _$UpdatePackgeImpl(
+      {required this.vrImage,
+      required final List<Uint8List> images,
+      required this.featuredImage,
+      required this.travelPackageModel})
+      : _images = images;
 
+  @override
+  final Uint8List vrImage;
+  final List<Uint8List> _images;
+  @override
+  List<Uint8List> get images {
+    if (_images is EqualUnmodifiableListView) return _images;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_images);
+  }
+
+  @override
+  final Uint8List featuredImage;
   @override
   final TravelPackageModel travelPackageModel;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TravelEvent.updatePacakge(travelPackageModel: $travelPackageModel)';
+    return 'TravelEvent.updatePacakge(vrImage: $vrImage, images: $images, featuredImage: $featuredImage, travelPackageModel: $travelPackageModel)';
   }
 
   @override
@@ -540,6 +591,9 @@ class _$UpdatePackgeImpl with DiagnosticableTreeMixin implements _UpdatePackge {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'TravelEvent.updatePacakge'))
+      ..add(DiagnosticsProperty('vrImage', vrImage))
+      ..add(DiagnosticsProperty('images', images))
+      ..add(DiagnosticsProperty('featuredImage', featuredImage))
       ..add(DiagnosticsProperty('travelPackageModel', travelPackageModel));
   }
 
@@ -548,12 +602,21 @@ class _$UpdatePackgeImpl with DiagnosticableTreeMixin implements _UpdatePackge {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdatePackgeImpl &&
+            const DeepCollectionEquality().equals(other.vrImage, vrImage) &&
+            const DeepCollectionEquality().equals(other._images, _images) &&
+            const DeepCollectionEquality()
+                .equals(other.featuredImage, featuredImage) &&
             (identical(other.travelPackageModel, travelPackageModel) ||
                 other.travelPackageModel == travelPackageModel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, travelPackageModel);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(vrImage),
+      const DeepCollectionEquality().hash(_images),
+      const DeepCollectionEquality().hash(featuredImage),
+      travelPackageModel);
 
   @JsonKey(ignore: true)
   @override
@@ -568,11 +631,12 @@ class _$UpdatePackgeImpl with DiagnosticableTreeMixin implements _UpdatePackge {
     required TResult Function(Uint8List vrImage, List<Uint8List> images,
             Uint8List featuredImage, TravelPackageModel travelPackageModel)
         addPackage,
-    required TResult Function(TravelPackageModel travelPackageModel)
+    required TResult Function(Uint8List vrImage, List<Uint8List> images,
+            Uint8List featuredImage, TravelPackageModel travelPackageModel)
         updatePacakge,
     required TResult Function() get,
   }) {
-    return updatePacakge(travelPackageModel);
+    return updatePacakge(vrImage, images, featuredImage, travelPackageModel);
   }
 
   @override
@@ -582,10 +646,13 @@ class _$UpdatePackgeImpl with DiagnosticableTreeMixin implements _UpdatePackge {
     TResult? Function(Uint8List vrImage, List<Uint8List> images,
             Uint8List featuredImage, TravelPackageModel travelPackageModel)?
         addPackage,
-    TResult? Function(TravelPackageModel travelPackageModel)? updatePacakge,
+    TResult? Function(Uint8List vrImage, List<Uint8List> images,
+            Uint8List featuredImage, TravelPackageModel travelPackageModel)?
+        updatePacakge,
     TResult? Function()? get,
   }) {
-    return updatePacakge?.call(travelPackageModel);
+    return updatePacakge?.call(
+        vrImage, images, featuredImage, travelPackageModel);
   }
 
   @override
@@ -595,12 +662,14 @@ class _$UpdatePackgeImpl with DiagnosticableTreeMixin implements _UpdatePackge {
     TResult Function(Uint8List vrImage, List<Uint8List> images,
             Uint8List featuredImage, TravelPackageModel travelPackageModel)?
         addPackage,
-    TResult Function(TravelPackageModel travelPackageModel)? updatePacakge,
+    TResult Function(Uint8List vrImage, List<Uint8List> images,
+            Uint8List featuredImage, TravelPackageModel travelPackageModel)?
+        updatePacakge,
     TResult Function()? get,
     required TResult orElse(),
   }) {
     if (updatePacakge != null) {
-      return updatePacakge(travelPackageModel);
+      return updatePacakge(vrImage, images, featuredImage, travelPackageModel);
     }
     return orElse();
   }
@@ -645,9 +714,15 @@ class _$UpdatePackgeImpl with DiagnosticableTreeMixin implements _UpdatePackge {
 
 abstract class _UpdatePackge implements TravelEvent {
   const factory _UpdatePackge(
-          {required final TravelPackageModel travelPackageModel}) =
+          {required final Uint8List vrImage,
+          required final List<Uint8List> images,
+          required final Uint8List featuredImage,
+          required final TravelPackageModel travelPackageModel}) =
       _$UpdatePackgeImpl;
 
+  Uint8List get vrImage;
+  List<Uint8List> get images;
+  Uint8List get featuredImage;
   TravelPackageModel get travelPackageModel;
   @JsonKey(ignore: true)
   _$$UpdatePackgeImplCopyWith<_$UpdatePackgeImpl> get copyWith =>
@@ -700,7 +775,8 @@ class _$GetImpl with DiagnosticableTreeMixin implements Get {
     required TResult Function(Uint8List vrImage, List<Uint8List> images,
             Uint8List featuredImage, TravelPackageModel travelPackageModel)
         addPackage,
-    required TResult Function(TravelPackageModel travelPackageModel)
+    required TResult Function(Uint8List vrImage, List<Uint8List> images,
+            Uint8List featuredImage, TravelPackageModel travelPackageModel)
         updatePacakge,
     required TResult Function() get,
   }) {
@@ -714,7 +790,9 @@ class _$GetImpl with DiagnosticableTreeMixin implements Get {
     TResult? Function(Uint8List vrImage, List<Uint8List> images,
             Uint8List featuredImage, TravelPackageModel travelPackageModel)?
         addPackage,
-    TResult? Function(TravelPackageModel travelPackageModel)? updatePacakge,
+    TResult? Function(Uint8List vrImage, List<Uint8List> images,
+            Uint8List featuredImage, TravelPackageModel travelPackageModel)?
+        updatePacakge,
     TResult? Function()? get,
   }) {
     return get?.call();
@@ -727,7 +805,9 @@ class _$GetImpl with DiagnosticableTreeMixin implements Get {
     TResult Function(Uint8List vrImage, List<Uint8List> images,
             Uint8List featuredImage, TravelPackageModel travelPackageModel)?
         addPackage,
-    TResult Function(TravelPackageModel travelPackageModel)? updatePacakge,
+    TResult Function(Uint8List vrImage, List<Uint8List> images,
+            Uint8List featuredImage, TravelPackageModel travelPackageModel)?
+        updatePacakge,
     TResult Function()? get,
     required TResult orElse(),
   }) {

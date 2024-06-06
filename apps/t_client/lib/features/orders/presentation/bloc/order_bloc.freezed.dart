@@ -20,18 +20,25 @@ mixin _$OrderEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(OrderPackageModel orderPackageModel) Order,
     required TResult Function() GetOrders,
+    required TResult Function(
+            String status, OrderPackageModel orderPackageModel)
+        updateOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(OrderPackageModel orderPackageModel)? Order,
     TResult? Function()? GetOrders,
+    TResult? Function(String status, OrderPackageModel orderPackageModel)?
+        updateOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OrderPackageModel orderPackageModel)? Order,
     TResult Function()? GetOrders,
+    TResult Function(String status, OrderPackageModel orderPackageModel)?
+        updateOrder,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +46,21 @@ mixin _$OrderEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(MakeOrder value) Order,
     required TResult Function(GetOrders value) GetOrders,
+    required TResult Function(UpdateOrders value) updateOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(MakeOrder value)? Order,
     TResult? Function(GetOrders value)? GetOrders,
+    TResult? Function(UpdateOrders value)? updateOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MakeOrder value)? Order,
     TResult Function(GetOrders value)? GetOrders,
+    TResult Function(UpdateOrders value)? updateOrder,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,6 +151,9 @@ class _$MakeOrderImpl implements MakeOrder {
   TResult when<TResult extends Object?>({
     required TResult Function(OrderPackageModel orderPackageModel) Order,
     required TResult Function() GetOrders,
+    required TResult Function(
+            String status, OrderPackageModel orderPackageModel)
+        updateOrder,
   }) {
     return Order(orderPackageModel);
   }
@@ -150,6 +163,8 @@ class _$MakeOrderImpl implements MakeOrder {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(OrderPackageModel orderPackageModel)? Order,
     TResult? Function()? GetOrders,
+    TResult? Function(String status, OrderPackageModel orderPackageModel)?
+        updateOrder,
   }) {
     return Order?.call(orderPackageModel);
   }
@@ -159,6 +174,8 @@ class _$MakeOrderImpl implements MakeOrder {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OrderPackageModel orderPackageModel)? Order,
     TResult Function()? GetOrders,
+    TResult Function(String status, OrderPackageModel orderPackageModel)?
+        updateOrder,
     required TResult orElse(),
   }) {
     if (Order != null) {
@@ -172,6 +189,7 @@ class _$MakeOrderImpl implements MakeOrder {
   TResult map<TResult extends Object?>({
     required TResult Function(MakeOrder value) Order,
     required TResult Function(GetOrders value) GetOrders,
+    required TResult Function(UpdateOrders value) updateOrder,
   }) {
     return Order(this);
   }
@@ -181,6 +199,7 @@ class _$MakeOrderImpl implements MakeOrder {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(MakeOrder value)? Order,
     TResult? Function(GetOrders value)? GetOrders,
+    TResult? Function(UpdateOrders value)? updateOrder,
   }) {
     return Order?.call(this);
   }
@@ -190,6 +209,7 @@ class _$MakeOrderImpl implements MakeOrder {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MakeOrder value)? Order,
     TResult Function(GetOrders value)? GetOrders,
+    TResult Function(UpdateOrders value)? updateOrder,
     required TResult orElse(),
   }) {
     if (Order != null) {
@@ -249,6 +269,9 @@ class _$GetOrdersImpl implements GetOrders {
   TResult when<TResult extends Object?>({
     required TResult Function(OrderPackageModel orderPackageModel) Order,
     required TResult Function() GetOrders,
+    required TResult Function(
+            String status, OrderPackageModel orderPackageModel)
+        updateOrder,
   }) {
     return GetOrders();
   }
@@ -258,6 +281,8 @@ class _$GetOrdersImpl implements GetOrders {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(OrderPackageModel orderPackageModel)? Order,
     TResult? Function()? GetOrders,
+    TResult? Function(String status, OrderPackageModel orderPackageModel)?
+        updateOrder,
   }) {
     return GetOrders?.call();
   }
@@ -267,6 +292,8 @@ class _$GetOrdersImpl implements GetOrders {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OrderPackageModel orderPackageModel)? Order,
     TResult Function()? GetOrders,
+    TResult Function(String status, OrderPackageModel orderPackageModel)?
+        updateOrder,
     required TResult orElse(),
   }) {
     if (GetOrders != null) {
@@ -280,6 +307,7 @@ class _$GetOrdersImpl implements GetOrders {
   TResult map<TResult extends Object?>({
     required TResult Function(MakeOrder value) Order,
     required TResult Function(GetOrders value) GetOrders,
+    required TResult Function(UpdateOrders value) updateOrder,
   }) {
     return GetOrders(this);
   }
@@ -289,6 +317,7 @@ class _$GetOrdersImpl implements GetOrders {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(MakeOrder value)? Order,
     TResult? Function(GetOrders value)? GetOrders,
+    TResult? Function(UpdateOrders value)? updateOrder,
   }) {
     return GetOrders?.call(this);
   }
@@ -298,6 +327,7 @@ class _$GetOrdersImpl implements GetOrders {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MakeOrder value)? Order,
     TResult Function(GetOrders value)? GetOrders,
+    TResult Function(UpdateOrders value)? updateOrder,
     required TResult orElse(),
   }) {
     if (GetOrders != null) {
@@ -309,6 +339,162 @@ class _$GetOrdersImpl implements GetOrders {
 
 abstract class GetOrders implements OrderEvent {
   const factory GetOrders() = _$GetOrdersImpl;
+}
+
+/// @nodoc
+abstract class _$$UpdateOrdersImplCopyWith<$Res> {
+  factory _$$UpdateOrdersImplCopyWith(
+          _$UpdateOrdersImpl value, $Res Function(_$UpdateOrdersImpl) then) =
+      __$$UpdateOrdersImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String status, OrderPackageModel orderPackageModel});
+}
+
+/// @nodoc
+class __$$UpdateOrdersImplCopyWithImpl<$Res>
+    extends _$OrderEventCopyWithImpl<$Res, _$UpdateOrdersImpl>
+    implements _$$UpdateOrdersImplCopyWith<$Res> {
+  __$$UpdateOrdersImplCopyWithImpl(
+      _$UpdateOrdersImpl _value, $Res Function(_$UpdateOrdersImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? orderPackageModel = null,
+  }) {
+    return _then(_$UpdateOrdersImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      orderPackageModel: null == orderPackageModel
+          ? _value.orderPackageModel
+          : orderPackageModel // ignore: cast_nullable_to_non_nullable
+              as OrderPackageModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateOrdersImpl implements UpdateOrders {
+  const _$UpdateOrdersImpl(
+      {required this.status, required this.orderPackageModel});
+
+  @override
+  final String status;
+  @override
+  final OrderPackageModel orderPackageModel;
+
+  @override
+  String toString() {
+    return 'OrderEvent.updateOrder(status: $status, orderPackageModel: $orderPackageModel)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateOrdersImpl &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.orderPackageModel, orderPackageModel) ||
+                other.orderPackageModel == orderPackageModel));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, status, orderPackageModel);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateOrdersImplCopyWith<_$UpdateOrdersImpl> get copyWith =>
+      __$$UpdateOrdersImplCopyWithImpl<_$UpdateOrdersImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(OrderPackageModel orderPackageModel) Order,
+    required TResult Function() GetOrders,
+    required TResult Function(
+            String status, OrderPackageModel orderPackageModel)
+        updateOrder,
+  }) {
+    return updateOrder(status, orderPackageModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(OrderPackageModel orderPackageModel)? Order,
+    TResult? Function()? GetOrders,
+    TResult? Function(String status, OrderPackageModel orderPackageModel)?
+        updateOrder,
+  }) {
+    return updateOrder?.call(status, orderPackageModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(OrderPackageModel orderPackageModel)? Order,
+    TResult Function()? GetOrders,
+    TResult Function(String status, OrderPackageModel orderPackageModel)?
+        updateOrder,
+    required TResult orElse(),
+  }) {
+    if (updateOrder != null) {
+      return updateOrder(status, orderPackageModel);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MakeOrder value) Order,
+    required TResult Function(GetOrders value) GetOrders,
+    required TResult Function(UpdateOrders value) updateOrder,
+  }) {
+    return updateOrder(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MakeOrder value)? Order,
+    TResult? Function(GetOrders value)? GetOrders,
+    TResult? Function(UpdateOrders value)? updateOrder,
+  }) {
+    return updateOrder?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MakeOrder value)? Order,
+    TResult Function(GetOrders value)? GetOrders,
+    TResult Function(UpdateOrders value)? updateOrder,
+    required TResult orElse(),
+  }) {
+    if (updateOrder != null) {
+      return updateOrder(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateOrders implements OrderEvent {
+  const factory UpdateOrders(
+      {required final String status,
+      required final OrderPackageModel orderPackageModel}) = _$UpdateOrdersImpl;
+
+  String get status;
+  OrderPackageModel get orderPackageModel;
+  @JsonKey(ignore: true)
+  _$$UpdateOrdersImplCopyWith<_$UpdateOrdersImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

@@ -10,6 +10,7 @@ import 'package:t_admin/core/theme/app_colors.dart';
 import 'package:t_admin/features/chat/presentation/ui/chat_screen.dart';
 import 'package:t_admin/features/dashboard/presentation/ui/dashboard_screen.dart';
 import 'package:t_admin/features/order/presentation/ui/booking_screen.dart';
+import 'package:t_admin/features/order/presentation/ui/cancle_request.dart';
 import 'package:t_admin/features/package/presentation/ui/package_screen.dart';
 import 'package:t_admin/features/user/presentation/cubit/credential/auth_cubit.dart';
 import 'package:t_admin/features/user/presentation/cubit/profile/profile_cubit.dart';
@@ -25,6 +26,7 @@ List<Widget> pageList = const [
   PackageScreen(),
   PackageBookedScreen(),
   ChatScreen(),
+  CancleRequestScreen(),
 ];
 
 /// Icons
@@ -34,6 +36,7 @@ List<IconData> icons = const [
   Icons.travel_explore_outlined,
   Icons.bookmark_outline,
   Icons.chat_outlined,
+  Icons.cancel_outlined,
 ];
 
 /// Page Names
@@ -43,6 +46,7 @@ List<String> pageName = const [
   'Package',
   'Booking',
   'Chat',
+  'Cancle Request',
 ];
 
 /// Home Screen
@@ -121,6 +125,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               return context.go('/${AppRoutes.bookedScreen}');
                             case 4:
                               return context.go('/${AppRoutes.chat}');
+                            case 5:
+                              return context.go('/${AppRoutes.cancleRequest}');
                           }
                         },
                         child: Container(

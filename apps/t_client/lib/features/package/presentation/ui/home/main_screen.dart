@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:t_client/core/helper/extension/context_extension.dart';
+import 'package:t_client/core/screens/preferences_screen.dart';
+import 'package:t_client/di/di_setup.dart';
 import 'package:t_client/features/package/presentation/ui/home/home_screen.dart';
 import 'package:t_client/features/user/presentation/cubit/credential/cubit/auth_cubit.dart';
 import 'package:t_client/features/user/presentation/ui/login_screen.dart';
@@ -15,8 +18,11 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  SharedPreferences getPreferences = getIt<SharedPreferences>();
+  late bool isFirstTime;
   @override
   void initState() {
+    isFirstTime = getPreferences.getBool('firstTime') ?? true;
     super.initState();
   }
 
@@ -29,12 +35,15 @@ class _MainScreenState extends State<MainScreen> {
             message: state.message,
             toastType: ToastType.error,
           );
-         
         }
       },
       builder: (context, AuthState state) {
         if (state is Authenticated) {
-          return HomeScreen(uid: state.uid);
+          if (isFirstTime) {
+            return const UserPreferencesScreen();
+          } else {
+            return HomeScreen(uid: state.uid);
+          }
         } else {
           return const LoginScreen();
         }

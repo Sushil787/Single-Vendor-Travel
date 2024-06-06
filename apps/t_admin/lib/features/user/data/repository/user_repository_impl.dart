@@ -25,7 +25,6 @@ class UserRepositoryImpl implements UserRepository {
     }
   }
 
-
   @override
   String getCurrentUId() {
     try {
@@ -107,6 +106,17 @@ class UserRepositoryImpl implements UserRepository {
   Future<void> deleteAccount({required String uid}) async {
     try {
       await userRemoteDataSource.deleteAccount(uid: uid);
+    } on FirebaseAuthException catch (e) {
+      throw FirebaseAuthException(code: e.code);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  @override
+  Future<String?> getEarning() async {
+    try {
+      return await userRemoteDataSource.getEarning();
     } on FirebaseAuthException catch (e) {
       throw FirebaseAuthException(code: e.code);
     } catch (e) {

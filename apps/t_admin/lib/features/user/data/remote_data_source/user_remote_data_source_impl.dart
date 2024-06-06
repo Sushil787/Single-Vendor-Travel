@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -27,9 +29,9 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   }
 
   @override
-  String getCurrentUId()  {
+  String getCurrentUId() {
     try {
-      final uid =  firebaseAuth.currentUser!.uid;
+      final uid = firebaseAuth.currentUser!.uid;
       return uid;
     } on FirebaseAuthException catch (e) {
       throw FirebaseAuthException(code: e.code);
@@ -161,6 +163,20 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       await userCollection.doc(uid).delete();
       await firebaseAuth.signOut();
       await firebaseAuth.currentUser!.delete();
+    } on FirebaseAuthException catch (e) {
+      throw FirebaseAuthException(code: e.code);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  @override
+  Future<String?> getEarning() async {
+    try {
+      final data = await firebaseFirestore.collection('admin').get();
+      final earning = data.docs.first.data()['earning'];
+      log(name: 'earning is ', earning.toString());
+      return double.parse(earning.toString()).toStringAsFixed(2);
     } on FirebaseAuthException catch (e) {
       throw FirebaseAuthException(code: e.code);
     } catch (e) {

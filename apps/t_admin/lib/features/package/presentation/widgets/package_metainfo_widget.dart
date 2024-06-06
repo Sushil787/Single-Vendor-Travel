@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:t_admin/core/constants/route_constants.dart';
 import 'package:t_admin/core/helper/extension/context_extension.dart';
 import 'package:t_admin/core/helper/gap.dart';
 import 'package:t_admin/core/theme/app_colors.dart';
 import 'package:t_admin/features/package/data/model/travel_package_model.dart';
+import 'package:t_admin/features/package/presentation/bloc/travel_bloc.dart';
 import 'package:t_admin/features/package/presentation/widgets/build_package_price.dart';
 import 'package:t_admin/features/package/presentation/widgets/icon_text_row.dart';
 
@@ -27,10 +31,53 @@ class PackageMetaInfoWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: Text(
-              travelPackageModel.packageName,
-              overflow: TextOverflow.ellipsis,
-              style: context.textTheme.bodyMedium,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    travelPackageModel.packageName,
+                    overflow: TextOverflow.ellipsis,
+                    style: context.textTheme.bodyMedium,
+                  ),
+                ),
+                SizedBox(
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap: () async {
+                          context.read<TravelBloc>().add(
+                                Delete(
+                                  id: travelPackageModel.uuid,
+                                ),
+                              );
+                          context.showSnackBar(
+                            message: 'Package deleted',
+                            toastType: ToastType.success,
+                          );
+                        },
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.redAccent.shade200,
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          context.push(
+                            '/${AppRoutes.package}/${AppRoutes.addPackage}/false',
+                            extra: travelPackageModel,
+
+                          );
+                        },
+                        child: const Icon(
+                          Icons.update,
+                          color: LightColor.orange,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
           BuildIconTextRow(
@@ -54,9 +101,7 @@ class PackageMetaInfoWidget extends StatelessWidget {
           Row(
             children: [
               BuildIconTextRow(
-                onTap: () {
-        
-                },
+                onTap: () {},
                 first: const Icon(
                   Icons.favorite,
                   size: 18,

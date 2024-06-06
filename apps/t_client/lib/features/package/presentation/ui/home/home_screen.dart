@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:t_client/core/constants/route_constants.dart';
 import 'package:t_client/core/helper/geolocator_permission.dart';
 import 'package:t_client/core/theme/app_colors.dart';
+import 'package:t_client/di/di_setup.dart';
 import 'package:t_client/features/bookmark/presentation/bookmark_screen.dart';
 import 'package:t_client/features/chat/presentation/chat_screen.dart';
 import 'package:t_client/features/orders/presentation/order_screen.dart';
@@ -42,13 +44,11 @@ class _HomeScreenState extends State<HomeScreen>
   void initState() {
     super.initState();
     updateKeepAlive();
-
     pageController = PageController();
     context.read<UserRepository>().updateToken();
     context.read<ProfileCubit>().getProfile(uid: widget.uid);
     context.read<TravelBloc>().add(const Get());
     // context.read<RecommendBloc>().add(const Recommend());
-
     uid = widget.uid;
     scrollController.addListener(() {
       if (scrollController.position.userScrollDirection ==
@@ -66,6 +66,7 @@ class _HomeScreenState extends State<HomeScreen>
     });
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await determinePosition();
+      
     });
     screens = [
       PackageScreen(
@@ -73,7 +74,6 @@ class _HomeScreenState extends State<HomeScreen>
         scrollController: scrollController,
       ),
       const BookMarkScreen(),
-      // const OrderScreen(),
       const OrderScreen(),
       const ChatScreen(),
     ];
@@ -181,20 +181,20 @@ class _HomeScreenState extends State<HomeScreen>
               )
             : const SizedBox.shrink(),
       ),
-      floatingActionButton: floatingButton(context),
+      // floatingActionButton: floatingButton(context),
     );
   }
 
   /// Returns [FloatingActionButton] widget
-  FloatingActionButton floatingButton(BuildContext context) {
-    return FloatingActionButton(
-      backgroundColor: LightColor.eclipse,
-      child: const Icon(Icons.add),
-      onPressed: () async {
-        await context.read<TravelDataSource>().getRecommended();
-      },
-    );
-  }
+  // FloatingActionButton floatingButton(BuildContext context) {
+  //   return FloatingActionButton(
+  //     backgroundColor: LightColor.eclipse,
+  //     child: const Icon(Icons.add),
+  //     onPressed: () async {
+  //       await context.read<TravelDataSource>().getRecommended();
+  //     },
+  //   );
+  // }
 
   /// Builds the profile according to Internet Status
   Widget profileBlock() {

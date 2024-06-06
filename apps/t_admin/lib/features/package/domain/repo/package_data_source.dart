@@ -19,8 +19,12 @@ abstract class TravelDataSource {
   Future<void> addLocation({required String location});
 
   /// Update Pacakge
-  Future<void> updatePacakage({required TravelPackageModel travelPackageModel});
-
+ Future<void> updatePacakage({
+    required Uint8List vrImage,
+    required List<Uint8List> images,
+    required Uint8List featuredImage,
+    required TravelPackageModel travelPackageModel,
+  });
   /// Delete Package
   Future<void> deletePackage({required String id});
 

@@ -37,10 +37,15 @@ mixin _$TravelPackageModel {
 
   /// Like sunrise, best food,
   List<String> get highlights => throw _privateConstructorUsedError;
+
+  /// Pick up address
+  List<String> get pickupAddress => throw _privateConstructorUsedError;
   double get discount => throw _privateConstructorUsedError;
   int get favourite => throw _privateConstructorUsedError;
 
   /// Like included, food, bathroom ,wifi, ac , bottle water, newspaper
+  /// , bathrobe,
+  ///  telephone other
   List<String> get inclusive => throw _privateConstructorUsedError;
   bool get isFeatured => throw _privateConstructorUsedError;
   List<CommentModel>? get reviews => throw _privateConstructorUsedError;
@@ -73,6 +78,7 @@ abstract class $TravelPackageModelCopyWith<$Res> {
       String location,
       @ServerTimestampConverter() DateTime createdAt,
       List<String> highlights,
+      List<String> pickupAddress,
       double discount,
       int favourite,
       List<String> inclusive,
@@ -108,6 +114,7 @@ class _$TravelPackageModelCopyWithImpl<$Res, $Val extends TravelPackageModel>
     Object? location = null,
     Object? createdAt = null,
     Object? highlights = null,
+    Object? pickupAddress = null,
     Object? discount = null,
     Object? favourite = null,
     Object? inclusive = null,
@@ -172,6 +179,10 @@ class _$TravelPackageModelCopyWithImpl<$Res, $Val extends TravelPackageModel>
           ? _value.highlights
           : highlights // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      pickupAddress: null == pickupAddress
+          ? _value.pickupAddress
+          : pickupAddress // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       discount: null == discount
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
@@ -223,6 +234,7 @@ abstract class _$$TravelPackageModelImplCopyWith<$Res>
       String location,
       @ServerTimestampConverter() DateTime createdAt,
       List<String> highlights,
+      List<String> pickupAddress,
       double discount,
       int favourite,
       List<String> inclusive,
@@ -256,6 +268,7 @@ class __$$TravelPackageModelImplCopyWithImpl<$Res>
     Object? location = null,
     Object? createdAt = null,
     Object? highlights = null,
+    Object? pickupAddress = null,
     Object? discount = null,
     Object? favourite = null,
     Object? inclusive = null,
@@ -320,6 +333,10 @@ class __$$TravelPackageModelImplCopyWithImpl<$Res>
           ? _value._highlights
           : highlights // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      pickupAddress: null == pickupAddress
+          ? _value._pickupAddress
+          : pickupAddress // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       discount: null == discount
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
@@ -366,6 +383,7 @@ class _$TravelPackageModelImpl implements _TravelPackageModel {
       required this.location,
       @ServerTimestampConverter() required this.createdAt,
       final List<String> highlights = const [],
+      final List<String> pickupAddress = const [],
       this.discount = 0,
       this.favourite = 0,
       final List<String> inclusive = const [],
@@ -375,6 +393,7 @@ class _$TravelPackageModelImpl implements _TravelPackageModel {
       : _tags = tags,
         _images = images,
         _highlights = highlights,
+        _pickupAddress = pickupAddress,
         _inclusive = inclusive,
         _reviews = reviews;
 
@@ -433,6 +452,18 @@ class _$TravelPackageModelImpl implements _TravelPackageModel {
     return EqualUnmodifiableListView(_highlights);
   }
 
+  /// Pick up address
+  final List<String> _pickupAddress;
+
+  /// Pick up address
+  @override
+  @JsonKey()
+  List<String> get pickupAddress {
+    if (_pickupAddress is EqualUnmodifiableListView) return _pickupAddress;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_pickupAddress);
+  }
+
   @override
   @JsonKey()
   final double discount;
@@ -441,9 +472,13 @@ class _$TravelPackageModelImpl implements _TravelPackageModel {
   final int favourite;
 
   /// Like included, food, bathroom ,wifi, ac , bottle water, newspaper
+  /// , bathrobe,
+  ///  telephone other
   final List<String> _inclusive;
 
   /// Like included, food, bathroom ,wifi, ac , bottle water, newspaper
+  /// , bathrobe,
+  ///  telephone other
   @override
   @JsonKey()
   List<String> get inclusive {
@@ -471,7 +506,7 @@ class _$TravelPackageModelImpl implements _TravelPackageModel {
 
   @override
   String toString() {
-    return 'TravelPackageModel(uuid: $uuid, packageType: $packageType, tags: $tags, images: $images, featuredImage: $featuredImage, vrImage: $vrImage, description: $description, latitude: $latitude, longitude: $longitude, perHeadPerNight: $perHeadPerNight, packageName: $packageName, location: $location, createdAt: $createdAt, highlights: $highlights, discount: $discount, favourite: $favourite, inclusive: $inclusive, isFeatured: $isFeatured, reviews: $reviews, packageRating: $packageRating)';
+    return 'TravelPackageModel(uuid: $uuid, packageType: $packageType, tags: $tags, images: $images, featuredImage: $featuredImage, vrImage: $vrImage, description: $description, latitude: $latitude, longitude: $longitude, perHeadPerNight: $perHeadPerNight, packageName: $packageName, location: $location, createdAt: $createdAt, highlights: $highlights, pickupAddress: $pickupAddress, discount: $discount, favourite: $favourite, inclusive: $inclusive, isFeatured: $isFeatured, reviews: $reviews, packageRating: $packageRating)';
   }
 
   @override
@@ -503,6 +538,8 @@ class _$TravelPackageModelImpl implements _TravelPackageModel {
                 other.createdAt == createdAt) &&
             const DeepCollectionEquality()
                 .equals(other._highlights, _highlights) &&
+            const DeepCollectionEquality()
+                .equals(other._pickupAddress, _pickupAddress) &&
             (identical(other.discount, discount) ||
                 other.discount == discount) &&
             (identical(other.favourite, favourite) ||
@@ -534,6 +571,7 @@ class _$TravelPackageModelImpl implements _TravelPackageModel {
         location,
         createdAt,
         const DeepCollectionEquality().hash(_highlights),
+        const DeepCollectionEquality().hash(_pickupAddress),
         discount,
         favourite,
         const DeepCollectionEquality().hash(_inclusive),
@@ -573,6 +611,7 @@ abstract class _TravelPackageModel implements TravelPackageModel {
       required final String location,
       @ServerTimestampConverter() required final DateTime createdAt,
       final List<String> highlights,
+      final List<String> pickupAddress,
       final double discount,
       final int favourite,
       final List<String> inclusive,
@@ -615,12 +654,18 @@ abstract class _TravelPackageModel implements TravelPackageModel {
   /// Like sunrise, best food,
   List<String> get highlights;
   @override
+
+  /// Pick up address
+  List<String> get pickupAddress;
+  @override
   double get discount;
   @override
   int get favourite;
   @override
 
   /// Like included, food, bathroom ,wifi, ac , bottle water, newspaper
+  /// , bathrobe,
+  ///  telephone other
   List<String> get inclusive;
   @override
   bool get isFeatured;

@@ -1,9 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:t_admin/features/chat/presentation/cubit/user/user_cubit.dart';
 import 'package:t_admin/features/dashboard/presentation/ui/widgets/growth_card.dart';
 import 'package:t_admin/features/order/presentation/bloc/booking_bloc.dart';
 import 'package:t_admin/features/package/presentation/bloc/travel_bloc.dart';
+import 'package:t_admin/features/user/domain/repository/user_repository.dart';
 
 /// Dashboard Screen
 class DashboardScreen extends StatefulWidget {
@@ -26,6 +31,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
     try {
       await context.read<UserCubit>().getAllUser();
       if (mounted) {
+        earning = await context.read<UserRepository>().getEarning() ?? '0';
+        log(name: 'earning from dash', earning);
         context.read<TravelBloc>().add(const TravelEvent.get());
         context.read<BookingBloc>().add(const BookingEvent.getBookedPackage());
       }
@@ -37,6 +44,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
       }
     }
   }
+
+  String earning = '0';
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +75,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
                 GrowthCard(
                   lable: 'Total Earning ',
-                  number:
-                      'रु ${context.read<UserCubit>().numberOfUser + 100000}',
+                  number: 'रु $earning',
                 ),
               ],
             ),

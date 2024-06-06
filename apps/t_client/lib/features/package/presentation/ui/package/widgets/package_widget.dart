@@ -69,7 +69,7 @@ class PackageWidget extends StatelessWidget {
                     fit: StackFit.expand,
                     children: [
                       CustomImageWidget(
-                        urlImage: travelPackageModel.featuredImage,
+                        urlImage: travelPackageModel.images.first,
                       ),
                       if (travelPackageModel.discount != 0)
                         Positioned(

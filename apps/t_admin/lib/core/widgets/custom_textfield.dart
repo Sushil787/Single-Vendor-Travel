@@ -13,7 +13,6 @@ class CustomTextField extends StatefulWidget {
     this.suffixIcon,
     this.maxLine,
     this.onSuffixTap,
-    this.formKey,
     this.validationMessage,
     TextEditingController? controller, // Change the default value
   })  : controller = controller ??
@@ -45,7 +44,6 @@ class CustomTextField extends StatefulWidget {
   /// Suffix Icon
   final IconData? suffixIcon;
 
-  final GlobalKey<FormState>? formKey;
 
   /// TextEditing controller for [TextFormField]
   final TextEditingController controller;
@@ -59,60 +57,57 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: widget.formKey,
-      child: TextFormField(
-        controller: widget.controller,
-        validator: widget.validator ??
-            (value) {
-              if (value == null || value.isEmpty) {
-                return widget.validationMessage ?? 'please ${widget.hintText}';
-              }
-              return null;
-            },
-        onChanged: (newValue) {
-          widget.onChanged?.call(newValue);
-        },
-        style: const TextStyle(
-          fontSize: 15,
-          color: Colors.black,
+    return TextFormField(
+      controller: widget.controller,
+      validator: widget.validator ??
+          (value) {
+            if (value == null || value.isEmpty) {
+              return widget.validationMessage ?? 'please ${widget.hintText}';
+            }
+            return null;
+          },
+      onChanged: (newValue) {
+        widget.onChanged?.call(newValue);
+      },
+      style: const TextStyle(
+        fontSize: 15,
+        color: Colors.black,
+      ),
+      textInputAction: TextInputAction.next,
+      cursorColor: const Color.fromARGB(31, 74, 68, 68),
+      cursorHeight: 20,
+      maxLines: widget.maxLine,
+      obscureText: widget.isPassword && !isVisible,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.only(top: 3, left: 4),
+        suffixIcon: widget.isPassword
+            ? GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isVisible = !isVisible;
+                  });
+                },
+                child: isVisible
+                    ? const Icon(Icons.visibility)
+                    : const Icon(Icons.visibility_off),
+              )
+            : InkWell(
+                onTap: () {
+                  widget.onSuffixTap?.call(widget.controller.text);
+                  widget.controller.clear();
+                },
+                child: Icon(widget.suffixIcon),
+              ),
+        prefixIcon:
+            widget.prefixIcon != null ? Icon(widget.prefixIcon) : null,
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(10),
         ),
-        textInputAction: TextInputAction.next,
-        cursorColor: const Color.fromARGB(31, 74, 68, 68),
-        cursorHeight: 20,
-        maxLines: widget.maxLine,
-        obscureText: widget.isPassword && !isVisible,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.only(top: 3, left: 4),
-          suffixIcon: widget.isPassword
-              ? GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isVisible = !isVisible;
-                    });
-                  },
-                  child: isVisible
-                      ? const Icon(Icons.visibility)
-                      : const Icon(Icons.visibility_off),
-                )
-              : InkWell(
-                  onTap: () {
-                    widget.onSuffixTap?.call(widget.controller.text);
-                    widget.controller.clear();
-                  },
-                  child: Icon(widget.suffixIcon),
-                ),
-          prefixIcon:
-              widget.prefixIcon != null ? Icon(widget.prefixIcon) : null,
-          border: OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          focusedBorder: const OutlineInputBorder(),
-          filled: true,
-          fillColor: const Color.fromARGB(31, 74, 68, 68),
-          hintText: widget.hintText,
-        ),
+        focusedBorder: const OutlineInputBorder(),
+        filled: true,
+        fillColor: const Color.fromARGB(31, 74, 68, 68),
+        hintText: widget.hintText,
       ),
     );
   }

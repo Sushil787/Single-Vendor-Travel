@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 import 'package:t_admin/core/constants/api_constant.dart';
@@ -42,19 +44,29 @@ class BookingRepoImpl implements BookingRepo {
             {'orderStatus': status},
           ),
         );
-    await firebaseFirestore.collection('admin').get().then((value) {
-      final earning = double.parse(
-        value.docs.first.data()['earning'].toString(),
-      );
-      value.docs.first.reference.update({
-        'earning': earning + double.parse(orderPackageModel.totalAmount ?? '0'),
-      });
-    });
+
+    /// Retrieve admin document to update earnings
+    final adminSnapshot = await firebaseFirestore.collection('admin').get();
+    final adminDoc = adminSnapshot.docs.first;
+    final currentEarning = adminDoc.data()['earning'];
+
+    /// Calculate new earnings based on the order
+    final orderTotalAmount =
+        double.parse(orderPackageModel.totalAmount.toString());
+    final updatedEarning = (double.tryParse(currentEarning.toString()) ?? 0) -
+        (orderTotalAmount - orderTotalAmount * .4);
+    log(
+      name: 'updated earning',
+      updatedEarning.toString(),
+    );
+
+    /// Update earnings in the admin document
+    await adminDoc.reference.update({'earning': updatedEarning});
 
     final data = {
       'to': orderPackageModel.fcmToken,
       'notification': {
-        'title': '${orderPackageModel.packageName} booked',
+        'title': '${orderPackageModel.packageName} $status',
         'body': 'your booking is $status',
       },
       'data': {

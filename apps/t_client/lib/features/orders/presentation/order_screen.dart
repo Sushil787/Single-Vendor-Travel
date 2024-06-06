@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:t_client/core/helper/extension/context_extension.dart';
 import 'package:t_client/core/helper/gap.dart';
 import 'package:t_client/core/theme/app_colors.dart';
+import 'package:t_client/core/widgets/custom_button.dart';
 import 'package:t_client/features/orders/data/model/order_package_model.dart';
 import 'package:t_client/features/orders/presentation/bloc/order_bloc.dart';
 
@@ -152,8 +154,80 @@ Widget buildOrderWidget(
           first: 'Order Id: ${order.orderId}',
           second: ' ',
         ),
+        if (!order.orderStatus!.toLowerCase().contains('can'))
+          cancleRequestButton(context, order),
       ],
     ),
+  );
+}
+
+/// Cancle request Button
+CustomElevatedButton cancleRequestButton(
+  BuildContext context,
+  OrderPackageModel order,
+) {
+  return CustomElevatedButton(
+    onButtonPressed: () async {
+      await showDialog(
+          context: context,
+          builder: (context) {
+            return Dialog(
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                height: context.height * .2,
+                child: Column(
+                  children: [
+                    const Text(
+                      'Cancle Travel Package',
+                    ),
+                    VerticalGap.s,
+                    Text(
+                      '''
+Note, after cancelation of the travel package you will be refunded after deductiing 4% of your order cost''',
+                      style:
+                          context.textTheme.bodySmall?.copyWith(fontSize: 12),
+                    ),
+                    VerticalGap.m,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomElevatedButton(
+                          onButtonPressed: () {
+                            context.pop();
+                          },
+                          buttonText: 'close',
+                          btnFontSize: 12,
+                          backgroundColor: Colors.green.shade800,
+                        ),
+                        CustomElevatedButton(
+                          backgroundColor: Colors.red.shade800,
+                          onButtonPressed: () {
+                            context.read<OrderBloc>().add(
+                                  OrderEvent.updateOrder(
+                                    status: 'Cancle Request',
+                                    orderPackageModel: order,
+                                  ),
+                                );
+                            context
+                              ..showSnackBar(
+                                message: 'Order Cancle Request Sent',
+                                toastType: ToastType.message,
+                              )
+                              ..pop();
+                          },
+                          buttonText: 'Cancle Package',
+                          btnFontSize: 12,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          });
+    },
+    btnFontSize: 12,
+    buttonText: 'Request cancle',
   );
 }
 
@@ -169,7 +243,6 @@ Widget buildRow(
         child: Text(
           first,
           maxLines: 2,
-
           // 'Total days: ${order.totalDays}',
           style: context.textTheme.bodyMedium?.copyWith(
             color: LightColor.grey,

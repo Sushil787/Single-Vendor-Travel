@@ -3,7 +3,6 @@ import 'package:t_admin/features/user/domain/entities/user_entity.dart';
 
 /// UserRemote Data Source
 abstract class UserRemoteDataSource {
-  
   ///Forgot Password
   Future<void> forgotPassword({required String email});
 
@@ -16,7 +15,6 @@ abstract class UserRemoteDataSource {
   /// SignIn User
   Future<void> signIn({required UserEntity user});
 
-
   /// SignOut User
   Future<void> signOut();
 
@@ -24,8 +22,7 @@ abstract class UserRemoteDataSource {
   Future<void> getUpdateUser({required UserEntity user});
 
   /// Gets Current UniqueId
- String getCurrentUId();
-
+  String getCurrentUId();
 
   /// GetSingle User
   Stream<List<UserEntity>> getSingleUser({required String uid});
@@ -33,5 +30,6 @@ abstract class UserRemoteDataSource {
   /// Auth State Change Stream
   Stream<User?> authStateChange();
 
- 
+  /// Get Admin Earning
+  Future<String?> getEarning();
 }

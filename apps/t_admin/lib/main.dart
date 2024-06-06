@@ -12,6 +12,7 @@ import 'package:t_admin/features/chat/presentation/cubit/message/message_cubit.d
 import 'package:t_admin/features/chat/presentation/cubit/user/user_cubit.dart';
 import 'package:t_admin/features/order/presentation/bloc/booking_bloc.dart';
 import 'package:t_admin/features/package/presentation/bloc/travel_bloc.dart';
+import 'package:t_admin/features/user/domain/repository/user_repository.dart';
 import 'package:t_admin/features/user/presentation/cubit/credential/auth_cubit.dart';
 import 'package:t_admin/features/user/presentation/cubit/profile/profile_cubit.dart';
 
@@ -30,31 +31,34 @@ void main() async {
   await configureDependencies();
   Bloc.observer = SimpleBlocObserver();
   runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => ThemeCubit(),
-        ),
-         BlocProvider(
-          create: (context) => getIt<BookingBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => getIt<AuthCubit>(),
-        ),
-        BlocProvider(
-          create: (context) => getIt<ProfileCubit>(),
-        ),
-        BlocProvider(
-          create: (context) => getIt<UserCubit>(),
-        ),
-        BlocProvider(
-          create: (context) => getIt<TravelBloc>(),
-        ),
-        BlocProvider(create: (context) => getIt<ChatCubit>()),
-        BlocProvider(create: (context) => getIt<LatestMessageCubit>()),
-        BlocProvider(create: (context) => getIt<MessageCubit>()),
-      ],
-      child: const MyApp(),
+    RepositoryProvider(
+      create: (context) =>  getIt<UserRepository>(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => ThemeCubit(),
+          ),
+          BlocProvider(
+            create: (context) => getIt<BookingBloc>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt<AuthCubit>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt<ProfileCubit>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt<UserCubit>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt<TravelBloc>(),
+          ),
+          BlocProvider(create: (context) => getIt<ChatCubit>()),
+          BlocProvider(create: (context) => getIt<LatestMessageCubit>()),
+          BlocProvider(create: (context) => getIt<MessageCubit>()),
+        ],
+        child: const MyApp(),
+      ),
     ),
   );
 }

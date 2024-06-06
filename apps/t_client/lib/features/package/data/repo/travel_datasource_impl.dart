@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs
 
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -33,7 +32,10 @@ class TravelDataSourceImpl implements TravelDataSource {
   @override
   Stream<List<TravelPackageModel>> getTravelPackages() {
     try {
-      final data = firestore.collection(pakcages).snapshots();
+      final data = firestore
+          .collection(pakcages)
+          .orderBy('createdAt', descending: false)
+          .snapshots();
       final packages = data.map(
         (event) => event.docs
             .map((e) => TravelPackageModel.fromJson(e.data()))

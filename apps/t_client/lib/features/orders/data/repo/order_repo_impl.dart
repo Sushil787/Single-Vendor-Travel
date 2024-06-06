@@ -31,8 +31,27 @@ class OrderRepo {
       final orderModel = orderPackageModel.copyWith(
         orderId: orderId,
         fcmToken: fcm,
+        orderStatus: 'confirmed',
       );
-      await firestore.collection(packageOrder).add(orderModel.toJson());
+      /// Add the order to Firestore
+      await firestore.collection('order').add(orderModel.toJson());
+
+      /// Retrieve admin document to update earnings
+      final adminSnapshot = await firestore.collection('admin').get();
+      final adminDoc = adminSnapshot.docs.first;
+      final currentEarning = adminDoc.data()['earning'];
+
+      /// Calculate new earnings based on the order
+      final orderTotalAmount = double.parse(orderModel.totalAmount.toString());
+      final updatedEarning =
+          (double.tryParse(currentEarning.toString()) ?? 0) + orderTotalAmount;
+      log(
+        name: 'updated earning',
+        updatedEarning.toString(),
+      );
+
+      /// Update earnings in the admin document
+      await adminDoc.reference.update({'earning': updatedEarning});
       return;
     } on FirebaseException {
       rethrow;
@@ -58,5 +77,21 @@ class OrderRepo {
       debugPrint(s.toString());
       rethrow;
     }
+  }
+
+  /// Request cancle
+  Future<void> updateBookedPackageStatus({
+    required String status,
+    required OrderPackageModel orderPackageModel,
+  }) async {
+    await firestore
+        .collection('order')
+        .where('orderId', isEqualTo: orderPackageModel.orderId)
+        .get()
+        .then(
+          (value) => value.docs.first.reference.update(
+            {'orderStatus': status},
+          ),
+        );
   }
 }

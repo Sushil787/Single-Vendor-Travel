@@ -43,16 +43,28 @@ class TravelRepoImpl implements TravelRepo {
   @override
   Stream<List<TravelPackageModel>> getTravelPackages() {
     try {
-     return travelDataSource.getTravelPackages();
+      return travelDataSource.getTravelPackages();
     } catch (e) {
       rethrow;
     }
   }
 
   @override
-  Future<void> updatePacakage(
-      {required TravelPackageModel travelPackageModel,}) {
-    // TODO: implement updatePacakage
-    throw UnimplementedError();
+  Future<void> updatePacakage({
+    required Uint8List vrImage,
+    required List<Uint8List> images,
+    required Uint8List featuredImage,
+    required TravelPackageModel travelPackageModel,
+  }) async {
+    await travelDataSource.updatePacakage(
+        vrImage: vrImage,
+        images: images,
+        featuredImage: featuredImage,
+        travelPackageModel: travelPackageModel,);
+  }
+
+  @override
+  Future<void> deletePackage({required String id}) async {
+    await travelDataSource.deletePackage(id: id);
   }
 }

@@ -15,6 +15,7 @@ class OrderPackageModel {
     required this.pickupLocation,
     required this.orderStatus,
     required this.userId,
+
     this.fcmToken,
     this.paymentStatus = 'unpaid',
   });

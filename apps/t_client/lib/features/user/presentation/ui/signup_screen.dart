@@ -34,6 +34,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  TextEditingController unameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,7 +111,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       child: Column(
         children: [
           CustomTextField(
-            controller: TextEditingController(),
+            controller: unameController,
             prefixIcon: Icons.person,
             hintText: 'username',
             onChanged: (value) {
@@ -121,6 +126,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
           VerticalGap.l,
           CustomTextField(
+            controller: emailController,
             prefixIcon: Icons.email,
             hintText: 'email',
             onChanged: (value) {
@@ -138,6 +144,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           dividerWidget(context),
           VerticalGap.l,
           CustomTextField(
+            controller: passwordController,
             prefixIcon: Icons.password,
             maxLine: 1,
             hintText: 'password',
@@ -154,6 +161,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
           VerticalGap.l,
           CustomTextField(
+            controller: confirmPasswordController,
             prefixIcon: Icons.password,
             maxLine: 1,
             hintText: 'confirm password',

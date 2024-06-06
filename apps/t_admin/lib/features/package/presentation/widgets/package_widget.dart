@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:t_admin/core/helper/gap.dart';
 import 'package:t_admin/core/theme/app_colors.dart';
 import 'package:t_admin/features/package/data/model/travel_package_model.dart';
+import 'package:t_admin/features/package/presentation/widgets/package_detail_dialog.dart';
 import 'package:t_admin/features/package/presentation/widgets/package_metainfo_widget.dart';
 
 class PackageWidget extends StatelessWidget {
@@ -12,8 +13,8 @@ class PackageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // Handle onTap
+      onTap: () async {
+        showPackageDetailDialog(context, travelPackageModel);
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 10),
@@ -34,7 +35,7 @@ class PackageWidget extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(6),
                 child: Image.network(
-                  travelPackageModel.featuredImage,
+                  travelPackageModel.images.first,
                   fit: BoxFit.cover,
                 ),
               ),

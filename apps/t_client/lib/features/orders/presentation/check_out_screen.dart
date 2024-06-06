@@ -11,6 +11,7 @@ import 'package:t_client/core/helper/gap.dart';
 import 'package:t_client/core/routes/app_router.dart';
 import 'package:t_client/core/theme/app_colors.dart';
 import 'package:t_client/core/widgets/custom_button.dart';
+import 'package:t_client/core/widgets/custom_dropdown.dart';
 import 'package:t_client/core/widgets/custom_textfield.dart';
 import 'package:t_client/core/widgets/ios_back_button.dart';
 import 'package:t_client/features/orders/data/model/order_package_model.dart';
@@ -47,10 +48,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   String to = '';
   int totalDays = 0;
   late String userId;
-  GlobalKey<FormState> nameFormKey = GlobalKey<FormState>();
-  GlobalKey<FormState> numberKey = GlobalKey<FormState>();
-  GlobalKey<FormState> phoneKey = GlobalKey<FormState>();
-  GlobalKey<FormState> addressKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     super.initState();
@@ -62,6 +61,15 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    peopleController.dispose();
+    phoneController.dispose();
+    addressController.dispose();
+    super.dispose();
   }
 
   @override
@@ -93,10 +101,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 isLoading: state is Loading,
                 btnFontSize: 16,
                 onButtonPressed: () async {
-                  if (nameFormKey.currentState!.validate() &&
-                      numberKey.currentState!.validate() &&
-                      phoneKey.currentState!.validate() &&
-                      addressKey.currentState!.validate()) {
+                  if (formKey.currentState!.validate()) {
                     totalCost = noOfPeople *
                         discountedPrice(
                           widget.travelPackageModel.perHeadPerNight,
@@ -164,89 +169,100 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(left: 16, right: 16, top: 24),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  children: [
-                    IosBackButton(
-                      onTap: () {
-                        context.pop();
-                      },
-                    ),
-                    HorizontalGap.m,
-                    Text(
-                      widget.travelPackageModel.packageName,
-                      style: context.textTheme.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.w800,
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: [
+                      IosBackButton(
+                        onTap: () {
+                          context.pop();
+                        },
                       ),
-                    ),
-                  ],
-                ),
-                VerticalGap.l,
-                CustomTextField(
-                  controller: nameController,
-                  onChanged: (value) {
-                    name = value;
-                    setState(() {});
-                  },
-                  hintText: 'Enter your name',
-                  validationMessage: 'please enter your username',
-                  formKey: nameFormKey,
-                ),
-                VerticalGap.l,
-                CustomTextField(
-                  controller: peopleController,
-                  textInputType: TextInputType.number,
-                  hintText: 'Enter number of person',
-                  onChanged: (value) {
-                    noOfPeople = int.parse(value);
-                    totalCost = noOfPeople *
-                        discountedPrice(
-                          widget.travelPackageModel.perHeadPerNight,
-                          widget.travelPackageModel.discount,
-                        ) *
-                        totalDays;
-                    setState(() {});
-                  },
-                  validationMessage: 'Please enter number of person',
-                  formKey: numberKey,
-                ),
-                VerticalGap.l,
-                CustomTextField(
-                  textInputType: TextInputType.number,
-                  validationMessage: 'Enter valid phone number',
-                  hintText: 'Enter valid phone number',
-                  formKey: phoneKey,
-                  controller: phoneController,
-                ),
-                VerticalGap.l,
-                CustomTextField(
-                  hintText: 'Enter pickup valid address',
-                  validationMessage: 'Enter pickup address',
-                  formKey: addressKey,
-                  controller: addressController,
-                ),
-                VerticalGap.l,
-                SelectedDateWidget(
-                  from: from,
-                  to: to,
-                  callBack: (x, y, z) {
-                    setState(() {
-                      from = x;
-                      to = y;
-                      totalDays = z;
+                      HorizontalGap.m,
+                      Text(
+                        widget.travelPackageModel.packageName,
+                        style: context.textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ],
+                  ),
+                  VerticalGap.l,
+                  CustomTextField(
+                    controller: nameController,
+                    onChanged: (value) {
+                      name = value;
+                      setState(() {});
+                    },
+                    hintText: 'Enter your name',
+                    validationMessage: 'please enter your username',
+                    // formKey: nameFormKey,
+                  ),
+                  VerticalGap.l,
+                  CustomTextField(
+                    controller: peopleController,
+                    textInputType: TextInputType.number,
+                    hintText: 'Enter number of person',
+                    onChanged: (value) {
+                      noOfPeople = int.parse(value);
                       totalCost = noOfPeople *
                           discountedPrice(
                             widget.travelPackageModel.perHeadPerNight,
                             widget.travelPackageModel.discount,
                           ) *
                           totalDays;
-                    });
-                  },
-                ),
-                VerticalGap.l,
-                receitCard(),
-              ],
+                      setState(() {});
+                    },
+                    validationMessage: 'Please enter number of person',
+                    // formKey: numberKey,
+                  ),
+                  VerticalGap.l,
+                  CustomTextField(
+                    textInputType: TextInputType.number,
+                    validationMessage: 'Enter valid phone number',
+                    hintText: 'Enter valid phone number',
+                    // formKey: phoneKey,
+                    controller: phoneController,
+                  ),
+                  VerticalGap.l,
+                  if (widget.travelPackageModel.pickupAddress.isNotEmpty)
+                    CustomDropDownWidget(
+                      items: widget.travelPackageModel.pickupAddress,
+                      onSelect: (value) {
+                        addressController.text = value;
+                        debugPrint(addressController.text);
+                      },
+                    ),
+                  if (widget.travelPackageModel.pickupAddress.isEmpty)
+                    CustomTextField(
+                      hintText: 'Enter pickup valid address',
+                      validationMessage: 'Enter pickup address',
+                      controller: addressController,
+                    ),
+                  VerticalGap.l,
+                  SelectedDateWidget(
+                    from: from,
+                    to: to,
+                    callBack: (x, y, z) {
+                      setState(() {
+                        from = x;
+                        to = y;
+                        totalDays = z;
+                        totalCost = noOfPeople *
+                            discountedPrice(
+                              widget.travelPackageModel.perHeadPerNight,
+                              widget.travelPackageModel.discount,
+                            ) *
+                            totalDays;
+                      });
+                    },
+                  ),
+                  VerticalGap.l,
+                  receitCard(),
+                ],
+              ),
             ),
           ),
         ),

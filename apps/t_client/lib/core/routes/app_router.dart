@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:t_client/core/constants/route_constants.dart';
+import 'package:t_client/core/screens/preferences_screen.dart';
 import 'package:t_client/core/screens/splash_screen.dart';
 import 'package:t_client/core/screens/welcome/welcome_screen.dart';
 import 'package:t_client/features/chat/presentation/chat_screen.dart';
@@ -50,6 +51,11 @@ class AppRouter {
         builder: (context, state) => ProfileScreen(
           uid: state.extra! as String,
         ),
+      ),
+      GoRoute(
+        path: AppRoutes.preference,
+        name: AppRoutes.preference,
+        builder: (context, state) => const UserPreferencesScreen(),
       ),
       GoRoute(
         path: AppRoutes.order,

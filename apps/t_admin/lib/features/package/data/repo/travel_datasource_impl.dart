@@ -65,6 +65,7 @@ class TravelDataSourceImpl implements TravelDataSource {
   }
 
   @override
+
   /// Get Travel Packages
   @override
   Stream<List<TravelPackageModel>> getTravelPackages() {
@@ -83,15 +84,58 @@ class TravelDataSourceImpl implements TravelDataSource {
   }
 
   @override
-  Future<void> updatePacakage(
-      {required TravelPackageModel travelPackageModel,}) {
-    // TODO: implement updatePacakage
-    throw UnimplementedError();
+  Future<void> updatePacakage({
+    required Uint8List vrImage,
+    required List<Uint8List> images,
+    required Uint8List featuredImage,
+    required TravelPackageModel travelPackageModel,
+  }) async {
+    try {
+      final firebaseStorageUitls = getIt<FirebaseStorageUitls>();
+      final featuredImageUrl = await firebaseStorageUitls.uploadImage(
+        packageId: travelPackageModel.uuid,
+        image: featuredImage,
+      );
+      final listImagesUrl =
+          await firebaseStorageUitls.uploadMultipleImagesToFirebase(
+        packageId: travelPackageModel.uuid,
+        images: images,
+      );
+      final vrImageUrl = await firebaseStorageUitls.uploadImage(
+        packageId: travelPackageModel.uuid,
+        image: vrImage,
+      );
+
+      final data = await firestore
+          .collection('packages')
+          .where('uuid', isEqualTo: travelPackageModel.uuid)
+          .get();
+      await data.docs.first.reference.update(
+        travelPackageModel
+            .copyWith(
+              featuredImage: featuredImageUrl,
+              images: listImagesUrl,
+              vrImage: vrImageUrl,
+            )
+            .toJson(),
+      );
+    } catch (e, s) {
+      debugPrint(s.toString());
+      rethrow;
+    }
   }
 
   @override
-  Future<void> deletePackage({required String id}) {
-    // TODO: implement deletePackage
-    throw UnimplementedError();
+  Future<void> deletePackage({required String id}) async {
+    try {
+      final data = await firestore
+          .collection('packages')
+          .where('uuid', isEqualTo: id)
+          .get();
+      await data.docs.first.reference.delete();
+    } catch (e, s) {
+      debugPrint(s.toString());
+      rethrow;
+    }
   }
 }

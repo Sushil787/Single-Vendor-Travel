@@ -4,15 +4,15 @@ import 'package:t_admin/core/widgets/custom_lable.dart';
 import 'package:t_admin/features/order/presentation/bloc/booking_bloc.dart';
 import 'package:t_admin/features/order/presentation/ui/widget/order_widget.dart';
 
-class PackageBookedScreen extends StatefulWidget {
+class CancleRequestScreen extends StatefulWidget {
   ///
-  const PackageBookedScreen({super.key});
+  const CancleRequestScreen({super.key});
 
   @override
-  State<PackageBookedScreen> createState() => _PackageScreenState();
+  State<CancleRequestScreen> createState() => _PackageScreenState();
 }
 
-class _PackageScreenState extends State<PackageBookedScreen> {
+class _PackageScreenState extends State<CancleRequestScreen> {
   @override
   void initState() {
     super.initState();
@@ -30,7 +30,7 @@ class _PackageScreenState extends State<PackageBookedScreen> {
             const SizedBox(
               height: 50,
               child: CustomLable(
-                lable: 'Orders',
+                lable: 'Cancle requests / Refunded',
               ),
             ),
             Flexible(
@@ -43,13 +43,17 @@ class _PackageScreenState extends State<PackageBookedScreen> {
                   }
 
                   if (state is BookingLoaded) {
-                    if (state.orders.isNotEmpty) {
+                    final orders = state.orders.where(
+                      (element) =>
+                          element.orderStatus!.toLowerCase().contains('canc'),
+                    );
+                    if (orders.isNotEmpty) {
                       return GridView.builder(
                         shrinkWrap: true,
-                        itemCount: state.orders.length,
+                        itemCount: orders.length,
                         itemBuilder: (context, index) {
                           return OrderWidget(
-                            order: state.orders[index],
+                            order: orders.toList()[index],
                           );
                         },
                         gridDelegate:
@@ -61,7 +65,7 @@ class _PackageScreenState extends State<PackageBookedScreen> {
                       );
                     }
                     return const Center(
-                      child: Text('No orders yet'),
+                      child: Text('No Cancle Request yet'),
                     );
                   }
                   if (state is Error) {

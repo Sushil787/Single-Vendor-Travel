@@ -11,6 +11,9 @@ class AppRoutes {
   /// Checkout Screen
   static const String checkout = '/checkout';
 
+  /// Checkout Screen
+  static const String preference = '/preference';
+
 
 
   /// Home Route

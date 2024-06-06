@@ -11,8 +11,9 @@ class CustomElevatedButton extends StatelessWidget {
     this.btnHorizontalPadding = 16.0,
     this.btnVerticalPadding = 12.0,
     this.btnFontSize = 20.0,
-    super.key,
-  });
+    this.backgroundColor, // New optional parameter for background color
+    Key? key,
+  }) : super(key: key);
 
   /// Callback called when button is pressed
   final VoidCallback onButtonPressed;
@@ -32,6 +33,9 @@ class CustomElevatedButton extends StatelessWidget {
   /// Button vertical padding
   final double btnVerticalPadding;
 
+  /// Background color of the button
+  final Color? backgroundColor;
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -41,6 +45,8 @@ class CustomElevatedButton extends StatelessWidget {
           horizontal: btnHorizontalPadding,
           vertical: btnVerticalPadding,
         ),
+        // Set background color if provided, else fallback to default
+        backgroundColor: backgroundColor,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

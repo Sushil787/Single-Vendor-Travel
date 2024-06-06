@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
@@ -16,18 +17,15 @@ class FirebaseStorageUitls {
     try {
       final storage = firebaseStorage.ref('/$packageId/images');
       const uid = Uuid();
-
       final metadata = SettableMetadata(
         contentType: 'image/*',
         // customMetadata: {'picked-file-path': },
       );
-
       final uploadTask =
           await storage.child('${uid.v4()}.jpg').putData(image, metadata);
-
       return await uploadTask.ref.getDownloadURL();
     } on FirebaseException catch (e) {
-      print('FirebaseException: $e');
+      log('FirebaseException: $e');
       rethrow;
     } on Exception {
       rethrow;

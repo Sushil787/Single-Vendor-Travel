@@ -25,6 +25,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         GetOrders: () => getOrder(
           emit: emit,
         ),
+        updateOrder: (status, order) =>
+            updateOrder(emit: emit, orderPackageModel: order, status: status),
       );
     });
   }
@@ -56,6 +58,27 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       emit(const Loading());
       final orders = await orderRepo.getUserOrder();
       emit(Orders(orders: orders ?? []));
+    } on FirebaseException catch (e) {
+      log(e.toString());
+      emit(Error(message: e.toString()));
+    } catch (e) {
+      log(e.toString());
+      emit(Error(message: e.toString()));
+    }
+  }
+
+  /// Update Status
+  Future<void> updateOrder({
+    required Emitter<OrderState> emit,
+    required OrderPackageModel orderPackageModel,
+    required String status,
+  }) async {
+    try {
+      await orderRepo.updateBookedPackageStatus(
+        status: status,
+        orderPackageModel: orderPackageModel,
+      );
+      await getOrder(emit: emit);
     } on FirebaseException catch (e) {
       log(e.toString());
       emit(Error(message: e.toString()));

@@ -28,6 +28,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   /// Form Key
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -58,11 +60,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       children: [
                         CustomTextField(
+                          controller: emailController,
                           prefixIcon: Icons.email,
                           hintText: 'Email',
-                          
                           onChanged: (value) {
                             email = value;
+                            formKey.currentState!.validate();
                           },
                           validator: (value) {
                             if (value != null && value.isEmpty) {
@@ -73,10 +76,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         VerticalGap.l,
                         CustomTextField(
+                          controller: passwordController,
                           prefixIcon: Icons.password,
                           hintText: 'password',
                           maxLine: 1,
-
                           onChanged: (value) {
                             password = value;
                           },

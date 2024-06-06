@@ -191,6 +191,7 @@ class _PackagesState extends State<Packages> {
                   child: ListView.builder(
                     physics: const ClampingScrollPhysics(),
                     shrinkWrap: true,
+                    reverse: true,
                     itemBuilder: (context, index) {
                       return PackageWidget(
                         travelPackageModel: widget.packages[index],
@@ -273,10 +274,15 @@ class _FeaturedPageBuilderState extends State<FeaturedPageBuilder> {
               },
               itemCount: 4,
               itemBuilder: (context, index) {
+                final list = widget.travelPackageModels
+                    .where(
+                      (element) => element.isFeatured,
+                    )
+                    .toList();
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 4),
                   child: FeaturedPlaceWidget(
-                    travelPackageModel: widget.travelPackageModels[index],
+                    travelPackageModel: list[index],
                   ),
                 );
               },

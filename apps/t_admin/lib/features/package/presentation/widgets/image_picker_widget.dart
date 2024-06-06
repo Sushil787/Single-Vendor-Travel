@@ -2,15 +2,19 @@ import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:t_admin/core/helper/image_to_unit8list.dart';
 import 'package:t_admin/core/theme/app_colors.dart';
 
+///
 class ImagePickerWidget extends StatefulWidget {
-  const ImagePickerWidget({
+  ImagePickerWidget({
     required this.imageCallBack,
+    this.image,
     super.key,
   });
 
   final void Function(Uint8List?) imageCallBack;
+  String? image;
 
   @override
   State<ImagePickerWidget> createState() => _ImagePickerWidgetState();
@@ -18,6 +22,18 @@ class ImagePickerWidget extends StatefulWidget {
 
 class _ImagePickerWidgetState extends State<ImagePickerWidget> {
   Uint8List? packageImage;
+  @override
+  void initState() {
+    // packageImage = widget.image;
+    super.initState();
+    if (widget.image != null) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+        packageImage = await getUnit8List(widget.image!);
+        setState(() {});
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
