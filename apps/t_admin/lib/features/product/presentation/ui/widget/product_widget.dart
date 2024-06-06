@@ -20,105 +20,104 @@ class ProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Container(
-        height: context.height * .4,
-        width: context.width * .12,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: LightColor.eclipse,
-          ),
+    return Container(
+      margin: EdgeInsets.only(right: 100),
+      height: context.height * .5,
+      width: context.width * .12,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: LightColor.eclipse,
         ),
-        child: Stack(
-          children: [
-            Column(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Container(
-                    height: context.height * .2,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(
-                          productModel.image,
-                        ),
-                        fit: BoxFit.cover,
+      ),
+      child: Stack(
+        children: [
+          Column(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Container(
+                  height: context.height * .2,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        productModel.image,
                       ),
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      VerticalGap.s,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Rs ${productModel.price}',
-                            style: context.textTheme.displaySmall,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    VerticalGap.s,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Rs ${productModel.price}',
+                          style: context.textTheme.displaySmall,
+                        ),
+                        Chip(
+                          label: Text(
+                            productModel.categoryType,
+                            maxLines: 1,
+                            style: context.textTheme.displaySmall
+                                ?.copyWith(fontSize: 12, color: Colors.white),
                           ),
-                          Chip(
-                            label: Text(
-                              productModel.categoryType,
-                              maxLines: 1,
-                              style: context.textTheme.displaySmall
-                                  ?.copyWith(fontSize: 12, color: Colors.white),
-                            ),
-                          ),
-                        ],
-                      ),
-                      VerticalGap.s,
-                      Text(
-                        productModel.title,
-                        style: context.textTheme.displaySmall,
-                      ),
-                      VerticalGap.s,
-                      Text(
-                        productModel.description,
-                        style: context.textTheme.displaySmall,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: isOrder?5:3
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            if (!isOrder)
-              Align(
-                alignment: Alignment.topRight,
-                child: PopupMenuButton<String>(
-                  onSelected: (value) {},
-                  itemBuilder: (BuildContext bc) {
-                    return [
-                      PopupMenuItem(
-                        child: const Text('Update'),
-                        onTap: () {
-                          context.push(
-                            AppRoutes.addProduct,
-                            extra: productModel,
-                          );
-                        },
-                      ),
-                      PopupMenuItem(
-                        child: const Text('Delete'),
-                        onTap: () async {
-                          await context
-                              .read<ProductCubit>()
-                              .deleteProduct(id: productModel.uuid!);
-                          context.pop();
-                        },
-                      ),
-                    ];
-                  },
+                        ),
+                      ],
+                    ),
+                    VerticalGap.s,
+                    Text(
+                      productModel.title,
+                      style: context.textTheme.displaySmall,
+                    ),
+                    VerticalGap.s,
+                    Text(
+                      productModel.description,
+                      style: context.textTheme.displaySmall,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: isOrder?5:3
+                    ),
+                  ],
                 ),
               ),
-          ],
-        ),
+            ],
+          ),
+          if (!isOrder)
+            Align(
+              alignment: Alignment.topRight,
+              child: PopupMenuButton<String>(
+                onSelected: (value) {},
+                itemBuilder: (BuildContext bc) {
+                  return [
+                    PopupMenuItem(
+                      child: const Text('Update'),
+                      onTap: () {
+                        context.push(
+                          AppRoutes.addProduct,
+                          extra: productModel,
+                        );
+                      },
+                    ),
+                    PopupMenuItem(
+                      child: const Text('Delete'),
+                      onTap: () async {
+                        await context
+                            .read<ProductCubit>()
+                            .deleteProduct(id: productModel.uuid!);
+                        context.pop();
+                      },
+                    ),
+                  ];
+                },
+              ),
+            ),
+        ],
       ),
     );
   }
