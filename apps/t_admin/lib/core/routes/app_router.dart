@@ -91,10 +91,12 @@ class AppRouter {
       if (user?.uid == null || user!.uid.isEmpty) {
         return AppRoutes.home;
       }
-      return null;
+      return AppRoutes.login;
     },
   );
 
   /// Router Getter
   GoRouter get router => _router;
 }
+
+

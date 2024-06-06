@@ -128,9 +128,10 @@ class _MapScreenState extends State<MapScreen> {
                     log(name: 'distance', dis.toString());
                     return Container(
                       width: context.width,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 8,
+                      padding: const EdgeInsets.only(
+                        left: 10,
+                        right: 10,
+                        top: 40,
                       ),
                       child: PackageWidget(
                         distance: distance(

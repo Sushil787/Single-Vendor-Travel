@@ -162,6 +162,8 @@ class _PackageDetailScreenState extends State<PackageDetailScreen> {
                           ),
                         ),
                         HorizontalGap.l,
+                 
+                 
                         // BuildIconTextRow(
                         //   first: const Icon(
                         //     Icons.comment,
