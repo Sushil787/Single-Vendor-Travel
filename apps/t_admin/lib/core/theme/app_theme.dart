@@ -44,7 +44,7 @@ class AppTheme {
     // fontFamily: AssetConstants.robotoRegular,
     textTheme: const TextTheme(
       headlineLarge: TextStyle(
-        color: LightColor.secondaryColor,
+        color: Color.fromRGBO(0, 0, 0, 1),
         fontSize: 24,
         fontWeight: FontWeight.w700,
       ),

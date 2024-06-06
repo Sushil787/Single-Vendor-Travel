@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Class Containing Color in Light Theme
 class LightColor {
+  
   /// Primary Color
   static const Color primaryColor = Color(0xffe5e5e5);
 

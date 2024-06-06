@@ -57,6 +57,7 @@ class _OrderWidgetState extends State<OrderWidget> {
                     style: context.textTheme.bodyMedium?.copyWith(
                       color: LightColor.grey,
                       fontWeight: FontWeight.w600,
+                      fontSize: 12
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),

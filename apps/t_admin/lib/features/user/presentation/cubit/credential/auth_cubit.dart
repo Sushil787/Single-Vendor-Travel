@@ -58,7 +58,6 @@ class AuthCubit extends Cubit<AuthState> {
       emit(const AuthFailure(message: 'wrong credentials'));
     } catch (_) {
       debugPrint(_.toString());
-
       emit(const AuthFailure(message: 'wrong credentials'));
     }
   }

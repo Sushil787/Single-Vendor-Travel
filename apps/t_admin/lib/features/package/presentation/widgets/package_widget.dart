@@ -18,7 +18,8 @@ class PackageWidget extends StatelessWidget {
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 10),
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+
+        padding: const EdgeInsets.symmetric(horizontal: 4),
         height: 150,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),

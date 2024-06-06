@@ -14,6 +14,7 @@ enum ThemeState {
   dark
 }
 
+
 /// Theme Cubit
 class ThemeCubit extends Cubit<ThemeState> {
   /// Public Constructor

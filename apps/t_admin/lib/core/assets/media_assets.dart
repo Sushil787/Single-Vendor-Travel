@@ -8,8 +8,6 @@ class MediaAsset {
   /// Google Image Path
   static const googleImage = '$basePath/google.png';
 
-
-
   /// place holder
   static const placeHolder = '$basePath/background.jpg';
 

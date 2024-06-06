@@ -24,6 +24,7 @@ class AppRouter {
   static final _parentKey = GlobalKey<NavigatorState>();
   static final _shellKey = GlobalKey<NavigatorState>();
 
+
   final GoRouter _router = GoRouter(
     initialLocation: AppRoutes.splash,
     initialExtra: 'admin',

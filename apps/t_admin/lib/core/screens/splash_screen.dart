@@ -32,7 +32,6 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-           
             VerticalGap.m,
             SizedBox(
               height: 60,

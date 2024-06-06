@@ -47,7 +47,7 @@ List<String> pageName = const [
   'Dashboard',
   'All Users',
   'Packages',
-  'Orders',
+  'Booking',
   'Chat',
   'Cancle Request',
   'Products',
@@ -88,6 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
             backgroundColor: LightColor.whiteSmoke,
             appBar: AppBar(
               elevation: 2,
+              centerTitle: true,
               title: Text(
                 'Travello',
                 style: context.textTheme.headlineMedium!
@@ -109,69 +110,84 @@ class _HomeScreenState extends State<HomeScreen> {
             body: Row(
               children: [
                 Column(
-                  children: pageList.mapIndexed(
-                    (index, e) {
-                      final isSelected = index == _selectedPageIndex;
-                      return InkWell(
-                        borderRadius: BorderRadius.circular(8),
-                        onTap: () {
-                          setState(() {
-                            _selectedPageIndex = index;
-                          });
-                          switch (_selectedPageIndex) {
-                            case 0:
-                              return context.go('/${AppRoutes.dashboard}');
-                            case 1:
-                              return context.go('/${AppRoutes.users}');
-                            case 2:
-                              return context.go('/${AppRoutes.package}');
-                            case 3:
-                              return context.go('/${AppRoutes.bookedScreen}');
-                            case 4:
-                              return context.go('/${AppRoutes.chat}');
-                            case 5:
-                              return context.go('/${AppRoutes.cancleRequest}');
-                            case 6:
-                              return context.go('/${AppRoutes.product}');
-                          }
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
-                          margin: const EdgeInsets.symmetric(
-                            vertical: 4,
-                            horizontal: 2,
-                          ),
-                          padding: const EdgeInsets.only(left: 20),
-                          height: 44,
-                          width: context.width * .15,
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(
-                                8,
-                              ),
+                  children: [
+                    ...pageList.mapIndexed(
+                      (index, e) {
+                        final isSelected = index == _selectedPageIndex;
+                        return InkWell(
+                          borderRadius: BorderRadius.circular(8),
+                          onTap: () {
+                            setState(() {
+                              _selectedPageIndex = index;
+                            });
+                            switch (_selectedPageIndex) {
+                              case 0:
+                                return context.go('/${AppRoutes.dashboard}');
+                              case 1:
+                                return context.go('/${AppRoutes.users}');
+                              case 2:
+                                return context.go('/${AppRoutes.package}');
+                              case 3:
+                                return context.go('/${AppRoutes.bookedScreen}');
+                              case 4:
+                                return context.go('/${AppRoutes.chat}');
+                              case 5:
+                                return context
+                                    .go('/${AppRoutes.cancleRequest}');
+                              case 6:
+                                return context.go('/${AppRoutes.product}');
+                            }
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            margin: const EdgeInsets.symmetric(
+                              vertical: 4,
+                              horizontal: 2,
                             ),
-                            border: isSelected
-                                ? Border.all(
-                                    color: Theme.of(context).primaryColor,
-                                    width: 2,
-                                  )
-                                : null,
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(icons[pageList.indexOf(e)]),
-                              HorizontalGap.m,
-                              Text(
-                                pageName[pageList.indexOf(e)],
-                                style: context.textTheme.labelLarge
-                                    ?.copyWith(fontWeight: FontWeight.bold),
+                            padding: const EdgeInsets.only(left: 20),
+                            height: 44,
+                            width: context.width * .15,
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(
+                                  8,
+                                ),
                               ),
-                            ],
+                              border: isSelected
+                                  ? Border.all(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2,
+                                    )
+                                  : null,
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(icons[index]),
+                                HorizontalGap.m,
+                                Text(
+                                  pageName[index],
+                                  style: context.textTheme.labelLarge
+                                      ?.copyWith(fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  ).toList(),
+                        );
+                      },
+                    ),
+                    const Spacer(),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 2,
+                      ),
+                      width: context.width * .15,
+                      child: const Text(
+                        'Copyright @subodh\n Academic project 2024 under BIT computer science \n in the partial fulfillment of bachelor degree',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w300, fontSize: 12),
+                      ),
+                    )
+                  ],
                 ),
                 Expanded(
                   child: Container(
