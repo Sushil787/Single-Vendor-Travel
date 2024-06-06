@@ -1000,10 +1000,9 @@ packages:
   khalti_flutter:
     dependency: "direct main"
     description:
-      name: khalti_flutter
-      sha256: "1d2a66b1b1af5e1c4b59f3709de6bcc6480582031c4d1b99cf98bd438debfbfa"
-      url: "https://pub.dev"
-    source: hosted
+      path: khalti_flutter
+      relative: true
+    source: path
     version: "3.0.0"
   latlong2:
     dependency: "direct main"

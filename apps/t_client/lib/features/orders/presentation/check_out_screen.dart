@@ -619,12 +619,12 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                   children: [
                                     Text(
                                       'Disclaimer',
-                                      style: context.textTheme.bodyLarge
-                                          ?.copyWith(
+                                      style:
+                                          context.textTheme.bodyLarge?.copyWith(
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    SizedBox(height: 16),
+                                    const SizedBox(height: 16),
                                     Text(
                                       '''
 If you cancel your order within 24 hours of the visit date, no refund is available. Cancel 48 hours before that 4% of the order cost will be deducted from your refund.
@@ -632,7 +632,7 @@ If you cancel your order within 24 hours of the visit date, no refund is availab
                                       textAlign: TextAlign.center,
                                       style: context.textTheme.bodySmall,
                                     ),
-                                    SizedBox(height: 16),
+                                    const SizedBox(height: 16),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
@@ -658,11 +658,12 @@ If you cancel your order within 24 hours of the visit date, no refund is availab
                                                   ).toStringAsFixed(0),
                                                 ),
                                                 productIdentity:
-                                                    orderPackageModel.packageId ??
+                                                    orderPackageModel
+                                                            .packageId ??
                                                         '',
-                                                productName:
-                                                    orderPackageModel.packageName ??
-                                                        '',
+                                                productName: orderPackageModel
+                                                        .packageName ??
+                                                    '',
                                                 productUrl:
                                                     'https://www.testurl.com',
                                               ),
@@ -693,11 +694,14 @@ If you cancel your order within 24 hours of the visit date, no refund is availab
                                             );
                                             await Future.delayed(
                                                 const Duration(seconds: 2), () {
-                                              nameController.dispose();
-                                              phoneController.dispose();
-                                              addressController.dispose();
-                                              peopleController.dispose();
-                                              context.pop();
+                                              // nameController.dispose();
+                                              // phoneController.dispose();
+                                              // addressController.dispose();
+                                              // peopleController.dispose();
+                                              context
+                                                ..pop()
+                                                ..pop()
+                                                ..pop();
                                             });
                                           },
                                           buttonText: 'Continue',
