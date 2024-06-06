@@ -10,7 +10,6 @@ import 'package:t_admin/core/helper/image_to_unit8list.dart';
 import 'package:t_admin/core/widgets/custom_button.dart';
 import 'package:t_admin/core/widgets/custom_dropdown.dart';
 import 'package:t_admin/core/widgets/custom_textfield.dart';
-import 'package:t_admin/features/package/presentation/bloc/travel_bloc.dart';
 import 'package:t_admin/features/package/presentation/widgets/image_picker_widget.dart';
 import 'package:t_admin/features/product/model/product_model.dart';
 import 'package:t_admin/features/product/presentation/cubit/product_cubit.dart';
@@ -180,7 +179,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           : 'Upload Product',
                     );
                   },
-                )
+                ),
               ],
             ),
           ),

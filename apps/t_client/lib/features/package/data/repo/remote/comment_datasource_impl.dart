@@ -103,7 +103,7 @@ class CommentDataSourceImpl implements CommentDataSource {
   Future<void> updateComment(
       {required String commentId,
       required String packageId,
-      required String message}) async {
+      required String message,}) async {
     try {
       final data = await firebaseFirestore
           .collection(comments)

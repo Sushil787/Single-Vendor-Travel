@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:t_client/features/package/data/model/comment_model.dart';
 import 'package:t_client/features/package/data/model/date_time_serialization.dart';
 part 'travel_package_model.freezed.dart';
 part 'travel_package_model.g.dart';
@@ -36,7 +35,7 @@ class TravelPackageModel with _$TravelPackageModel {
     ///  telephone other
     @Default([]) List<String> inclusive,
     @Default(false) bool isFeatured,
-   @Default(0)  int reviews,
+    @Default([]) List reviews,
     @Default(0) double packageRating,
   }) = _TravelPackageModel;
 

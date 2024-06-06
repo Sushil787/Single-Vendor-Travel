@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:t_admin/core/helper/extension/context_extension.dart';
@@ -6,6 +5,7 @@ import 'package:t_admin/core/helper/gap.dart';
 import 'package:t_admin/core/theme/app_colors.dart';
 import 'package:t_admin/features/order/data/model/order_package_model.dart';
 import 'package:t_admin/features/order/presentation/bloc/booking_bloc.dart';
+import 'package:t_admin/features/product/presentation/ui/widget/product_widget.dart';
 
 class OrderWidget extends StatefulWidget {
   const OrderWidget({required this.order, super.key});
@@ -28,7 +28,7 @@ class _OrderWidgetState extends State<OrderWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: context.width * .4,
-      margin: const EdgeInsets.only(bottom: 10),
+      // margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
@@ -39,9 +39,9 @@ class _OrderWidgetState extends State<OrderWidget> {
       ),
       child: Container(
         width: context.width * .4,
-        margin: const EdgeInsets.only(
-          bottom: 8,
-        ),
+        // margin: const EdgeInsets.only(
+        //   bottom: 8,
+        // ),
         padding: const EdgeInsets.symmetric(
           horizontal: 8,
           vertical: 6,
@@ -144,6 +144,43 @@ class _OrderWidgetState extends State<OrderWidget> {
               first: 'Order Id: ${widget.order.orderId}',
               second: ' ',
             ),
+            if (widget.order.productModel != null)
+              InkWell(
+                  onTap: () async {
+                    await showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Container(
+                          margin: EdgeInsets.symmetric(
+                            horizontal: context.width * .3,
+                            vertical: context.height * .2,
+                          ),
+
+                          // margin: const EdgeInsets.only(top: 4),
+                          height: context.height * .2,
+                          width: context.width * .5,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: [
+                              ...widget.order.productModel!.map(
+                                (e) => Container(
+                                  margin: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                  ),
+                                  width: context.width * .5,
+                                  child: ProductWidget(
+                                    productModel: e,
+                                    isOrder: true,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: const Text('product ordered'))
           ],
         ),
       ),

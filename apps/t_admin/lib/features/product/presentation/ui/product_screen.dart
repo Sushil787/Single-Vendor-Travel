@@ -71,7 +71,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                   child: Text('Something went wrong'),
                 );
               },
-            )
+            ),
           ],
         ),
       ),

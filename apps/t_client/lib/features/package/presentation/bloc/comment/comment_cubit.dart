@@ -38,7 +38,7 @@ class CommentCubit extends Cubit<CommentState> {
   }) async {
     try {
       final data = await commentRepo.updateComment(
-          packageId: packageId, commentId: commentId, message: message);
+          packageId: packageId, commentId: commentId, message: message,);
       await getComments(packageId: packageId);
     } catch (e) {
       emit(CommentState.failure(e.toString()));

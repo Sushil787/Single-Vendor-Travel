@@ -49,7 +49,7 @@ class CommentRepoImpl implements CommentRepo {
   Future<void> updateComment(
       {required String commentId,
       required String packageId,
-      required String message}) {
+      required String message,}) {
     try {
       final data = commendDataSource.updateComment(
         packageId: packageId,

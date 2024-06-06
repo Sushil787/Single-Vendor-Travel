@@ -2,8 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:t_client/core/constants/firebase_collections.dart';
-import 'package:t_client/core/helper/extension/context_extension.dart';
 import 'package:t_client/core/theme/app_colors.dart';
 import 'package:t_client/core/widgets/custom_textfield.dart';
 import 'package:t_client/features/package/data/model/comment_model.dart';
@@ -120,7 +118,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                             );
                           },
                         );
-                      }),
+                      },),
                 ],
               )
             : null,

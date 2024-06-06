@@ -39,7 +39,7 @@ List<IconData> icons = const [
   Icons.bookmark_outline,
   Icons.chat_outlined,
   Icons.cancel_outlined,
-  Icons.store
+  Icons.store,
 ];
 
 /// Page Names
@@ -50,7 +50,7 @@ List<String> pageName = const [
   'Orders',
   'Chat',
   'Cancle Request',
-  'Products'
+  'Products',
 ];
 
 /// Home Screen

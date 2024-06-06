@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:t_admin/core/constants/route_constants.dart';
@@ -13,11 +10,13 @@ import 'package:t_admin/features/product/model/product_model.dart';
 import 'package:t_admin/features/product/presentation/cubit/product_cubit.dart';
 
 class ProductWidget extends StatelessWidget {
-  const ProductWidget({
+  ProductWidget({
     required this.productModel,
+    this.isOrder = false,
     super.key,
   });
   final ProductModel productModel;
+  final bool isOrder;
 
   @override
   Widget build(BuildContext context) {
@@ -89,34 +88,35 @@ class ProductWidget extends StatelessWidget {
                 ),
               ],
             ),
-            Align(
-              alignment: Alignment.topRight,
-              child: PopupMenuButton<String>(
-                onSelected: (value) {},
-                itemBuilder: (BuildContext bc) {
-                  return [
-                    PopupMenuItem(
-                      child: const Text('Update'),
-                      onTap: () {
-                        context.push(
-                          AppRoutes.addProduct,
-                          extra: productModel,
-                        );
-                      },
-                    ),
-                    PopupMenuItem(
-                      child: const Text('Delete'),
-                      onTap: () async {
-                        await context
-                            .read<ProductCubit>()
-                            .deleteProduct(id: productModel.uuid!);
-                        context.pop();
-                      },
-                    ),
-                  ];
-                },
+            if (!isOrder)
+              Align(
+                alignment: Alignment.topRight,
+                child: PopupMenuButton<String>(
+                  onSelected: (value) {},
+                  itemBuilder: (BuildContext bc) {
+                    return [
+                      PopupMenuItem(
+                        child: const Text('Update'),
+                        onTap: () {
+                          context.push(
+                            AppRoutes.addProduct,
+                            extra: productModel,
+                          );
+                        },
+                      ),
+                      PopupMenuItem(
+                        child: const Text('Delete'),
+                        onTap: () async {
+                          await context
+                              .read<ProductCubit>()
+                              .deleteProduct(id: productModel.uuid!);
+                          context.pop();
+                        },
+                      ),
+                    ];
+                  },
+                ),
               ),
-            ),
           ],
         ),
       ),

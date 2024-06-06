@@ -9,6 +9,7 @@ import 'package:t_client/core/theme/app_colors.dart';
 import 'package:t_client/core/widgets/custom_button.dart';
 import 'package:t_client/features/orders/data/model/order_package_model.dart';
 import 'package:t_client/features/orders/presentation/bloc/order_bloc.dart';
+import 'package:t_client/features/product/presentation/ui/widget/product_widget.dart';
 
 // Order Screen
 class OrderScreen extends StatefulWidget {
@@ -167,9 +168,35 @@ Widget buildOrderWidget(
               borderRadius: BorderRadius.circular(4),
               color: LightColor.eclipse,
             ),
-            child: const Text('Visited',
-                style: TextStyle(color: Colors.white, fontSize: 14),),
+            child: const Text(
+              'Visited',
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            ),
           ),
+        if (order.productModel != null)
+          ExpansionTile(
+            title: const Text('Products ordered'),
+            children: [
+              Container(
+                margin: const EdgeInsets.only(top: 4),
+                height: context.height * .4,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    ...order.productModel!.map(
+                      (e) => Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 8),
+                        width: context.width * .5,
+                        child: ProductWidget(productModel: e),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          )
+        else
+          const SizedBox.shrink()
       ],
     ),
   );
