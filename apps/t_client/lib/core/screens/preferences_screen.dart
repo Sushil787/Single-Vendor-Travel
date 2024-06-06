@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:t_client/core/constants/route_constants.dart';
@@ -7,6 +8,7 @@ import 'package:t_client/core/helper/gap.dart';
 import 'package:t_client/core/theme/app_colors.dart';
 import 'package:t_client/core/widgets/custom_button.dart';
 import 'package:t_client/di/di_setup.dart';
+import 'package:t_client/features/user/domain/repository/user_repository.dart';
 
 /// Get User Preferences If first time Visit
 class UserPreferencesScreen extends StatefulWidget {
@@ -33,13 +35,13 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
   List<String> favourites = [];
   List<String> items = [
     'Holiday',
-    'Tour',
+    'Homestay',
     'Honeymoon',
     'Nature',
     'Religious',
     'Fun',
     'Travel',
-    'Camping',
+    'Hotel',
     'Educational',
   ];
   @override
@@ -115,6 +117,12 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
         child: CustomElevatedButton(
           onButtonPressed: () async {
             if (favourites.length > 4) {
+              // ignore: avoid_function_literals_in_foreach_calls
+              favourites.forEach((element) async {
+                await context.read<UserRepository>().addSearchHistory(
+                      searchQuery: element,
+                    );
+              });
               await context.push(AppRoutes.main);
               return;
             }

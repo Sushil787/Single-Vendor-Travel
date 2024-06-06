@@ -48,7 +48,9 @@ class _HomeScreenState extends State<HomeScreen>
     context.read<UserRepository>().updateToken();
     context.read<ProfileCubit>().getProfile(uid: widget.uid);
     context.read<TravelBloc>().add(const Get());
-    // context.read<RecommendBloc>().add(const Recommend());
+    context.read<RecommendBloc>().add(const Recommend());
+    // getIt<SharedPreferences>().setBool('firstTime', true);
+
     uid = widget.uid;
     scrollController.addListener(() {
       if (scrollController.position.userScrollDirection ==
@@ -66,7 +68,6 @@ class _HomeScreenState extends State<HomeScreen>
     });
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await determinePosition();
-      
     });
     screens = [
       PackageScreen(

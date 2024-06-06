@@ -33,6 +33,7 @@ class OrderRepo {
         fcmToken: fcm,
         orderStatus: 'confirmed',
       );
+      
       /// Add the order to Firestore
       await firestore.collection('order').add(orderModel.toJson());
 

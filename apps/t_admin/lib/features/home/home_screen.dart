@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
           return Scaffold(
             backgroundColor: LightColor.whiteSmoke,
             appBar: AppBar(
-              elevation: 20,
+              elevation: 2,
               title: Text(
                 'Travello',
                 style: context.textTheme.headlineMedium!

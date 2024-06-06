@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:t_client/core/constants/route_constants.dart';
 import 'package:t_client/core/helper/extension/context_extension.dart';
@@ -7,6 +10,7 @@ import 'package:t_client/core/theme/app_colors.dart';
 import 'package:t_client/core/widgets/custom_image_widget.dart';
 import 'package:t_client/features/package/data/model/travel_package_model.dart';
 import 'package:t_client/features/package/presentation/ui/package/widgets/discount_widget.dart';
+import 'package:t_client/features/user/domain/repository/user_repository.dart';
 
 /// Recently Added Package Widgets
 class RecentlyAddedPackages extends StatelessWidget {
@@ -43,11 +47,16 @@ class RecentlyAddedPackages extends StatelessWidget {
               itemCount: travelPackageModels.length,
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
-                  onTap: () {
-                    context.push(
-                      AppRoutes.packageDetail,
-                      extra: travelPackageModels[index],
+                  onTap: () async {
+                    unawaited(
+                      context.push(
+                        AppRoutes.packageDetail,
+                        extra: travelPackageModels[index],
+                      ),
                     );
+                    await context.read<UserRepository>().addSearchHistory(
+                          searchQuery: travelPackageModels[index].packageName,
+                        );
                   },
                   child: Container(
                     margin: const EdgeInsets.only(right: 8),

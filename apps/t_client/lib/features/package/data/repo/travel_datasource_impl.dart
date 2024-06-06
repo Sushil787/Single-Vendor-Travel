@@ -84,6 +84,7 @@ class TravelDataSourceImpl implements TravelDataSource {
                 (item) =>
                     TravelPackageModel.fromJson(item as Map<String, dynamic>),
               )
+              .toSet()
               .toList();
           return recommended;
         } else {

@@ -17,23 +17,24 @@ cred = credentials.Certificate("key.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-user_search_history = []
 travel_packages = []
 recommendations = []
 
 '''
-Use main.py as 
+Use main.py as prod
 '''
 
 '''
 Get user search history from firebase database
 '''
 def get_user_search_history(user_id)->list:
+   user_search_history = []
    collection =  db.collection('search_history')
    history = collection.where(filter=FieldFilter('uid', '==', user_id)).get()
    for doc in history:
     user_search_history.append(doc.to_dict()['search'])
-   return user_search_history
+   return list(set(user_search_history))
+    # return []
 
 '''
 Get travel packages from firebase firestore
@@ -81,7 +82,9 @@ def calculate_idf(term, cleaned_documents):
         return log_result
     else:
         return 0
-
+'''
+prefrocess
+'''
 def preprocess(document):
     terms = re.split(r'[,\s]+', document)
     cleaned_terms = [
@@ -91,12 +94,16 @@ def preprocess(document):
     ]
     return cleaned_terms
 
+
 def clean_documents(documents):
     cleaned_documents = [
         " ".join(preprocess(document)) for document in documents.values()
     ]
     return cleaned_documents
 
+'''
+document
+'''
 def fit_document(document, vocabulary, cleaned_documents):
     terms = preprocess(document)
     tf_idf_vector = np.zeros(len(vocabulary))
@@ -112,7 +119,6 @@ def cosine_similarity(vec1, vec2):
     dot_product = np.dot(vec1, vec2)
     norm_vec1 = np.linalg.norm(vec1)
     norm_vec2 = np.linalg.norm(vec2)
-
     # Check for zero division
     if norm_vec1 == 0 or norm_vec2 == 0:
         return 0.0
@@ -134,15 +140,14 @@ def get_recommendations(search_history, documents):
         similarities.append(cosine_similarity(search_tfidf, doc_tfidf))
 
     sorted_indices = np.argsort(similarities)[::-1]
-
+    print((tfidf_matrix[i][0], similarities[i]) for i in sorted_indices)
     recommendations = [(tfidf_matrix[i][0], similarities[i]) for i in sorted_indices]
     return recommendations
 
-
-
 def recommend(uid)->list:
     results = []
-    get_user_search_history(uid)
+
+    user_search_history = get_user_search_history(uid)
     get_travel_package_model()
     prepate_dict()
     for search in user_search_history:
@@ -150,19 +155,38 @@ def recommend(uid)->list:
         print(f"Search: {search}")
         for doc, similarity in recommendations:
             if similarity > 0.5:
-             for package in travel_packages:
-                print(package)
-                if package["uuid"] == doc:
-                    results.append(package)
-                    break
+                for package in travel_packages:
+                    print(package)
+                    if package["uuid"] == doc:
+                        results.append(package)
+                        break
     return results
+
+
+# def recommend(uid)->list:
+#     results = []
+#     get_user_search_history(uid)
+#     get_travel_package_model()
+#     prepate_dict()
+#     for search in user_search_history:
+#         recommendations = get_recommendations(search, packages_dict)
+#         print(f"Search: {search}")
+#         for doc, similarity in recommendations:
+#             if similarity > 0.5:
+#              for package in travel_packages:
+#                 print(package)
+#                 if package["uuid"] == doc:
+#                     results.append(package)
+#                     break
+#     return results
 
 @app.route('/recommend', methods=['POST']) 
 def return_json(): 
     request_data = request.json
     uid = request_data.get('uid')
     if request.method == 'POST': 
-       recommendations = recommend(uid)
+      #  recommendations = [] 
+       recommendations =(recommend(uid))
        print(len(recommendations))
 
        
