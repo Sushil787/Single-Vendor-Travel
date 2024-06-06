@@ -17,18 +17,21 @@ class AppRoutes {
   /// Auth Route
   static const String auth = '/auth';
 
-  /// Splash Screen
+  /// Splash Route
   static const String splash = '/splash';
 
-  /// Login Router
+ /// Search 
+  static const String search = '/search';
+  
+  /// Login Route
   static const String login = '/login';
 
-  /// Profile Screen
+  /// Profile Route
   static const String profile = '/profile';
 
-  /// Welcome Screen
+  /// Welcome Route
   static const String welcome = '/welcome';
 
-  /// Chat
+  /// Chat Route
   static const String chat = '/chat';
 }

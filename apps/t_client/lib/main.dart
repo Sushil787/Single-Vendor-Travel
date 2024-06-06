@@ -10,13 +10,15 @@ import 'package:t_client/core/services/notification_service.dart';
 import 'package:t_client/core/theme/app_theme.dart';
 import 'package:t_client/core/theme/theme_cubit.dart';
 import 'package:t_client/di/di_setup.dart';
+import 'package:t_client/features/bookmark/presentation/bloc/bloc/bookmark_bloc.dart';
 import 'package:t_client/features/chat/domain/chat_data_repo.dart';
 import 'package:t_client/features/chat/presentation/cubit/chat_cubit.dart';
+import 'package:t_client/features/package/presentation/bloc/search_bloc/bloc/search_bloc.dart';
+import 'package:t_client/features/package/presentation/bloc/travel_bloc/travel_bloc.dart';
 import 'package:t_client/features/user/domain/repository/user_repository.dart';
 import 'package:t_client/features/user/presentation/cubit/credential/cubit/auth_cubit.dart';
 import 'package:t_client/features/user/presentation/cubit/profile/cubit/profile_cubit.dart';
 import 'package:t_client/firebase_options.dart';
-import 'package:t_client/homes/presentation/bloc/travel_bloc.dart';
 import 'package:t_client/observer.dart';
 
 void main() async {
@@ -54,6 +56,9 @@ void main() async {
           ),
           BlocProvider(
             create: (context) => getIt<TravelBloc>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt<BookmarkBloc>(),
           ),
         ],
         child: DevicePreview(

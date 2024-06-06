@@ -26,10 +26,11 @@ class TravelPackageModel with _$TravelPackageModel {
     /// Like sunrise, best food,
     @Default([]) List<String> highlights,
     @Default(0) double discount,
-
+    @Default(0) int favourite,
     /// Like included, food, bathroom ,wifi, ac , bottle water, newspaper
     /// , bathrobe,
     ///  telephone other
+
     @Default([]) List<String> inclusive,
     @Default(false) bool isFeatured,
     List<CommentModel>? reviews,

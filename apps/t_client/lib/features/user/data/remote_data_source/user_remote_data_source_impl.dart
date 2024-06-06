@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
+import 'package:t_client/core/constants/firebase_collections.dart';
 import 'package:t_client/features/user/data/model/user_model.dart';
 import 'package:t_client/features/user/domain/entities/user_entity.dart';
 import 'package:t_client/features/user/domain/repository/user_remote_data_source.dart';
@@ -36,7 +37,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   @override
   Stream<List<UserEntity>> getAllUsers({required UserEntity user}) {
     try {
-      final userCollection = firebaseFirestore.collection('users');
+      final userCollection = firebaseFirestore.collection(users);
       return userCollection
           .where(
             'uid',
@@ -62,7 +63,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   @override
   Future<void> getCreateCurrentUser({required UserEntity user}) async {
     try {
-      final userCollection = firebaseFirestore.collection('users');
+      final userCollection = firebaseFirestore.collection(users);
       final uid = await getCurrentUId();
       await userCollection.doc(uid).get().then((userDoc) {
         if (!userDoc.exists) {
@@ -102,7 +103,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   @override
   Stream<List<UserEntity>> getSingleUser({required String uid}) {
     try {
-      final userCollection = firebaseFirestore.collection('users');
+      final userCollection = firebaseFirestore.collection(users);
       return userCollection
           .limit(1)
           .where('uid', isEqualTo: uid)
@@ -126,7 +127,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   @override
   Future<void> getUpdateUser({required UserEntity user}) async {
     try {
-      final userCollection = firebaseFirestore.collection('users');
+      final userCollection = firebaseFirestore.collection(users);
       final userInfo = <String, dynamic>{};
 
       if (user.profileUrl != null && user.profileUrl != '') {
@@ -187,7 +188,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   @override
   Future<void> signIn({required UserEntity user}) async {
     try {
-      final userCollection = firebaseFirestore.collection('users');
+      final userCollection = firebaseFirestore.collection(users);
 
       final userData =
           await userCollection.where('email', isEqualTo: user.email).get();
@@ -255,13 +256,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   @override
   Future<void> deleteAccount({required String uid}) async {
     try {
-      final userCollection = firebaseFirestore.collection('users');
-      // Delete notes subcollection for the user
-      final userNotesCollection = userCollection.doc(uid).collection('notes');
-      final userNotesQuerySnapshot = await userNotesCollection.get();
-      for (final noteSnapshot in userNotesQuerySnapshot.docs) {
-        await noteSnapshot.reference.delete();
-      }
+      final userCollection = firebaseFirestore.collection(users);
       await userCollection.doc(uid).delete();
       await firebaseAuth.signOut();
       await firebaseAuth.currentUser!.delete();
@@ -274,7 +269,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
 
   @override
   Future<void> updateToken() async {
-    final userCollection = firebaseFirestore.collection('users');
+    final userCollection = firebaseFirestore.collection(users);
     final token = await FirebaseMessaging.instance.getToken();
     await userCollection
         .doc(firebaseAuth.currentUser!.uid)

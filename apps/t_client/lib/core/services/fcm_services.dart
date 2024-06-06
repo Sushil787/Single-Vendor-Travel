@@ -16,9 +16,9 @@ class FcmServices {
     //   NotificationService.sendNotification(
     //     title: event.notification?.title ?? '',
     //     body: event.notification?.body ?? '',
-    //   );a
+    //   );
     // });
-
+    
     /// Listen message in app close state not terminated state
     FirebaseMessaging.onMessageOpenedApp.listen((event) {
       NotificationService.sendNotification(

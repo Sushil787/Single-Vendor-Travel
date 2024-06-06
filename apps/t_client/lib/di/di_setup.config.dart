@@ -15,31 +15,36 @@ import 'package:firebase_storage/firebase_storage.dart' as _i5;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:google_sign_in/google_sign_in.dart' as _i6;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:shared_preferences/shared_preferences.dart' as _i10;
+import 'package:shared_preferences/shared_preferences.dart' as _i8;
 
 import '../core/helper/network_info.dart' as _i7;
-import '../features/chat/data/remote/chat_data_repo_impl.dart' as _i21;
-import '../features/chat/domain/chat_data_repo.dart' as _i20;
-import '../features/chat/presentation/cubit/chat_cubit.dart' as _i25;
-import '../features/home/data/repository/note_repo_impl.dart' as _i9;
-import '../features/home/domain/repository/note_repository.dart' as _i8;
-import '../features/home/presentation/cubit/note_cubit.dart' as _i22;
+import '../features/bookmark/data/bookmark_data_source_impl.dart' as _i19;
+import '../features/bookmark/data/bookmark_repo_impl.dart' as _i21;
+import '../features/bookmark/domain/bookmark_data_source.dart' as _i18;
+import '../features/bookmark/domain/bookmark_repo.dart' as _i20;
+import '../features/bookmark/presentation/bloc/bloc/bookmark_bloc.dart' as _i27;
+import '../features/chat/data/remote/chat_data_repo_impl.dart' as _i23;
+import '../features/chat/domain/chat_data_repo.dart' as _i22;
+import '../features/chat/presentation/cubit/chat_cubit.dart' as _i28;
+import '../features/package/data/repo/travel_datasource_impl.dart' as _i10;
+import '../features/package/data/repo/travel_repo_impl.dart' as _i12;
+import '../features/package/domain/repo/travel_data_source.dart' as _i9;
+import '../features/package/domain/repo/travel_repo.dart' as _i11;
+import '../features/package/presentation/bloc/search_bloc/bloc/search_bloc.dart'
+    as _i25;
+import '../features/package/presentation/bloc/travel_bloc/travel_bloc.dart'
+    as _i26;
 import '../features/user/data/remote_data_source/user_remote_data_source_impl.dart'
-    as _i16;
-import '../features/user/data/repository/user_repository_impl.dart' as _i18;
+    as _i14;
+import '../features/user/data/repository/user_repository_impl.dart' as _i16;
 import '../features/user/domain/repository/user_remote_data_source.dart'
-    as _i15;
-import '../features/user/domain/repository/user_repository.dart' as _i17;
+    as _i13;
+import '../features/user/domain/repository/user_repository.dart' as _i15;
 import '../features/user/presentation/cubit/credential/cubit/auth_cubit.dart'
-    as _i19;
+    as _i17;
 import '../features/user/presentation/cubit/profile/cubit/profile_cubit.dart'
-    as _i23;
-import '../homes/data/repo/travel_datasource_impl.dart' as _i12;
-import '../homes/data/repo/travel_repo_impl.dart' as _i14;
-import '../homes/domain/repo/package_data_source.dart' as _i11;
-import '../homes/domain/repo/travel_repo.dart' as _i13;
-import '../homes/presentation/bloc/travel_bloc.dart' as _i24;
-import 'app_module.dart' as _i26;
+    as _i24;
+import 'app_module.dart' as _i29;
 
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
@@ -61,49 +66,50 @@ Future<_i1.GetIt> $initGetIt(
   gh.singleton<_i5.FirebaseStorage>(appModule.firebaseStorage);
   gh.singleton<_i6.GoogleSignIn>(appModule.googleSignin);
   gh.factory<_i7.NetworkInfo>(() => _i7.NetworkInfoImpl());
-  gh.factory<_i8.NoteRepository>(() => _i9.NoteRepoImpl(
-        firebaseFirestore: gh<_i4.FirebaseFirestore>(),
-        firebaseStorage: gh<_i5.FirebaseStorage>(),
-        firebaseAuth: gh<_i3.FirebaseAuth>(),
-      ));
-  await gh.factoryAsync<_i10.SharedPreferences>(
+  await gh.factoryAsync<_i8.SharedPreferences>(
     () => sharedPrefsInjectionModule.prefs,
     preResolve: true,
   );
-  gh.factory<_i11.TravelDataSource>(
-      () => _i12.TravelDataSourceImpl(firestore: gh<_i4.FirebaseFirestore>()));
-  gh.factory<_i13.TravelRepo>(
-      () => _i14.TravelRepoImpl(travelDataSource: gh<_i11.TravelDataSource>()));
-  gh.factory<_i15.UserRemoteDataSource>(() => _i16.UserRemoteDataSourceImpl(
+  gh.factory<_i9.TravelDataSource>(
+      () => _i10.TravelDataSourceImpl(firestore: gh<_i4.FirebaseFirestore>()));
+  gh.factory<_i11.TravelRepo>(
+      () => _i12.TravelRepoImpl(travelDataSource: gh<_i9.TravelDataSource>()));
+  gh.factory<_i13.UserRemoteDataSource>(() => _i14.UserRemoteDataSourceImpl(
         firebaseFirestore: gh<_i4.FirebaseFirestore>(),
         firebaseAuth: gh<_i3.FirebaseAuth>(),
         googleSignIn: gh<_i6.GoogleSignIn>(),
       ));
-  gh.factory<_i17.UserRepository>(() => _i18.UserRepositoryImpl(
-      userRemoteDataSource: gh<_i15.UserRemoteDataSource>()));
-  gh.singleton<_i19.AuthCubit>(_i19.AuthCubit(
-    userRepository: gh<_i17.UserRepository>(),
+  gh.factory<_i15.UserRepository>(() => _i16.UserRepositoryImpl(
+      userRemoteDataSource: gh<_i13.UserRemoteDataSource>()));
+  gh.singleton<_i17.AuthCubit>(_i17.AuthCubit(
+    userRepository: gh<_i15.UserRepository>(),
     networkInfo: gh<_i7.NetworkInfo>(),
   ));
-  gh.factory<_i20.ChatDataRepository>(() => _i21.ChatDataRepositoryImpl(
+  gh.factory<_i18.BookmarkDataSource>(() => _i19.BookmarkDataSourceImpl(
+        gh<_i15.UserRepository>(),
+        firebaseFirestore: gh<_i4.FirebaseFirestore>(),
+      ));
+  gh.factory<_i20.BookmarkRepo>(() =>
+      _i21.BookmarkRepoImpl(bookmarkDataSource: gh<_i18.BookmarkDataSource>()));
+  gh.factory<_i22.ChatDataRepository>(() => _i23.ChatDataRepositoryImpl(
         firebaseFirestore: gh<_i4.FirebaseFirestore>(),
         firebaseAuth: gh<_i3.FirebaseAuth>(),
       ));
-  gh.factory<_i22.NoteCubit>(() => _i22.NoteCubit(
-        noteRepository: gh<_i8.NoteRepository>(),
+  gh.factory<_i24.ProfileCubit>(() => _i24.ProfileCubit(
+        userRepository: gh<_i15.UserRepository>(),
         networkInfo: gh<_i7.NetworkInfo>(),
       ));
-  gh.factory<_i23.ProfileCubit>(() => _i23.ProfileCubit(
-        userRepository: gh<_i17.UserRepository>(),
-        networkInfo: gh<_i7.NetworkInfo>(),
-      ));
-  gh.factory<_i24.TravelBloc>(
-      () => _i24.TravelBloc(travelRepo: gh<_i13.TravelRepo>()));
-  gh.factory<_i25.ChatCubit>(
-      () => _i25.ChatCubit(chatDataRepository: gh<_i20.ChatDataRepository>()));
+  gh.factory<_i25.SearchBloc>(
+      () => _i25.SearchBloc(travelRepo: gh<_i11.TravelRepo>()));
+  gh.factory<_i26.TravelBloc>(
+      () => _i26.TravelBloc(travelRepo: gh<_i11.TravelRepo>()));
+  gh.factory<_i27.BookmarkBloc>(
+      () => _i27.BookmarkBloc(gh<_i20.BookmarkRepo>()));
+  gh.factory<_i28.ChatCubit>(
+      () => _i28.ChatCubit(chatDataRepository: gh<_i22.ChatDataRepository>()));
   return getIt;
 }
 
-class _$AppModule extends _i26.AppModule {}
+class _$AppModule extends _i29.AppModule {}
 
-class _$SharedPrefsInjectionModule extends _i26.SharedPrefsInjectionModule {}
+class _$SharedPrefsInjectionModule extends _i29.SharedPrefsInjectionModule {}

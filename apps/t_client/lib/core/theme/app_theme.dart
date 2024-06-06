@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:t_client/core/helper/extension/context_extension.dart';
 import 'package:t_client/core/theme/app_colors.dart';
 
 /// Class defining theme of the application
@@ -18,6 +19,9 @@ class AppTheme {
       ),
       iconTheme: IconThemeData(color: LightColor.eclipse),
     ),
+    pageTransitionsTheme: const PageTransitionsTheme(builders: {
+      TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+    }),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: LightColor.primaryColor,
       selectedItemColor: LightColor.primaryColor,
@@ -48,6 +52,8 @@ class AppTheme {
         fontSize: 24,
         fontWeight: FontWeight.w700,
       ),
+
+      
       headlineMedium: TextStyle(
         color: LightColor.secondaryColor,
         fontSize: 20,

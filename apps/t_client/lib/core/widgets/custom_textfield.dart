@@ -15,7 +15,7 @@ class CustomTextField extends StatefulWidget {
     this.onSuffixTap,
     this.formKey,
     this.validationMessage,
-    TextEditingController? controller, // Change the default value
+    TextEditingController? controller, this.onTap, // Change the default value
   }) : controller = controller ?? TextEditingController();
 
   /// Hint text
@@ -39,12 +39,17 @@ class CustomTextField extends StatefulWidget {
   /// on Suffix Tap
   final void Function(String)? onSuffixTap;
 
-  /// Function(String) callback
+  /// Function(String) onTap
   final void Function(String)? onChanged;
 
   /// Suffix Icon
   final IconData? suffixIcon;
 
+  /// onTap
+  final VoidCallback? onTap;
+ 
+
+ /// Form key
   final GlobalKey<FormState>? formKey;
 
   /// TextEditing controller for [TextFormField]
@@ -62,6 +67,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Form(
       key: widget.formKey,
       child: TextFormField(
+        onTap:widget.onTap ,
         controller: widget.controller,
         validator: widget.validator ??
             (value) {

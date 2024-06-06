@@ -16,10 +16,9 @@ enum ToastType {
 extension HelperExtension on BuildContext {
   /// Theme
   ThemeData get theme => Theme.of(this);
-
   /// Device Height
   double get height => MediaQuery.of(this).size.height;
-
+  
   /// Device Width
   double get width => MediaQuery.of(this).size.width;
 

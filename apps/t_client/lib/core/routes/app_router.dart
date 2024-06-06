@@ -6,10 +6,9 @@ import 'package:t_client/core/constants/route_constants.dart';
 import 'package:t_client/core/screens/splash_screen.dart';
 import 'package:t_client/core/screens/welcome/welcome_screen.dart';
 import 'package:t_client/features/chat/presentation/chat_screen.dart';
-import 'package:t_client/features/home/domain/model/notes_model.dart';
-
-import 'package:t_client/features/home/presentation/home_screen.dart';
-import 'package:t_client/features/home/presentation/main_screen.dart';
+import 'package:t_client/features/package/presentation/ui/home/home_screen.dart';
+import 'package:t_client/features/package/presentation/ui/home/main_screen.dart';
+import 'package:t_client/features/package/presentation/ui/search/search_screen.dart';
 
 import 'package:t_client/features/user/presentation/ui/login_screen.dart';
 import 'package:t_client/features/user/presentation/ui/profile_screen.dart';
@@ -78,6 +77,11 @@ class AppRouter {
         path: AppRoutes.splash,
         name: AppRoutes.splash,
         builder: (context, state) => const SplashScreen(),
+      ),
+       GoRoute(
+        path: AppRoutes.search,
+        name: AppRoutes.search,
+        builder: (context, state) => const SearchScreen(),
       ),
       // GoRoute(
       //   path: AppRoutes.note,

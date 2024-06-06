@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
+import 'package:t_client/core/constants/firebase_collections.dart';
 import 'package:t_client/features/chat/data/model/latest_message.dart';
 import 'package:t_client/features/chat/data/model/message_model.dart';
 import 'package:t_client/features/chat/domain/chat_data_repo.dart';
@@ -35,7 +36,7 @@ class ChatDataRepositoryImpl implements ChatDataRepository {
       ]..sort();
       final chatId = listId.join('_');
       return firebaseFirestore
-          .collection('chats')
+          .collection(chats)
           .doc(chatId)
           .collection('messages')
           .orderBy(descending: true, 'timestamp')
@@ -54,7 +55,7 @@ class ChatDataRepositoryImpl implements ChatDataRepository {
   @override
   Future<AdminModel> getAdmin() async {
     try {
-      return await firebaseFirestore.collection('admin').get().then(
+      return await firebaseFirestore.collection(admin).get().then(
             (value) => AdminModel.fromSnapshot(
               value.docs.first,
             ),
@@ -82,10 +83,7 @@ class ChatDataRepositoryImpl implements ChatDataRepository {
         message.receiverId,
       ]..sort();
       final chatId = listId.join('_');
-      await firebaseFirestore
-          .collection('latest_chat')
-          .doc(message.senderId)
-          .set(
+      await firebaseFirestore.collection(latestChat).doc(message.senderId).set(
             LatestMessageUser(
               receiverId: message.receiverId,
               userModel: userModel,
@@ -93,7 +91,7 @@ class ChatDataRepositoryImpl implements ChatDataRepository {
             ).toMap(),
           );
       await firebaseFirestore
-          .collection('chats')
+          .collection(chats)
           .doc(chatId)
           .collection('messages')
           .add(
