@@ -189,14 +189,14 @@ Widget buildOrderWidget(
                         width: context.width * .5,
                         child: ProductWidget(productModel: e),
                       ),
-                    )
+                    ),
                   ],
                 ),
-              )
+              ),
             ],
           )
         else
-          const SizedBox.shrink()
+          const SizedBox.shrink(),
       ],
     ),
   );

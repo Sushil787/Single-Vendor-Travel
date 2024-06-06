@@ -180,7 +180,7 @@ If you cancel your order within 24 hours of the visit date, no refund is availab
                                             config: PaymentConfig(
                                               amount: int.parse(
                                                 double.parse(
-                                                  (totalCost! * 100).toString(),
+                                                  (totalCost * 100).toString(),
                                                 ).toStringAsFixed(0),
                                               ),
                                               productIdentity:
@@ -357,11 +357,11 @@ If you cancel your order within 24 hours of the visit date, no refund is availab
                       onTap: (productModels) {
                         log(
                             name: 'selected product count  is ',
-                            productModels!.length.toString());
+                            productModels!.length.toString(),);
                         selectedProduct = productModels;
                         log(
                             name: 'selected product count  is ',
-                            selectedProduct.length.toString());
+                            selectedProduct.length.toString(),);
                         onChangedProductSelection(productModels);
                       },
                     ),
@@ -378,9 +378,9 @@ If you cancel your order within 24 hours of the visit date, no refund is availab
   void onChangedProductSelection(List<ProductModel> productModels) {
     selectedProduct = productModels;
     productCost = 0;
-    selectedProduct.forEach((product) {
+    for (final product in selectedProduct) {
       productCost += double.parse(product.price);
-    });
+    }
     // Add product cost to total cost without decrementing on deselect
     totalCost = noOfPeople *
             discountedPrice(

@@ -74,6 +74,7 @@ dependencies:
   flutter_map_cache: ^1.5.0
   flutter_map_cached_tile_provider: ^0.0.2
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +25,7 @@ class _SelectProductWidgetState extends State<SelectProductWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: context.height * .42,
       child: BlocBuilder<ProductCubit, ProductState>(
@@ -50,10 +49,10 @@ class _SelectProductWidgetState extends State<SelectProductWidget> {
                     onTap: () {
                       if (selectedProduct
                           .where((element) =>
-                              element.uuid == state.productModel[index].uuid)
+                              element.uuid == state.productModel[index].uuid,)
                           .isNotEmpty) {
                         selectedProduct.removeWhere((element) =>
-                            element.uuid == state.productModel[index].uuid);
+                            element.uuid == state.productModel[index].uuid,);
                       } else {
                         selectedProduct.add(state.productModel[index]);
                       }
@@ -71,7 +70,7 @@ class _SelectProductWidgetState extends State<SelectProductWidget> {
                             color: selectedProduct
                                     .where((element) =>
                                         element.uuid ==
-                                        state.productModel[index].uuid)
+                                        state.productModel[index].uuid,)
                                     .isNotEmpty
                                 ? Colors.blue.shade500
                                 : LightColor.eclipse,

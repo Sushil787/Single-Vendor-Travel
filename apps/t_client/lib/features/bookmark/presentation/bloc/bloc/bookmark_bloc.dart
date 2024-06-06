@@ -23,15 +23,20 @@ class BookmarkBloc extends Cubit<BookmarkState> {
       final data = await bookmarkRepo.getBookMarks();
       data.listen((event) {
         if (event.isEmpty) {
-          emit(const Loaded(bookmarks: [])); // Handle empty list
+          // Handle empty list
+          emit(
+            const Loaded(
+              bookmarks: [],
+            ),
+          );
         } else {
           emit(BookmarkState.loaded(bookmarks: event));
         }
       });
     } catch (e) {
-      BookmarkState.error(
+      emit(BookmarkState.error(
         message: e.toString(),
-      );
+      ),);
     }
   }
 
@@ -41,9 +46,9 @@ class BookmarkBloc extends Cubit<BookmarkState> {
       emit(const Loading());
       await bookmarkRepo.addRemoveBookMark(travelPackageModel: packageModel);
     } catch (e) {
-      BookmarkState.error(
+      emit(BookmarkState.error(
         message: e.toString(),
-      );
+      ),);
     }
   }
 }

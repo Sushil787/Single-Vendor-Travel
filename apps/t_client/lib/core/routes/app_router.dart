@@ -6,6 +6,7 @@ import 'package:t_client/core/constants/route_constants.dart';
 import 'package:t_client/core/screens/preferences_screen.dart';
 import 'package:t_client/core/screens/splash_screen.dart';
 import 'package:t_client/core/screens/welcome/welcome_screen.dart';
+import 'package:t_client/features/bot/presentation/ui/chat_bot_screen.dart';
 import 'package:t_client/features/chat/presentation/chat_screen.dart';
 import 'package:t_client/features/maps/presentation/map_screen.dart';
 import 'package:t_client/features/orders/presentation/check_out_screen.dart';
@@ -131,6 +132,11 @@ class AppRouter {
           travelPackageModel: state.extra as TravelPackageModel,
         ),
       ),
+      GoRoute(
+        path: AppRoutes.chatBot,
+        name: AppRoutes.chatBot,
+        builder: (context, state) => const ChatBotScreen(),
+      )
     ],
   );
 

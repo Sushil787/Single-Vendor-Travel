@@ -161,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen>
               )
             : const SizedBox.shrink(),
       ),
-      // floatingActionButton: floatingButton(context),
+      floatingActionButton: floatingButton(context),
     );
   }
 
@@ -169,11 +169,12 @@ class _HomeScreenState extends State<HomeScreen>
   FloatingActionButton floatingButton(BuildContext context) {
     return FloatingActionButton(
       backgroundColor: LightColor.eclipse,
-      child: const Icon(Icons.add),
-      onPressed: () async {
+      child: const Icon(Icons.person),
+      onPressed: () {
+        context.push(AppRoutes.chatBot);
         // await getIt<SharedPreferences>().setBool('firstTime', true);
         // // context.read<RecommendBloc>().add(const Recommend());
-        await context.push(AppRoutes.map);
+        // await context.push(AppRoutes.map);
       },
     );
   }

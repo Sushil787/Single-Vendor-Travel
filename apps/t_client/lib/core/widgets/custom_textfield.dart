@@ -15,6 +15,7 @@ class CustomTextField extends StatefulWidget {
     this.onSuffixTap,
     // this.formKey,
     this.validationMessage,
+    this.onSubmitted,
     TextEditingController? controller,
     this.focusNode,
     this.onTap,
@@ -44,6 +45,9 @@ class CustomTextField extends StatefulWidget {
 
   /// Function(String) onTap
   final void Function(String)? onChanged;
+
+  /// Function(String) onTap
+  final void Function(String)? onSubmitted;
 
   /// Suffix Icon
   final IconData? suffixIcon;
@@ -92,6 +96,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       onChanged: (newValue) {
         widget.onChanged?.call(newValue);
       },
+      onFieldSubmitted: (value) => widget.onSubmitted?.call(value),
       style: const TextStyle(
         fontSize: 15,
         color: Colors.black,

@@ -1,10 +1,10 @@
-/// Package enum
-enum PackageEnum {
-  holiday,
-  honeymoon,
-  travel,
-  religious,
-  camping,
-  adventure,
-  beach
-}
+// /// Package enum
+// enum PackageEnum {
+//   holiday,
+//   honeymoon,
+//   travel,
+//   religious,
+//   camping,
+//   adventure,
+//   beach
+// }

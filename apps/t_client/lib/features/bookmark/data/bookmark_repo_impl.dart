@@ -27,7 +27,6 @@ class BookmarkRepoImpl implements BookmarkRepo {
   @override
   Future<Stream<List<TravelPackageModel>>> getBookMarks() async {
     try {
-      await bookmarkDataSource.getBookMarks();
       return await bookmarkDataSource.getBookMarks();
     } catch (e) {
       rethrow;

@@ -27,6 +27,9 @@ class AppRoutes {
   /// Map Route
   static const String map = '/map';
 
+  /// Chat Route
+  static const String chatBot = '/bot';
+
   /// Auth Route
   static const String auth = '/auth';
 

@@ -8,6 +8,7 @@ import 'package:t_client/core/helper/extension/context_extension.dart';
 import 'package:t_client/core/helper/gap.dart';
 import 'package:t_client/core/theme/app_colors.dart';
 import 'package:t_client/core/widgets/custom_textfield.dart';
+import 'package:t_client/features/bot/chat_engine/chat_engine.dart';
 import 'package:t_client/features/package/data/model/travel_package_model.dart';
 import 'package:t_client/features/package/presentation/bloc/travel_bloc/travel_bloc.dart';
 import 'package:t_client/features/package/presentation/ui/package/widgets/app_bar.dart';
@@ -40,6 +41,8 @@ class PackageScreen extends StatefulWidget {
 
 class _PackageScreenState extends State<PackageScreen> {
   // FocusNode focusNode = FocusNode();
+  final ChatEngine _chatEngine = ChatEngine();
+
   @override
   void initState() {
     super.initState();
@@ -64,6 +67,10 @@ class _PackageScreenState extends State<PackageScreen> {
           builder: (context, state) {
             if (state is TravelPackageLoaded) {
               packages = state.packages;
+              _chatEngine.botResponse.addAll(packages
+                  .map((e) =>
+                      '${e.packageName}\n Price is ${e.perHeadPerNight} \n ${e.description}')
+                  .toList());
               return CustomScrollView(
                 controller: widget.scrollController,
                 slivers: [

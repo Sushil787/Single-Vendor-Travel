@@ -29,7 +29,7 @@ class OrderPackageModel {
     if (json['products'] != null) {
       products = (json['products'] as List)
           .map((productJson) =>
-              ProductModel.fromJson(productJson as Map<String, dynamic>))
+              ProductModel.fromJson(productJson as Map<String, dynamic>),)
           .toList();
     }
     return OrderPackageModel(

@@ -45,7 +45,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
                   children: [
                     ...state.productModel.map(
                       (e) => ProductWidget(
-                        onTap: (product) {},
                         productModel: e,
                       ),
                     ),

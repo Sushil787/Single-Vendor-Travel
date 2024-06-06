@@ -7,7 +7,7 @@ import 'package:t_client/features/product/model/product_model.dart';
 ///
 class ProductWidget extends StatefulWidget {
   ///
-  ProductWidget({
+  const ProductWidget({
     required this.productModel,
     super.key,
   });

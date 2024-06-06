@@ -59,14 +59,17 @@ class MessageWidget extends StatelessWidget {
                 ),
               ),
             ),
-            Text(
-              DateFormat('yyyy-MM-dd HH:mm:ss')
-                  .format(message.timestamp!.toDate()),
-              style: const TextStyle(
-                color: LightColor.eclipse,
-                fontSize: 9,
-              ),
-            ),
+            if (message.timestamp != null)
+              Text(
+                DateFormat('yyyy-MM-dd HH:mm:ss')
+                    .format(message.timestamp!.toDate()),
+                style: const TextStyle(
+                  color: LightColor.eclipse,
+                  fontSize: 9,
+                ),
+              )
+            else
+              const SizedBox.shrink(),
             HorizontalGap.m,
           ],
         ),
