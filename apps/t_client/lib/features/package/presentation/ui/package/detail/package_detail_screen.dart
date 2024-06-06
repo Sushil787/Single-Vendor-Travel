@@ -81,6 +81,7 @@ class _PackageDetailScreenState extends State<PackageDetailScreen> {
   int _index = 0;
   @override
   Widget build(BuildContext context) {
+    /// Need to remove the app bar systemoverlay
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -88,7 +89,7 @@ class _PackageDetailScreenState extends State<PackageDetailScreen> {
       child: Scaffold(
         bottomNavigationBar: Container(
           height: context.height * .08,
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 4),
           child: CustomElevatedButton(
             onButtonPressed: () {
               context.push(
@@ -161,21 +162,21 @@ class _PackageDetailScreenState extends State<PackageDetailScreen> {
                           ),
                         ),
                         HorizontalGap.l,
-                        BuildIconTextRow(
-                          first: const Icon(
-                            Icons.comment,
-                            size: 24,
-                            color: LightColor.orange,
-                          ),
-                          text: Text(
-                            (widget.travelPackageModel.reviews?.length ?? 0)
-                                .toString(),
-                            style: context.textTheme.bodySmall?.copyWith(
-                              fontSize: 14,
-                              color: LightColor.grey,
-                            ),
-                          ),
-                        ),
+                        // BuildIconTextRow(
+                        //   first: const Icon(
+                        //     Icons.comment,
+                        //     size: 24,
+                        //     color: LightColor.orange,
+                        //   ),
+                        //   text: Text(
+                        //     (widget.travelPackageModel.reviews?.length ?? 0)
+                        //         .toString(),
+                        //     style: context.textTheme.bodySmall?.copyWith(
+                        //       fontSize: 14,
+                        //       color: LightColor.grey,
+                        //     ),
+                        //   ),
+                        // ),
                         const Expanded(child: SizedBox.shrink()),
                         buildProductPrice(
                           context,

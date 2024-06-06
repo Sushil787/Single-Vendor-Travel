@@ -181,10 +181,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         },
                       ),
                       HorizontalGap.m,
-                      Text(
-                        widget.travelPackageModel.packageName,
-                        style: context.textTheme.bodyLarge?.copyWith(
-                          fontWeight: FontWeight.w800,
+                      Expanded(
+                        child: Text(
+                          widget.travelPackageModel.packageName,
+                          style: context.textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.w800,
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ],

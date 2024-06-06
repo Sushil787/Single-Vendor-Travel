@@ -7,6 +7,7 @@ import 'package:t_client/core/screens/preferences_screen.dart';
 import 'package:t_client/core/screens/splash_screen.dart';
 import 'package:t_client/core/screens/welcome/welcome_screen.dart';
 import 'package:t_client/features/chat/presentation/chat_screen.dart';
+import 'package:t_client/features/maps/presentation/map_screen.dart';
 import 'package:t_client/features/orders/presentation/check_out_screen.dart';
 import 'package:t_client/features/orders/presentation/order_screen.dart';
 import 'package:t_client/features/package/data/model/travel_package_model.dart';
@@ -43,6 +44,13 @@ class AppRouter {
         name: AppRoutes.forgotPassword,
         builder: (context, state) {
           return const ForgotPasswordScreen();
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.map,
+        name: AppRoutes.map,
+        builder: (context, state) {
+          return const MapScreen();
         },
       ),
       GoRoute(

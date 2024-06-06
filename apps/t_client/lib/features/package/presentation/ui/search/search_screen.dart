@@ -68,8 +68,9 @@ class _SearchScreenState extends State<SearchScreen> {
                         packages.clear();
 
                         for (final element in remotePackages) {
-                          if (element.packageName.contains(value) ||
-                              element.description.contains(value)) {
+                          if (element.packageName
+                              .toLowerCase()
+                              .contains(value.toLowerCase())) {
                             packages.add(element);
                           }
                         }

@@ -75,6 +75,7 @@ void main() async {
           ),
         ],
         child: DevicePreview(
+          enabled: false,
           builder: (context) => const MyApp(),
         ),
       ),

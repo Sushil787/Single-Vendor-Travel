@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:t_client/core/constants/route_constants.dart';
 import 'package:t_client/core/helper/extension/context_extension.dart';
 import 'package:t_client/core/helper/gap.dart';
 import 'package:t_client/core/theme/app_colors.dart';
@@ -112,7 +113,7 @@ class BuildProfileDetail extends StatelessWidget {
           onButtonPressed: () async {
             await context.read<AuthCubit>().signOut();
             if (context.mounted) {
-              GoRouter.of(context).pop();
+              context.go(AppRoutes.main);
             }
           },
           buttonText: 'signout',

@@ -169,62 +169,62 @@ CustomElevatedButton cancleRequestButton(
   return CustomElevatedButton(
     onButtonPressed: () async {
       await showDialog(
-          context: context,
-          builder: (context) {
-            return Dialog(
-              child: Container(
-                padding: const EdgeInsets.all(8),
-                height: context.height * .2,
-                child: Column(
-                  children: [
-                    const Text(
-                      'Cancle Travel Package',
-                    ),
-                    VerticalGap.s,
-                    Text(
-                      '''
+        context: context,
+        builder: (context) {
+          return Dialog(
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              height: context.height * .2,
+              child: Column(
+                children: [
+                  const Text(
+                    'Cancle Travel Package',
+                  ),
+                  VerticalGap.s,
+                  Text(
+                    '''
 Note, after cancelation of the travel package you will be refunded after deductiing 4% of your order cost''',
-                      style:
-                          context.textTheme.bodySmall?.copyWith(fontSize: 12),
-                    ),
-                    VerticalGap.m,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomElevatedButton(
-                          onButtonPressed: () {
-                            context.pop();
-                          },
-                          buttonText: 'close',
-                          btnFontSize: 12,
-                          backgroundColor: Colors.green.shade800,
-                        ),
-                        CustomElevatedButton(
-                          backgroundColor: Colors.red.shade800,
-                          onButtonPressed: () {
-                            context.read<OrderBloc>().add(
-                                  OrderEvent.updateOrder(
-                                    status: 'Cancle Request',
-                                    orderPackageModel: order,
-                                  ),
-                                );
-                            context
-                              ..showSnackBar(
-                                message: 'Order Cancle Request Sent',
-                                toastType: ToastType.message,
-                              )
-                              ..pop();
-                          },
-                          buttonText: 'Cancle Package',
-                          btnFontSize: 12,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                    style: context.textTheme.bodySmall?.copyWith(fontSize: 12),
+                  ),
+                  VerticalGap.m,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomElevatedButton(
+                        onButtonPressed: () {
+                          context.pop();
+                        },
+                        buttonText: 'close',
+                        btnFontSize: 12,
+                        backgroundColor: Colors.green.shade800,
+                      ),
+                      CustomElevatedButton(
+                        backgroundColor: Colors.red.shade800,
+                        onButtonPressed: () {
+                          context.read<OrderBloc>().add(
+                                OrderEvent.updateOrder(
+                                  status: 'Cancle Request',
+                                  orderPackageModel: order,
+                                ),
+                              );
+                          context
+                            ..showSnackBar(
+                              message: 'Order Cancle Request Sent',
+                              toastType: ToastType.message,
+                            )
+                            ..pop();
+                        },
+                        buttonText: 'Cancle Package',
+                        btnFontSize: 12,
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            );
-          },);
+            ),
+          );
+        },
+      );
     },
     btnFontSize: 12,
     buttonText: 'Request cancle',

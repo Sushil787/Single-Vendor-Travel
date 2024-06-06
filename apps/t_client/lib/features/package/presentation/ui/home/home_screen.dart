@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:t_client/core/constants/route_constants.dart';
 import 'package:t_client/core/helper/geolocator_permission.dart';
@@ -19,6 +20,14 @@ import 'package:t_client/features/package/presentation/ui/package/package_screen
 
 import 'package:t_client/features/user/presentation/cubit/profile/cubit/profile_cubit.dart';
 import 'package:t_client/features/user/presentation/ui/widgets/profile_widget.dart';
+
+/// User Location value notifier
+ValueNotifier<LatLng> userLocation = ValueNotifier(
+  const LatLng(
+    27.7172,
+    85.3240,
+  ),
+);
 
 /// Home Screen
 class HomeScreen extends StatefulWidget {
@@ -65,7 +74,8 @@ class _HomeScreenState extends State<HomeScreen>
       }
     });
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await determinePosition();
+      final position = await determinePosition();
+      userLocation.value = LatLng(position.latitude, position.longitude);
     });
     screens = [
       PackageScreen(
@@ -162,8 +172,9 @@ class _HomeScreenState extends State<HomeScreen>
       backgroundColor: LightColor.eclipse,
       child: const Icon(Icons.add),
       onPressed: () async {
-        await getIt<SharedPreferences>().setBool('firstTime', true);
-        context.read<RecommendBloc>().add(const Recommend());
+        // await getIt<SharedPreferences>().setBool('firstTime', true);
+        // context.read<RecommendBloc>().add(const Recommend());
+        await context.push(AppRoutes.map);
       },
     );
   }

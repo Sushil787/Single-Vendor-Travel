@@ -23,7 +23,7 @@ class AppTheme {
         TargetPlatform.android: CupertinoPageTransitionsBuilder(),
       },
     ),
-   
+
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: LightColor.primaryColor,
       selectedItemColor: LightColor.primaryColor,
@@ -47,7 +47,6 @@ class AppTheme {
       ),
     ),
     brightness: Brightness.light,
-    scaffoldBackgroundColor: LightColor.backGroundColor,
     textTheme: const TextTheme(
       headlineLarge: TextStyle(
         color: LightColor.secondaryColor,

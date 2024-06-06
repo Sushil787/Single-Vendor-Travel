@@ -7,8 +7,6 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from google.cloud.firestore_v1.base_query import FieldFilter
 import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
 import json
 
 app = Flask(__name__) 
@@ -19,10 +17,6 @@ db = firestore.client()
 
 travel_packages = []
 recommendations = []
-
-'''
-Use main.py as prod
-'''
 
 '''
 Get user search history from firebase database
@@ -54,6 +48,8 @@ def prepate_dict():
         packages_dict[package["uuid"]] = package["packageName"]
 
 STOP_WORDS = set(["the", "and", "is", "in", "it", "to", "of", "this", "that", "for"])
+'''
+'''
 def remove_special_characters(word):
     pattern = r"[^\w\s]"
     cleaned_word = re.sub(pattern, "", word)
@@ -163,22 +159,6 @@ def recommend(uid)->list:
     return results
 
 
-# def recommend(uid)->list:
-#     results = []
-#     get_user_search_history(uid)
-#     get_travel_package_model()
-#     prepate_dict()
-#     for search in user_search_history:
-#         recommendations = get_recommendations(search, packages_dict)
-#         print(f"Search: {search}")
-#         for doc, similarity in recommendations:
-#             if similarity > 0.5:
-#              for package in travel_packages:
-#                 print(package)
-#                 if package["uuid"] == doc:
-#                     results.append(package)
-#                     break
-#     return results
 
 @app.route('/recommend', methods=['POST']) 
 def return_json(): 

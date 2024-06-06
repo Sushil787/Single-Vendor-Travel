@@ -24,6 +24,9 @@ class AppRoutes {
   ///Signup Route
   static const String signup = '/signup';
 
+  /// Map Route
+  static const String map = '/map';
+
   /// Auth Route
   static const String auth = '/auth';
 
