@@ -31,6 +31,7 @@ class VerticalGap {
   static const exl = SizedBox(height: 42);
 }
 
+
 /// Class that return SizedBox and maintains horizontal
 /// spacing
 class HorizontalGap {

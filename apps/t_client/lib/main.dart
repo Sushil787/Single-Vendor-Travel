@@ -62,6 +62,7 @@ void main() async {
           ),
           BlocProvider(
             create: (context) => getIt<AuthCubit>(),
+
           ),
           BlocProvider(
             create: (context) => getIt<ProductCubit>(),

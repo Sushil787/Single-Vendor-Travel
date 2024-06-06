@@ -21,7 +21,6 @@ class ProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 100),
       height: context.height * .5,
       width: context.width * .12,
       decoration: BoxDecoration(
@@ -77,12 +76,10 @@ class ProductWidget extends StatelessWidget {
                       style: context.textTheme.displaySmall,
                     ),
                     VerticalGap.s,
-                    Text(
-                      productModel.description,
-                      style: context.textTheme.displaySmall,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: isOrder?5:3
-                    ),
+                    Text(productModel.description,
+                        style: context.textTheme.displaySmall,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: isOrder ? 5 : 3),
                   ],
                 ),
               ),

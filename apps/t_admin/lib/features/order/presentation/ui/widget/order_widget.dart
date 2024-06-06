@@ -55,10 +55,9 @@ class _OrderWidgetState extends State<OrderWidget> {
                   child: Text(
                     widget.order.packageName ?? '',
                     style: context.textTheme.bodyMedium?.copyWith(
-                      color: LightColor.grey,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12
-                    ),
+                        color: LightColor.grey,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
@@ -145,30 +144,37 @@ class _OrderWidgetState extends State<OrderWidget> {
               first: 'Order Id: ${widget.order.orderId}',
               second: ' ',
             ),
-            if (widget.order.productModel != null && widget.order.productModel!.isNotEmpty)
+            if (widget.order.productModel != null &&
+                widget.order.productModel!.isNotEmpty)
               InkWell(
-                  onTap: () async {
-                    await showDialog(
-                      context: context,
-                      builder: (context) {
-                        return Container(
+                onTap: () async {
+                  await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return Material(
+                        color: Colors.transparent,
+                        child: Container(
                           margin: EdgeInsets.symmetric(
-                            horizontal: context.width * .10,
-                            vertical: context.height * .23,
+                            horizontal: context.width * .3,
+                            vertical: context.height * .3,
                           ),
 
                           // margin: const EdgeInsets.only(top: 4),
-                          height: context.height * .12,
-                          width: context.width * .15,
+
                           child: ListView(
+                            shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
                             children: [
                               ...widget.order.productModel!.map(
                                 (e) => Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
                                   margin: const EdgeInsets.symmetric(
                                     horizontal: 8,
                                   ),
-                                  width: context.width * .15,
+                                  height: context.height * .12,
                                   child: ProductWidget(
                                     productModel: e,
                                     isOrder: true,
@@ -177,11 +183,15 @@ class _OrderWidgetState extends State<OrderWidget> {
                               ),
                             ],
                           ),
-                        );
-                      },
-                    );
-                  },
-                  child: const Text('product ordered'))
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: const Text(
+                  'product ordered',
+                ),
+              )
           ],
         ),
       ),

@@ -58,8 +58,12 @@ class _ProductsScreenState extends State<ProductsScreen> {
                       child: Wrap(
                         children: [
                           ...state.productModel.map(
-                            (e) => ProductWidget(
-                              productModel: e,
+                            (e) => Container(
+                              margin:
+                                  const EdgeInsets.only(right: 16, bottom: 20),
+                              child: ProductWidget(
+                                productModel: e,
+                              ),
                             ),
                           ),
                         ],

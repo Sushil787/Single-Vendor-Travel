@@ -10,15 +10,15 @@ import 'package:t_client/features/user/data/model/user_model.dart';
 part 'chat_state.dart';
 
 @injectable
-
 /// Chat Cubit
 class ChatCubit extends Cubit<ChatState> {
   ///
   ChatCubit({required this.chatDataRepository}) : super(ChatInitialState());
-
   /// Chat Repo instance
-
   final ChatDataRepository chatDataRepository;
+
+  
+
 
   /// Gets Messages
   Future<void> getMessages() async {
