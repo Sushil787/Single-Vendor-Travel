@@ -1,10 +1,8 @@
-import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:uuid/uuid.dart';
-import 'package:uuid/v1.dart';
 
 @injectable
 class FirebaseStorageUitls {

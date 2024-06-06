@@ -50,26 +50,26 @@ mixin _$TravelEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Delete value) delete,
+    required TResult Function(Delete value) delete,
     required TResult Function(_AddPackage value) addPackage,
     required TResult Function(_UpdatePackge value) updatePacakge,
-    required TResult Function(_Get value) get,
+    required TResult Function(Get value) get,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(Delete value)? delete,
     TResult? Function(_AddPackage value)? addPackage,
     TResult? Function(_UpdatePackge value)? updatePacakge,
-    TResult? Function(_Get value)? get,
+    TResult? Function(Get value)? get,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Delete value)? delete,
+    TResult Function(Delete value)? delete,
     TResult Function(_AddPackage value)? addPackage,
     TResult Function(_UpdatePackge value)? updatePacakge,
-    TResult Function(_Get value)? get,
+    TResult Function(Get value)? get,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,7 +126,7 @@ class __$$DeleteImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeleteImpl with DiagnosticableTreeMixin implements _Delete {
+class _$DeleteImpl with DiagnosticableTreeMixin implements Delete {
   const _$DeleteImpl({required this.id});
 
   @override
@@ -209,10 +209,10 @@ class _$DeleteImpl with DiagnosticableTreeMixin implements _Delete {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Delete value) delete,
+    required TResult Function(Delete value) delete,
     required TResult Function(_AddPackage value) addPackage,
     required TResult Function(_UpdatePackge value) updatePacakge,
-    required TResult Function(_Get value) get,
+    required TResult Function(Get value) get,
   }) {
     return delete(this);
   }
@@ -220,10 +220,10 @@ class _$DeleteImpl with DiagnosticableTreeMixin implements _Delete {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(Delete value)? delete,
     TResult? Function(_AddPackage value)? addPackage,
     TResult? Function(_UpdatePackge value)? updatePacakge,
-    TResult? Function(_Get value)? get,
+    TResult? Function(Get value)? get,
   }) {
     return delete?.call(this);
   }
@@ -231,10 +231,10 @@ class _$DeleteImpl with DiagnosticableTreeMixin implements _Delete {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Delete value)? delete,
+    TResult Function(Delete value)? delete,
     TResult Function(_AddPackage value)? addPackage,
     TResult Function(_UpdatePackge value)? updatePacakge,
-    TResult Function(_Get value)? get,
+    TResult Function(Get value)? get,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -244,8 +244,8 @@ class _$DeleteImpl with DiagnosticableTreeMixin implements _Delete {
   }
 }
 
-abstract class _Delete implements TravelEvent {
-  const factory _Delete({required final String id}) = _$DeleteImpl;
+abstract class Delete implements TravelEvent {
+  const factory Delete({required final String id}) = _$DeleteImpl;
 
   String get id;
   @JsonKey(ignore: true)
@@ -429,10 +429,10 @@ class _$AddPackageImpl with DiagnosticableTreeMixin implements _AddPackage {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Delete value) delete,
+    required TResult Function(Delete value) delete,
     required TResult Function(_AddPackage value) addPackage,
     required TResult Function(_UpdatePackge value) updatePacakge,
-    required TResult Function(_Get value) get,
+    required TResult Function(Get value) get,
   }) {
     return addPackage(this);
   }
@@ -440,10 +440,10 @@ class _$AddPackageImpl with DiagnosticableTreeMixin implements _AddPackage {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(Delete value)? delete,
     TResult? Function(_AddPackage value)? addPackage,
     TResult? Function(_UpdatePackge value)? updatePacakge,
-    TResult? Function(_Get value)? get,
+    TResult? Function(Get value)? get,
   }) {
     return addPackage?.call(this);
   }
@@ -451,10 +451,10 @@ class _$AddPackageImpl with DiagnosticableTreeMixin implements _AddPackage {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Delete value)? delete,
+    TResult Function(Delete value)? delete,
     TResult Function(_AddPackage value)? addPackage,
     TResult Function(_UpdatePackge value)? updatePacakge,
-    TResult Function(_Get value)? get,
+    TResult Function(Get value)? get,
     required TResult orElse(),
   }) {
     if (addPackage != null) {
@@ -608,10 +608,10 @@ class _$UpdatePackgeImpl with DiagnosticableTreeMixin implements _UpdatePackge {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Delete value) delete,
+    required TResult Function(Delete value) delete,
     required TResult Function(_AddPackage value) addPackage,
     required TResult Function(_UpdatePackge value) updatePacakge,
-    required TResult Function(_Get value) get,
+    required TResult Function(Get value) get,
   }) {
     return updatePacakge(this);
   }
@@ -619,10 +619,10 @@ class _$UpdatePackgeImpl with DiagnosticableTreeMixin implements _UpdatePackge {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(Delete value)? delete,
     TResult? Function(_AddPackage value)? addPackage,
     TResult? Function(_UpdatePackge value)? updatePacakge,
-    TResult? Function(_Get value)? get,
+    TResult? Function(Get value)? get,
   }) {
     return updatePacakge?.call(this);
   }
@@ -630,10 +630,10 @@ class _$UpdatePackgeImpl with DiagnosticableTreeMixin implements _UpdatePackge {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Delete value)? delete,
+    TResult Function(Delete value)? delete,
     TResult Function(_AddPackage value)? addPackage,
     TResult Function(_UpdatePackge value)? updatePacakge,
-    TResult Function(_Get value)? get,
+    TResult Function(Get value)? get,
     required TResult orElse(),
   }) {
     if (updatePacakge != null) {
@@ -670,7 +670,7 @@ class __$$GetImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetImpl with DiagnosticableTreeMixin implements _Get {
+class _$GetImpl with DiagnosticableTreeMixin implements Get {
   const _$GetImpl();
 
   @override
@@ -740,10 +740,10 @@ class _$GetImpl with DiagnosticableTreeMixin implements _Get {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Delete value) delete,
+    required TResult Function(Delete value) delete,
     required TResult Function(_AddPackage value) addPackage,
     required TResult Function(_UpdatePackge value) updatePacakge,
-    required TResult Function(_Get value) get,
+    required TResult Function(Get value) get,
   }) {
     return get(this);
   }
@@ -751,10 +751,10 @@ class _$GetImpl with DiagnosticableTreeMixin implements _Get {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(Delete value)? delete,
     TResult? Function(_AddPackage value)? addPackage,
     TResult? Function(_UpdatePackge value)? updatePacakge,
-    TResult? Function(_Get value)? get,
+    TResult? Function(Get value)? get,
   }) {
     return get?.call(this);
   }
@@ -762,10 +762,10 @@ class _$GetImpl with DiagnosticableTreeMixin implements _Get {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Delete value)? delete,
+    TResult Function(Delete value)? delete,
     TResult Function(_AddPackage value)? addPackage,
     TResult Function(_UpdatePackge value)? updatePacakge,
-    TResult Function(_Get value)? get,
+    TResult Function(Get value)? get,
     required TResult orElse(),
   }) {
     if (get != null) {
@@ -775,8 +775,8 @@ class _$GetImpl with DiagnosticableTreeMixin implements _Get {
   }
 }
 
-abstract class _Get implements TravelEvent {
-  const factory _Get() = _$GetImpl;
+abstract class Get implements TravelEvent {
+  const factory Get() = _$GetImpl;
 }
 
 /// @nodoc
@@ -788,7 +788,7 @@ mixin _$TravelPackageState {
     required TResult Function() success,
     required TResult Function() updated,
     required TResult Function() deleted,
-    required TResult Function() loaded,
+    required TResult Function(List<TravelPackageModel> packages) loaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -799,7 +799,7 @@ mixin _$TravelPackageState {
     TResult? Function()? success,
     TResult? Function()? updated,
     TResult? Function()? deleted,
-    TResult? Function()? loaded,
+    TResult? Function(List<TravelPackageModel> packages)? loaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -810,7 +810,7 @@ mixin _$TravelPackageState {
     TResult Function()? success,
     TResult Function()? updated,
     TResult Function()? deleted,
-    TResult Function()? loaded,
+    TResult Function(List<TravelPackageModel> packages)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -918,7 +918,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements Initial {
     required TResult Function() success,
     required TResult Function() updated,
     required TResult Function() deleted,
-    required TResult Function() loaded,
+    required TResult Function(List<TravelPackageModel> packages) loaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -932,7 +932,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements Initial {
     TResult? Function()? success,
     TResult? Function()? updated,
     TResult? Function()? deleted,
-    TResult? Function()? loaded,
+    TResult? Function(List<TravelPackageModel> packages)? loaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -946,7 +946,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements Initial {
     TResult Function()? success,
     TResult Function()? updated,
     TResult Function()? deleted,
-    TResult Function()? loaded,
+    TResult Function(List<TravelPackageModel> packages)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1056,7 +1056,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     required TResult Function() success,
     required TResult Function() updated,
     required TResult Function() deleted,
-    required TResult Function() loaded,
+    required TResult Function(List<TravelPackageModel> packages) loaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -1070,7 +1070,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     TResult? Function()? success,
     TResult? Function()? updated,
     TResult? Function()? deleted,
-    TResult? Function()? loaded,
+    TResult? Function(List<TravelPackageModel> packages)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -1084,7 +1084,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     TResult Function()? success,
     TResult Function()? updated,
     TResult Function()? deleted,
-    TResult Function()? loaded,
+    TResult Function(List<TravelPackageModel> packages)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1194,7 +1194,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements Success {
     required TResult Function() success,
     required TResult Function() updated,
     required TResult Function() deleted,
-    required TResult Function() loaded,
+    required TResult Function(List<TravelPackageModel> packages) loaded,
     required TResult Function(String message) error,
   }) {
     return success();
@@ -1208,7 +1208,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements Success {
     TResult? Function()? success,
     TResult? Function()? updated,
     TResult? Function()? deleted,
-    TResult? Function()? loaded,
+    TResult? Function(List<TravelPackageModel> packages)? loaded,
     TResult? Function(String message)? error,
   }) {
     return success?.call();
@@ -1222,7 +1222,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements Success {
     TResult Function()? success,
     TResult Function()? updated,
     TResult Function()? deleted,
-    TResult Function()? loaded,
+    TResult Function(List<TravelPackageModel> packages)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1335,7 +1335,7 @@ class _$TravelPackageUpdatedImpl
     required TResult Function() success,
     required TResult Function() updated,
     required TResult Function() deleted,
-    required TResult Function() loaded,
+    required TResult Function(List<TravelPackageModel> packages) loaded,
     required TResult Function(String message) error,
   }) {
     return updated();
@@ -1349,7 +1349,7 @@ class _$TravelPackageUpdatedImpl
     TResult? Function()? success,
     TResult? Function()? updated,
     TResult? Function()? deleted,
-    TResult? Function()? loaded,
+    TResult? Function(List<TravelPackageModel> packages)? loaded,
     TResult? Function(String message)? error,
   }) {
     return updated?.call();
@@ -1363,7 +1363,7 @@ class _$TravelPackageUpdatedImpl
     TResult Function()? success,
     TResult Function()? updated,
     TResult Function()? deleted,
-    TResult Function()? loaded,
+    TResult Function(List<TravelPackageModel> packages)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1476,7 +1476,7 @@ class _$TravelPackageDeletedImpl
     required TResult Function() success,
     required TResult Function() updated,
     required TResult Function() deleted,
-    required TResult Function() loaded,
+    required TResult Function(List<TravelPackageModel> packages) loaded,
     required TResult Function(String message) error,
   }) {
     return deleted();
@@ -1490,7 +1490,7 @@ class _$TravelPackageDeletedImpl
     TResult? Function()? success,
     TResult? Function()? updated,
     TResult? Function()? deleted,
-    TResult? Function()? loaded,
+    TResult? Function(List<TravelPackageModel> packages)? loaded,
     TResult? Function(String message)? error,
   }) {
     return deleted?.call();
@@ -1504,7 +1504,7 @@ class _$TravelPackageDeletedImpl
     TResult Function()? success,
     TResult Function()? updated,
     TResult Function()? deleted,
-    TResult Function()? loaded,
+    TResult Function(List<TravelPackageModel> packages)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1570,6 +1570,8 @@ abstract class _$$TravelPackageLoadedImplCopyWith<$Res> {
   factory _$$TravelPackageLoadedImplCopyWith(_$TravelPackageLoadedImpl value,
           $Res Function(_$TravelPackageLoadedImpl) then) =
       __$$TravelPackageLoadedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<TravelPackageModel> packages});
 }
 
 /// @nodoc
@@ -1579,6 +1581,19 @@ class __$$TravelPackageLoadedImplCopyWithImpl<$Res>
   __$$TravelPackageLoadedImplCopyWithImpl(_$TravelPackageLoadedImpl _value,
       $Res Function(_$TravelPackageLoadedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? packages = null,
+  }) {
+    return _then(_$TravelPackageLoadedImpl(
+      packages: null == packages
+          ? _value._packages
+          : packages // ignore: cast_nullable_to_non_nullable
+              as List<TravelPackageModel>,
+    ));
+  }
 }
 
 /// @nodoc
@@ -1586,28 +1601,49 @@ class __$$TravelPackageLoadedImplCopyWithImpl<$Res>
 class _$TravelPackageLoadedImpl
     with DiagnosticableTreeMixin
     implements TravelPackageLoaded {
-  const _$TravelPackageLoadedImpl();
+  const _$TravelPackageLoadedImpl(
+      {required final List<TravelPackageModel> packages})
+      : _packages = packages;
+
+  final List<TravelPackageModel> _packages;
+  @override
+  List<TravelPackageModel> get packages {
+    if (_packages is EqualUnmodifiableListView) return _packages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_packages);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TravelPackageState.loaded()';
+    return 'TravelPackageState.loaded(packages: $packages)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'TravelPackageState.loaded'));
+    properties
+      ..add(DiagnosticsProperty('type', 'TravelPackageState.loaded'))
+      ..add(DiagnosticsProperty('packages', packages));
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TravelPackageLoadedImpl);
+            other is _$TravelPackageLoadedImpl &&
+            const DeepCollectionEquality().equals(other._packages, _packages));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_packages));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TravelPackageLoadedImplCopyWith<_$TravelPackageLoadedImpl> get copyWith =>
+      __$$TravelPackageLoadedImplCopyWithImpl<_$TravelPackageLoadedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1617,10 +1653,10 @@ class _$TravelPackageLoadedImpl
     required TResult Function() success,
     required TResult Function() updated,
     required TResult Function() deleted,
-    required TResult Function() loaded,
+    required TResult Function(List<TravelPackageModel> packages) loaded,
     required TResult Function(String message) error,
   }) {
-    return loaded();
+    return loaded(packages);
   }
 
   @override
@@ -1631,10 +1667,10 @@ class _$TravelPackageLoadedImpl
     TResult? Function()? success,
     TResult? Function()? updated,
     TResult? Function()? deleted,
-    TResult? Function()? loaded,
+    TResult? Function(List<TravelPackageModel> packages)? loaded,
     TResult? Function(String message)? error,
   }) {
-    return loaded?.call();
+    return loaded?.call(packages);
   }
 
   @override
@@ -1645,12 +1681,12 @@ class _$TravelPackageLoadedImpl
     TResult Function()? success,
     TResult Function()? updated,
     TResult Function()? deleted,
-    TResult Function()? loaded,
+    TResult Function(List<TravelPackageModel> packages)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded();
+      return loaded(packages);
     }
     return orElse();
   }
@@ -1703,7 +1739,14 @@ class _$TravelPackageLoadedImpl
 }
 
 abstract class TravelPackageLoaded implements TravelPackageState {
-  const factory TravelPackageLoaded() = _$TravelPackageLoadedImpl;
+  const factory TravelPackageLoaded(
+          {required final List<TravelPackageModel> packages}) =
+      _$TravelPackageLoadedImpl;
+
+  List<TravelPackageModel> get packages;
+  @JsonKey(ignore: true)
+  _$$TravelPackageLoadedImplCopyWith<_$TravelPackageLoadedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1786,7 +1829,7 @@ class _$TravelPackageErrorImpl
     required TResult Function() success,
     required TResult Function() updated,
     required TResult Function() deleted,
-    required TResult Function() loaded,
+    required TResult Function(List<TravelPackageModel> packages) loaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -1800,7 +1843,7 @@ class _$TravelPackageErrorImpl
     TResult? Function()? success,
     TResult? Function()? updated,
     TResult? Function()? deleted,
-    TResult? Function()? loaded,
+    TResult? Function(List<TravelPackageModel> packages)? loaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -1814,7 +1857,7 @@ class _$TravelPackageErrorImpl
     TResult Function()? success,
     TResult Function()? updated,
     TResult Function()? deleted,
-    TResult Function()? loaded,
+    TResult Function(List<TravelPackageModel> packages)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

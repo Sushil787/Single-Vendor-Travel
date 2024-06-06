@@ -44,11 +44,7 @@ dependencies:
   google_sign_in: ^6.1.0
   image_picker: ^1.0.1
   fluttertoast: ^8.2.1
-  #message shape bubble
   shared_preferences: ^2.0.20
-  bubble: ^1.2.1
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5
   very_good_analysis: ^5.0.0+1
   google_fonts: ^4.0.4
@@ -72,6 +68,12 @@ dependencies:
   webview_flutter: ^4.4.4
   cached_network_image: ^3.3.1
   bloc: ^8.1.2
+  flutter_screenutil: ^5.9.0
+  khalti_flutter: ^3.0.0
+  intl: ^0.18.1
+  ticket_widget: ^1.0.2
+  screenshot: ^2.1.0
+  path_provider: ^2.1.2
 
 
 

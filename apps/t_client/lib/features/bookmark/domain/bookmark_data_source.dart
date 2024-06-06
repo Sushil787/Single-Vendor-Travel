@@ -7,5 +7,5 @@ abstract class BookmarkDataSource {
 
   /// Adds Bookmark
   Future<void> addRemoveBookMark(
-      {required TravelPackageModel travelPackageModel});
+      {required TravelPackageModel travelPackageModel,});
 }

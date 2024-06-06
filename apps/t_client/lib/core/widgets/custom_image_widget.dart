@@ -24,43 +24,6 @@ class CustomImageWidget extends StatelessWidget {
         fit: BoxFit.cover,
       ),
     );
-    //   return Image.network(
-    //     urlImage,
-    //     fit: BoxFit.cover,
-    //     loadingBuilder: (
-    //       BuildContext context,
-    //       Widget child,
-    //       ImageChunkEvent? loadingProgress,
-    //     ) {
-    //       if (loadingProgress == null) {
-    //         return child;
-    //       } else {
-    //         return Image.asset(
-    //           MediaAsset.loadingImage,
-    //           fit: BoxFit.cover,
-    //         );
-    //         // return Shimmer.fromColors(
-    //         //   period: const Duration(
-    //         //     seconds: 1,
-    //         //   ),
-    //         //   baseColor: LightColor.lightGrey,
-    //         //   highlightColor: LightColor.whiteSmoke,
-    //         //   child: Container(
-    //         //     width: double.infinity,
-    //         //     height: double.infinity,
-    //         //     color: Colors.white,
-    //         //   ),
-    //         // );
-    //       }
-    //     },
-    //     errorBuilder:
-    //         (BuildContext context, Object error, StackTrace? stackTrace) {
-    //       return Image.asset(
-    //         MediaAsset.loadingImage,
-    //         fit: BoxFit.cover,
-    //       );
-    //     },
-    //   );
-    // }
+
   }
 }

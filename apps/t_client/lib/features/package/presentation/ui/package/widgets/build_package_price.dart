@@ -16,7 +16,7 @@ Widget buildProductPrice(
         Text(
           'रु $price',
           style:
-              context.textTheme.bodySmall?.copyWith(color: LightColor.orange),
+              context.textTheme.labelMedium?.copyWith(color: LightColor.orange),
         ),
       ],
     );
@@ -26,13 +26,16 @@ Widget buildProductPrice(
     children: [
       Text(
         'रु $discountedPackagePrice',
-        style: context.textTheme.bodySmall?.copyWith(color: LightColor.orange),
+        style:
+            context.textTheme.labelMedium?.copyWith(color: LightColor.orange),
       ),
       HorizontalGap.xs,
       Text(
         price.toString(),
-        style: context.textTheme.bodySmall?.copyWith(
-            color: LightColor.eclipse, decoration: TextDecoration.lineThrough),
+        style: context.textTheme.labelMedium?.copyWith(
+          color: LightColor.eclipse,
+          decoration: TextDecoration.lineThrough,
+        ),
       ),
     ],
   );

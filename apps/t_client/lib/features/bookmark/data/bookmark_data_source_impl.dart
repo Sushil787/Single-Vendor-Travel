@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:t_client/core/constants/firebase_collections.dart';
 import 'package:t_client/features/bookmark/domain/bookmark_data_source.dart';
@@ -13,7 +12,7 @@ class BookmarkDataSourceImpl implements BookmarkDataSource {
   BookmarkDataSourceImpl(
     this.userRepository, {
     required this.firebaseFirestore,
-  }) {}
+  });
 
   /// Firebase Firestore instance
   final FirebaseFirestore firebaseFirestore;

@@ -6,12 +6,11 @@ import 'package:go_router/go_router.dart';
 import 'package:t_admin/core/constants/route_constants.dart';
 import 'package:t_admin/core/screens/splash_screen.dart';
 import 'package:t_admin/di/di_setup.dart';
-import 'package:t_admin/features/booking/presentation/ui/booking_screen.dart';
 import 'package:t_admin/features/chat/presentation/ui/chat_screen.dart';
 import 'package:t_admin/features/dashboard/presentation/ui/dashboard_screen.dart';
-import 'package:t_admin/features/notes/data/model/notes_model.dart';
-import 'package:t_admin/features/notes/home_screen.dart';
-import 'package:t_admin/features/notes/note_screen.dart';
+import 'package:t_admin/features/home/home_screen.dart';
+import 'package:t_admin/features/order/presentation/ui/booking_screen.dart';
+
 import 'package:t_admin/features/package/presentation/ui/add_package_screen.dart';
 import 'package:t_admin/features/package/presentation/ui/package_screen.dart';
 import 'package:t_admin/features/user/presentation/ui/all_user_screen.dart';
@@ -77,17 +76,7 @@ class AppRouter {
           uid: state.extra! as String,
         ),
       ),
-      GoRoute(
-        path: AppRoutes.note,
-        parentNavigatorKey: _parentKey,
-        builder: (context, state) {
-          final args = state.extra as Map<String, dynamic>;
-          return NoteScreen(
-            createMode: args['createMode'] as bool,
-            note: args['note'] as NoteModel?,
-          );
-        },
-      ),
+     
     ],
     redirect: (context, state) {
       final user = getIt<FirebaseAuth>().currentUser;

@@ -94,11 +94,11 @@ class _SearchScreenState extends State<SearchScreen> {
                   )
                 : Packages(
                     packages: packages,
-                  )
+                  ),
 
             // No Data Found
             ),
       ),
-    ]));
+    ],),);
   }
 }

@@ -5,8 +5,13 @@ class AppRoutes {
   /// Main Screen
   static const String main = '/main';
 
-  /// Note Screen
-  static const String note = '/note';
+  /// Panaromic View Screen
+  static const String panaromic = '/panaromic';
+
+  /// Checkout Screen
+  static const String checkout = '/checkout';
+
+
 
   /// Home Route
   static const String home = '/';
@@ -31,6 +36,11 @@ class AppRoutes {
 
   /// Welcome Route
   static const String welcome = '/welcome';
+  /// Detail Screen
+  static const String packageDetail = '/detail';
+
+  /// Order Screen
+  static const String order = '/order';
 
   /// Chat Route
   static const String chat = '/chat';

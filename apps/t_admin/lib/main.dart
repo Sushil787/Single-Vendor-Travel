@@ -10,7 +10,7 @@ import 'package:t_admin/features/chat/presentation/cubit/chat/chat_cubit.dart';
 import 'package:t_admin/features/chat/presentation/cubit/latest/latest_message_cubit.dart';
 import 'package:t_admin/features/chat/presentation/cubit/message/message_cubit.dart';
 import 'package:t_admin/features/chat/presentation/cubit/user/user_cubit.dart';
-import 'package:t_admin/features/notes/cubit/note_cubit.dart';
+import 'package:t_admin/features/order/presentation/bloc/booking_bloc.dart';
 import 'package:t_admin/features/package/presentation/bloc/travel_bloc.dart';
 import 'package:t_admin/features/user/presentation/cubit/credential/auth_cubit.dart';
 import 'package:t_admin/features/user/presentation/cubit/profile/profile_cubit.dart';
@@ -35,14 +35,14 @@ void main() async {
         BlocProvider(
           create: (context) => ThemeCubit(),
         ),
+         BlocProvider(
+          create: (context) => getIt<BookingBloc>(),
+        ),
         BlocProvider(
           create: (context) => getIt<AuthCubit>(),
         ),
         BlocProvider(
           create: (context) => getIt<ProfileCubit>(),
-        ),
-        BlocProvider(
-          create: (context) => getIt<NoteCubit>(),
         ),
         BlocProvider(
           create: (context) => getIt<UserCubit>(),

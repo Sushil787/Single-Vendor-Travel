@@ -1,4 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:t_client/core/constants/app_constants.dart';
 import 'package:t_client/core/services/notification_service.dart';
 
 /// FCM services
@@ -9,16 +10,19 @@ class FcmServices {
   /// Initialize the firebase settings
   static void initializeFirebase() {
     _firebaseMessaging.requestPermission();
+    
+    /// Subscription for topics
+    FirebaseMessaging.instance.subscribeToTopic(AppConstants.topic);
 
     /// Listen to Background Messages
     FirebaseMessaging.onBackgroundMessage(handleBackground);
-    // FirebaseMessaging.onMessage.listen((event) {
-    //   NotificationService.sendNotification(
-    //     title: event.notification?.title ?? '',
-    //     body: event.notification?.body ?? '',
-    //   );
-    // });
-    
+    FirebaseMessaging.onMessage.listen((event) {
+      NotificationService.sendNotification(
+        title: event.notification?.title ?? '',
+        body: event.notification?.body ?? '',
+      );
+    });
+
     /// Listen message in app close state not terminated state
     FirebaseMessaging.onMessageOpenedApp.listen((event) {
       NotificationService.sendNotification(

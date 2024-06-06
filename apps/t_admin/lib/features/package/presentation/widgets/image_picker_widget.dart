@@ -2,7 +2,6 @@ import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker_web/image_picker_web.dart';
 import 'package:t_admin/core/theme/app_colors.dart';
 
 class ImagePickerWidget extends StatefulWidget {
@@ -77,7 +76,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
                 color: Colors.red,
               ),
             ),
-          )
+          ),
       ],
     );
   }

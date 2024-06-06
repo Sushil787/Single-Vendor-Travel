@@ -138,6 +138,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           VerticalGap.l,
           CustomTextField(
             prefixIcon: Icons.password,
+            maxLine: 1,
             hintText: 'password',
             onChanged: (value) {
               password = value;
@@ -153,6 +154,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           VerticalGap.l,
           CustomTextField(
             prefixIcon: Icons.password,
+            maxLine: 1,
             hintText: 'confirm password',
             onChanged: (value) {
               confirmPassword = value;

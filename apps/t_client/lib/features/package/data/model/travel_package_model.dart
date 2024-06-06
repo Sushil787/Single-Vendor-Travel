@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:t_client/features/package/data/model/comment_model.dart';
 import 'package:t_client/features/package/data/model/date_time_serialization.dart';
@@ -28,8 +27,7 @@ class TravelPackageModel with _$TravelPackageModel {
     @Default(0) double discount,
     @Default(0) int favourite,
     /// Like included, food, bathroom ,wifi, ac , bottle water, newspaper
-    /// , bathrobe,
-    ///  telephone other
+
     @Default([]) List<String> inclusive,
     @Default(false) bool isFeatured,
     List<CommentModel>? reviews,

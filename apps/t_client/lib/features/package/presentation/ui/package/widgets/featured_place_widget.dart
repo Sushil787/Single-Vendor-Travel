@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:t_client/core/constants/route_constants.dart';
 import 'package:t_client/core/helper/extension/context_extension.dart';
 import 'package:t_client/core/widgets/custom_image_widget.dart';
 import 'package:t_client/features/package/data/model/travel_package_model.dart';
@@ -18,7 +20,10 @@ class FeaturedPlaceWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print('tapped');
+        context.push(
+          AppRoutes.packageDetail,
+          extra: travelPackageModel,
+        );
       },
       child: SizedBox(
         child: Stack(

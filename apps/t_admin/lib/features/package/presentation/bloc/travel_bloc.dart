@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:t_admin/core/base/states/base_bloc_state.dart';
 import 'package:t_admin/features/package/data/model/travel_package_model.dart';
 import 'package:t_admin/features/package/domain/repo/travel_repo.dart';
 part 'travel_event.dart';
@@ -16,6 +15,7 @@ class TravelBloc extends Bloc<TravelEvent, TravelPackageState> {
   TravelBloc({required this.travelRepo})
       : super(const TravelPackageState.initial()) {
     on<TravelEvent>((event, emit) async {
+      totalPackages = 0;
       await event.when(
         delete: (String id) => _delete(emit, id),
         addPackage: (
@@ -38,9 +38,10 @@ class TravelBloc extends Bloc<TravelEvent, TravelPackageState> {
     });
   }
 
-
   /// Travel Repository
   final TravelRepo travelRepo;
+
+  late int totalPackages;
 
   Future<void> _delete(
     Emitter<TravelPackageState> emit,
@@ -94,7 +95,13 @@ class TravelBloc extends Bloc<TravelEvent, TravelPackageState> {
   Future<void> _get(Emitter<TravelPackageState> emit) async {
     try {
       emit(const Loading());
-      // travelRepo
+      await emit.onEach(
+        travelRepo.getTravelPackages(),
+        onData: (data) {
+          emit(TravelPackageLoaded(packages: data));
+          totalPackages = data.length;
+        },
+      );
     } catch (e) {
       emit(TravelPackageState.error(message: e.toString()));
     }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:t_admin/core/theme/app_colors.dart';
 
@@ -32,7 +31,7 @@ class AppTheme {
           backgroundColor: LightColor.eclipse,
           color: MaterialStatePropertyAll(LightColor.eclipse),
           labelStyle: TextStyle(color: Colors.white),
-          iconTheme: IconThemeData(color: Colors.white,)),
+          iconTheme: IconThemeData(color: Colors.white,),),
       brightness: Brightness.light,
       scaffoldBackgroundColor: Colors.white,
       // fontFamily: AssetConstants.robotoRegular,
@@ -191,5 +190,5 @@ class AppTheme {
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: LightColor.eclipse,
         foregroundColor: LightColor.backColor,
-      ));
+      ),);
 }

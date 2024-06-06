@@ -32,11 +32,15 @@ class ChatDataSourceImpl implements ChatDataSource {
   Future<List<UserModel>> getAllUser() {
     try {
       final userCollection = firebaseFirestore.collection('users');
-      return userCollection.get().then((value) => value.docs
-          .map((e) => UserModel.fromSnapshot(
-                e.data(),
-              ))
-          .toList());
+      return userCollection.get().then(
+            (value) => value.docs
+                .map(
+                  (e) => UserModel.fromSnapshot(
+                    e.data(),
+                  ),
+                )
+                .toList(),
+          );
     } on FirebaseException catch (e) {
       throw FirebaseException(code: e.code, plugin: e.plugin);
     } catch (e, stackTrace) {
@@ -151,7 +155,7 @@ class ChatDataSourceImpl implements ChatDataSource {
         return event.docs.map(LatestMessageUser.fromSnapshot).toList();
       }).listen((event) {
         debugPrint(
-            event.first.userModel.toString() ?? 'jjjj' + 'is message    ');
+            event.first.userModel.toString() ?? 'jjjj' 'is message    ',);
       });
       return userCollection
           // .orderBy(descending: true, 'timestamp')
@@ -159,7 +163,7 @@ class ChatDataSourceImpl implements ChatDataSource {
           .map((event) => event.docs
               // ignore: unnecessary_lambdas
               .map((e) => LatestMessageUser.fromSnapshot(e))
-              .toList());
+              .toList(),);
     } on FirebaseException catch (e) {
       throw FirebaseException(code: e.code, plugin: e.plugin);
     } catch (e, stackTrace) {

@@ -9,7 +9,7 @@ class CustomTextField extends StatefulWidget {
     this.prefixIcon,
     this.validator,
     this.isPassword = false,
-    Key? key, // Use "Key? key" instead of "super.key"
+    super.key, // Use "Key? key" instead of "super.key"
     this.suffixIcon,
     this.maxLine,
     this.onSuffixTap,
@@ -17,8 +17,7 @@ class CustomTextField extends StatefulWidget {
     this.validationMessage,
     TextEditingController? controller, // Change the default value
   })  : controller = controller ??
-            TextEditingController(), // Initialize the controller if not provided
-        super(key: key);
+            TextEditingController();
 
   /// Hint text
   final String hintText;

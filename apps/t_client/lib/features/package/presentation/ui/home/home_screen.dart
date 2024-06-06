@@ -4,17 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:t_client/core/constants/route_constants.dart';
 import 'package:t_client/core/helper/geolocator_permission.dart';
-import 'package:t_client/core/screens/notification_screen.dart';
 import 'package:t_client/core/theme/app_colors.dart';
 import 'package:t_client/features/bookmark/presentation/bookmark_screen.dart';
 import 'package:t_client/features/chat/presentation/chat_screen.dart';
+import 'package:t_client/features/orders/presentation/order_screen.dart';
 import 'package:t_client/features/package/presentation/bloc/travel_bloc/travel_bloc.dart';
 import 'package:t_client/features/package/presentation/ui/home/widget/selected_widget.dart';
 import 'package:t_client/features/package/presentation/ui/package/package_screen.dart';
 
 import 'package:t_client/features/user/domain/repository/user_repository.dart';
 import 'package:t_client/features/user/presentation/cubit/profile/cubit/profile_cubit.dart';
-import 'package:t_client/features/user/presentation/ui/profile_screen.dart';
 import 'package:t_client/features/user/presentation/ui/widgets/profile_widget.dart';
 
 /// Home Screen
@@ -70,8 +69,8 @@ class _HomeScreenState extends State<HomeScreen>
         scrollController: scrollController,
       ),
       const BookMarkScreen(),
-      ProfileScreen(uid: uid),
-      const NotificationScreen(),
+      // const OrderScreen(),
+      const OrderScreen(),
       const ChatScreen(),
     ];
   }
@@ -104,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen>
                     ),
                     curve: Curves.decelerate,
                   );
-                  if (value == 4) {
+                  if (value == 3) {
                     context.go(AppRoutes.chat);
                     return;
                   }
@@ -115,8 +114,8 @@ class _HomeScreenState extends State<HomeScreen>
                 selectedFontSize: 0,
                 currentIndex: selectedIndex,
                 elevation: 8,
-                items: [
-                  const BottomNavigationBarItem(
+                items: const [
+                  BottomNavigationBarItem(
                     icon: Icon(
                       Icons.explore_outlined,
                     ),
@@ -125,49 +124,49 @@ class _HomeScreenState extends State<HomeScreen>
                     ),
                     label: '',
                   ),
-                  const BottomNavigationBarItem(
+                  BottomNavigationBarItem(
                     activeIcon: SelectedIcon(
                       iconData: Icons.favorite_outlined,
                     ),
                     icon: Icon(Icons.favorite_outline_outlined),
                     label: '',
                   ),
+                  // BottomNavigationBarItem(
+                  //   activeIcon: const SelectedIcon(
+                  //     iconData: Icons.notifications,
+                  //   ),
+                  //   icon: Stack(
+                  //     children: [
+                  //       const Icon(
+                  //         Icons.notifications_none_rounded,
+                  //         size: 30,
+                  //       ),
+                  //       Positioned(
+                  //         right: 6,
+                  //         top: 6,
+                  //         child: Container(
+                  //           decoration: const BoxDecoration(
+                  //             color: Colors.red,
+                  //             borderRadius: BorderRadius.all(
+                  //               Radius.circular(20),
+                  //             ),
+                  //           ),
+                  //           height: 10,
+                  //           width: 10,
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  //   label: '',
+                  // ),
                   BottomNavigationBarItem(
-                    activeIcon: const SelectedIcon(
-                      iconData: Icons.notifications,
-                    ),
-                    icon: Stack(
-                      children: [
-                        const Icon(
-                          Icons.notifications_none_rounded,
-                          size: 30,
-                        ),
-                        Positioned(
-                          right: 6,
-                          top: 6,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20),
-                              ),
-                            ),
-                            height: 10,
-                            width: 10,
-                          ),
-                        ),
-                      ],
-                    ),
-                    label: '',
-                  ),
-                  const BottomNavigationBarItem(
-                    icon: Icon(Icons.book_outlined),
+                    icon: Icon(Icons.shopping_bag_outlined),
                     activeIcon: SelectedIcon(
-                      iconData: Icons.bookmark_rounded,
+                      iconData: Icons.shopping_bag_rounded,
                     ),
                     label: '',
                   ),
-                  const BottomNavigationBarItem(
+                  BottomNavigationBarItem(
                     activeIcon: SelectedIcon(
                       iconData: Icons.chat_rounded,
                     ),

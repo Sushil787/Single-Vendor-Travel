@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomDropDownWidget extends StatefulWidget {
   const CustomDropDownWidget(
-      {required this.items, required this.onSelect, super.key});
+      {required this.items, required this.onSelect, super.key,});
   final List<String> items;
   final void Function(String)? onSelect;
 

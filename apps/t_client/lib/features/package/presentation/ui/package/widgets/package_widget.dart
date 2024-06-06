@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:t_client/core/constants/route_constants.dart';
 import 'package:t_client/core/helper/extension/context_extension.dart';
 import 'package:t_client/core/theme/app_colors.dart';
 import 'package:t_client/core/widgets/custom_image_widget.dart';
@@ -18,7 +20,10 @@ class PackageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        /// Context Go package detail screen
+        context.push(
+          AppRoutes.packageDetail,
+          extra: travelPackageModel,
+        );
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 10),

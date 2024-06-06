@@ -42,7 +42,13 @@ class PackageMetaInfoWidget extends StatelessWidget {
               size: 18,
               color: LightColor.grey,
             ),
-            text: travelPackageModel.location,
+            text: Text(
+              travelPackageModel.location,
+              style: context.textTheme.bodySmall?.copyWith(
+                fontSize: 14,
+                color: LightColor.grey,
+              ),
+            ),
           ),
           const Divider(
             thickness: .2,
@@ -60,7 +66,13 @@ class PackageMetaInfoWidget extends StatelessWidget {
                   size: 18,
                   color: LightColor.orange,
                 ),
-                text: travelPackageModel.favourite.toString(),
+                text: Text(
+                  travelPackageModel.favourite.toString(),
+                  style: context.textTheme.bodySmall?.copyWith(
+                    fontSize: 14,
+                    color: LightColor.grey,
+                  ),
+                ),
               ),
               HorizontalGap.l,
               BuildIconTextRow(
@@ -69,25 +81,20 @@ class PackageMetaInfoWidget extends StatelessWidget {
                   size: 18,
                   color: LightColor.orange,
                 ),
-                text: (travelPackageModel.reviews ?? []).length.toString(),
+                text: Text(
+                  (travelPackageModel.reviews ?? []).length.toString(),
+                  style: context.textTheme.bodySmall?.copyWith(
+                    fontSize: 14,
+                    color: LightColor.grey,
+                  ),
+                ),
               ),
               const Spacer(),
               buildProductPrice(
                 context,
                 price: travelPackageModel.perHeadPerNight,
                 discount: travelPackageModel.discount,
-              )
-              // Text(
-              //   'रु ',
-              //   style: context.textTheme.bodySmall
-              //       ?.copyWith(color: LightColor.orange),
-              // ),
-              // Text(
-              //   travelPackageModel.perHeadPerNight.toString(),
-              //   style: context.textTheme.bodySmall?.copyWith(
-              //     color: LightColor.eclipse,
-              //   ),
-              // ),
+              ),
             ],
           ),
         ],

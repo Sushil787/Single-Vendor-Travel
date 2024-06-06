@@ -18,11 +18,17 @@ import 'package:t_client/features/package/presentation/ui/package/widgets/recent
 import 'package:t_client/features/user/domain/repository/user_repository.dart';
 import 'package:t_client/features/user/presentation/cubit/profile/cubit/profile_cubit.dart';
 
+/// Packages
+List<TravelPackageModel> packages = [];
+
 /// Package Home Screen
 class PackageScreen extends StatefulWidget {
   ///
-  const PackageScreen(
-      {required this.uid, required this.scrollController, super.key});
+  const PackageScreen({
+    required this.uid,
+    required this.scrollController,
+    super.key,
+  });
 
   /// UID
   final String uid;
@@ -56,6 +62,7 @@ class _PackageScreenState extends State<PackageScreen> {
         },
         builder: (context, state) {
           if (state is TravelPackageLoaded) {
+            packages = state.packages;
             return CustomScrollView(
               controller: widget.scrollController,
               slivers: [
@@ -98,6 +105,7 @@ class _PackageScreenState extends State<PackageScreen> {
                 SliverToBoxAdapter(
                   child: RecentlyAddedPackages(
                     travelPackageModels: state.packages,
+                    title: 'Recently Added',
                   ),
                 ),
                 SliverToBoxAdapter(
@@ -173,7 +181,7 @@ class _PackagesState extends State<Packages> {
                     },
                     itemCount: widget.packages.length,
                   ),
-                )
+                ),
               ],
             ),
     );

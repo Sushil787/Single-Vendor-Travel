@@ -22,3 +22,6 @@ const String bookMarks = 'bookmarks';
 
 /// Collection for bookmarks
 const String userBookMarks = 'user_bookmarks';
+
+/// Collections for orders
+const String packageOrder = 'order';

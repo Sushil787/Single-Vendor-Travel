@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:t_admin/features/package/data/model/travel_package_model.dart';
@@ -31,7 +29,6 @@ class TravelRepoImpl implements TravelRepo {
     required TravelPackageModel travelPackageModel,
   }) async {
     try {
-
       await travelDataSource.addTravelPacakge(
         vrImage: vrImage,
         images: images,
@@ -45,13 +42,16 @@ class TravelRepoImpl implements TravelRepo {
 
   @override
   Stream<List<TravelPackageModel>> getTravelPackages() {
-    // TODO: implement getTravelPackages
-    throw UnimplementedError();
+    try {
+     return travelDataSource.getTravelPackages();
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
   Future<void> updatePacakage(
-      {required TravelPackageModel travelPackageModel}) {
+      {required TravelPackageModel travelPackageModel,}) {
     // TODO: implement updatePacakage
     throw UnimplementedError();
   }

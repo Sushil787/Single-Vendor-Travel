@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:khalti_flutter/khalti_flutter.dart';
 
 import 'package:t_client/core/routes/app_router.dart';
 import 'package:t_client/core/services/fcm_services.dart';
@@ -13,7 +14,7 @@ import 'package:t_client/di/di_setup.dart';
 import 'package:t_client/features/bookmark/presentation/bloc/bloc/bookmark_bloc.dart';
 import 'package:t_client/features/chat/domain/chat_data_repo.dart';
 import 'package:t_client/features/chat/presentation/cubit/chat_cubit.dart';
-import 'package:t_client/features/package/presentation/bloc/search_bloc/bloc/search_bloc.dart';
+import 'package:t_client/features/orders/presentation/bloc/order_bloc.dart';
 import 'package:t_client/features/package/presentation/bloc/travel_bloc/travel_bloc.dart';
 import 'package:t_client/features/user/domain/repository/user_repository.dart';
 import 'package:t_client/features/user/presentation/cubit/credential/cubit/auth_cubit.dart';
@@ -50,6 +51,9 @@ void main() async {
           ),
           BlocProvider(
             create: (context) => getIt<ProfileCubit>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt<OrderBloc>(),
           ),
           BlocProvider(
             create: (context) => getIt<ChatCubit>(),
@@ -99,6 +103,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      localizationsDelegates: const [
+        KhaltiLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en', 'US'),
+        Locale('ne', 'NP'),
+      ],
       debugShowCheckedModeBanner: false,
       routerConfig: routerConfig.router,
       title: 'Travello',

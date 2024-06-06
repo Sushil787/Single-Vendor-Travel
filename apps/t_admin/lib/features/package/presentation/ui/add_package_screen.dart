@@ -3,14 +3,12 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:t_admin/core/base/states/base_bloc_state.dart';
 import 'package:t_admin/core/enums/pakcage_enum.dart';
 import 'package:t_admin/core/helper/extension/context_extension.dart';
 import 'package:t_admin/core/helper/gap.dart';
 import 'package:t_admin/core/theme/app_colors.dart';
 import 'package:t_admin/core/widgets/custom_button.dart';
 import 'package:t_admin/core/widgets/custom_dropdown.dart';
-import 'package:t_admin/core/widgets/custom_lable.dart';
 import 'package:t_admin/core/widgets/custom_textfield.dart';
 import 'package:t_admin/features/package/data/model/travel_package_model.dart';
 import 'package:t_admin/features/package/presentation/bloc/travel_bloc.dart';
@@ -216,7 +214,7 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
                               setState(() {});
                             },
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -247,7 +245,7 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
                         setState(() {});
                       },
                     ),
-                    const Expanded(child: SizedBox())
+                    const Expanded(child: SizedBox()),
                   ],
                 ),
                 if (inclusive.isEmpty)
@@ -272,7 +270,7 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
                             setState(() {});
                           },
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -394,7 +392,7 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
                                         location: locationController.text,
                                         isFeatured: isFeatured,
                                         discount: double.parse(
-                                            discountController.text),
+                                            discountController.text,),
                                         tags: [],
                                         perHeadPerNight: double.parse(
                                           priceController.text,

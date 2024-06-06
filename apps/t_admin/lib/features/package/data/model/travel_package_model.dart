@@ -1,6 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:t_admin/core/enums/pakcage_enum.dart';
 import 'package:t_admin/features/package/data/model/comment_model.dart';
 import 'package:t_admin/features/package/data/model/date_time_serialization.dart';
 part 'travel_package_model.freezed.dart';

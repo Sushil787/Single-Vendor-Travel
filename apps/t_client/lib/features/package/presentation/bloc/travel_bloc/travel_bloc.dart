@@ -17,6 +17,7 @@ class TravelBloc extends Bloc<TravelEvent, TravelPackageState> {
     on<TravelEvent>((event, emit) async {
       await event.when(
         get: () => _get(emit)
+        
         ,
       );
     });

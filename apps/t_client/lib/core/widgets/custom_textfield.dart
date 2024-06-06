@@ -3,20 +3,24 @@ import 'package:flutter/material.dart';
 /// Custon Text Field
 class CustomTextField extends StatefulWidget {
   /// Constructor
-  CustomTextField({
-    required this.hintText,
-    this.onChanged,
-    this.prefixIcon,
-    this.validator,
-    this.isPassword = false,
-    super.key, // Use "Key? key" instead of "super.key"
-    this.suffixIcon,
-    this.maxLine,
-    this.onSuffixTap,
-    this.formKey,
-    this.validationMessage,
-    TextEditingController? controller, this.onTap, // Change the default value
-  }) : controller = controller ?? TextEditingController();
+  CustomTextField(
+      {required this.hintText,
+      this.onChanged,
+      this.prefixIcon,
+      this.validator,
+      this.isPassword = false,
+      super.key, // Use "Key? key" instead of "super.key"
+      this.suffixIcon,
+      this.maxLine,
+      this.onSuffixTap,
+      this.formKey,
+      this.validationMessage,
+      TextEditingController? controller,
+      this.autoFocus,
+      this.onTap,
+      this.textInputType, // Change the default value
+      })
+      : controller = controller ?? TextEditingController();
 
   /// Hint text
   final String hintText;
@@ -45,12 +49,17 @@ class CustomTextField extends StatefulWidget {
   /// Suffix Icon
   final IconData? suffixIcon;
 
+  /// Auto Focus
+  final bool? autoFocus;
+
   /// onTap
   final VoidCallback? onTap;
- 
 
- /// Form key
+  /// Form key
   final GlobalKey<FormState>? formKey;
+
+  /// Keyboard Type
+  final TextInputType? textInputType;
 
   /// TextEditing controller for [TextFormField]
   final TextEditingController controller;
@@ -67,7 +76,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Form(
       key: widget.formKey,
       child: TextFormField(
-        onTap:widget.onTap ,
+        keyboardType: widget.textInputType,
+        autofocus: widget.autoFocus ?? false,
+        onTap: widget.onTap,
         controller: widget.controller,
         validator: widget.validator ??
             (value) {

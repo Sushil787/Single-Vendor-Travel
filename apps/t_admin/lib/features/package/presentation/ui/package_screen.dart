@@ -1,10 +1,11 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:t_admin/core/constants/route_constants.dart';
-import 'package:t_admin/core/helper/extension/context_extension.dart';
-import 'package:t_admin/core/helper/gap.dart';
 import 'package:t_admin/core/widgets/custom_lable.dart';
-import 'package:t_admin/core/widgets/custom_textfield.dart';
+import 'package:t_admin/features/package/presentation/bloc/travel_bloc.dart';
+import 'package:t_admin/features/package/presentation/widgets/package_widget.dart';
 
 ///
 class PackageScreen extends StatefulWidget {
@@ -16,6 +17,12 @@ class PackageScreen extends StatefulWidget {
 }
 
 class _PackageScreenState extends State<PackageScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<TravelBloc>().add(const Get());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,17 +37,40 @@ class _PackageScreenState extends State<PackageScreen> {
                 lable: 'Packages',
               ),
             ),
-            Container(
-              height: 500,
-              width: double.infinity,
-              child: Column(
-                children: [
-                  CustomTextField(hintText: 'Enter Package Name'),
-                  VerticalGap.l,
-                  CustomTextField(hintText: 'Enter Location'),
-                ],
+            Flexible(
+              child: BlocBuilder<TravelBloc, TravelPackageState>(
+                builder: (context, state) {
+                  if (state is Loading) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  if (state is TravelPackageLoaded) {
+                    return GridView.builder(
+                      shrinkWrap: true,
+                      itemCount: state.packages.length,
+                      itemBuilder: (context, index) {
+                        return PackageWidget(
+                          travelPackageModel: state.packages[index],
+                        );
+                      },
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        mainAxisExtent: 150,
+                        crossAxisSpacing: 8,
+                        crossAxisCount: 2,
+                      ),
+                    );
+                  }
+                  if (state is TravelPackageError) {
+                    return Center(
+                      child: Text(state.message),
+                    );
+                  }
+                  return const Center(
+                    child: Text('Error fetching data try later'),
+                  );
+                },
               ),
-            )
+            ),
           ],
         ),
       ),

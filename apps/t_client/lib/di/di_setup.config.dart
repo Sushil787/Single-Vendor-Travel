@@ -22,18 +22,20 @@ import '../features/bookmark/data/bookmark_data_source_impl.dart' as _i19;
 import '../features/bookmark/data/bookmark_repo_impl.dart' as _i21;
 import '../features/bookmark/domain/bookmark_data_source.dart' as _i18;
 import '../features/bookmark/domain/bookmark_repo.dart' as _i20;
-import '../features/bookmark/presentation/bloc/bloc/bookmark_bloc.dart' as _i27;
+import '../features/bookmark/presentation/bloc/bloc/bookmark_bloc.dart' as _i28;
 import '../features/chat/data/remote/chat_data_repo_impl.dart' as _i23;
 import '../features/chat/domain/chat_data_repo.dart' as _i22;
-import '../features/chat/presentation/cubit/chat_cubit.dart' as _i28;
+import '../features/chat/presentation/cubit/chat_cubit.dart' as _i29;
+import '../features/orders/data/repo/order_repo_impl.dart' as _i24;
+import '../features/orders/presentation/bloc/order_bloc.dart' as _i30;
 import '../features/package/data/repo/travel_datasource_impl.dart' as _i10;
 import '../features/package/data/repo/travel_repo_impl.dart' as _i12;
 import '../features/package/domain/repo/travel_data_source.dart' as _i9;
 import '../features/package/domain/repo/travel_repo.dart' as _i11;
 import '../features/package/presentation/bloc/search_bloc/bloc/search_bloc.dart'
-    as _i25;
-import '../features/package/presentation/bloc/travel_bloc/travel_bloc.dart'
     as _i26;
+import '../features/package/presentation/bloc/travel_bloc/travel_bloc.dart'
+    as _i27;
 import '../features/user/data/remote_data_source/user_remote_data_source_impl.dart'
     as _i14;
 import '../features/user/data/repository/user_repository_impl.dart' as _i16;
@@ -43,8 +45,8 @@ import '../features/user/domain/repository/user_repository.dart' as _i15;
 import '../features/user/presentation/cubit/credential/cubit/auth_cubit.dart'
     as _i17;
 import '../features/user/presentation/cubit/profile/cubit/profile_cubit.dart'
-    as _i24;
-import 'app_module.dart' as _i29;
+    as _i25;
+import 'app_module.dart' as _i31;
 
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
@@ -95,21 +97,27 @@ Future<_i1.GetIt> $initGetIt(
         firebaseFirestore: gh<_i4.FirebaseFirestore>(),
         firebaseAuth: gh<_i3.FirebaseAuth>(),
       ));
-  gh.factory<_i24.ProfileCubit>(() => _i24.ProfileCubit(
+  gh.factory<_i24.OrderRepo>(() => _i24.OrderRepo(
+        firestore: gh<_i4.FirebaseFirestore>(),
+        userRepository: gh<_i15.UserRepository>(),
+      ));
+  gh.factory<_i25.ProfileCubit>(() => _i25.ProfileCubit(
         userRepository: gh<_i15.UserRepository>(),
         networkInfo: gh<_i7.NetworkInfo>(),
       ));
-  gh.factory<_i25.SearchBloc>(
-      () => _i25.SearchBloc(travelRepo: gh<_i11.TravelRepo>()));
-  gh.factory<_i26.TravelBloc>(
-      () => _i26.TravelBloc(travelRepo: gh<_i11.TravelRepo>()));
-  gh.factory<_i27.BookmarkBloc>(
-      () => _i27.BookmarkBloc(gh<_i20.BookmarkRepo>()));
-  gh.factory<_i28.ChatCubit>(
-      () => _i28.ChatCubit(chatDataRepository: gh<_i22.ChatDataRepository>()));
+  gh.factory<_i26.SearchBloc>(
+      () => _i26.SearchBloc(travelRepo: gh<_i11.TravelRepo>()));
+  gh.factory<_i27.TravelBloc>(
+      () => _i27.TravelBloc(travelRepo: gh<_i11.TravelRepo>()));
+  gh.factory<_i28.BookmarkBloc>(
+      () => _i28.BookmarkBloc(gh<_i20.BookmarkRepo>()));
+  gh.factory<_i29.ChatCubit>(
+      () => _i29.ChatCubit(chatDataRepository: gh<_i22.ChatDataRepository>()));
+  gh.factory<_i30.OrderBloc>(
+      () => _i30.OrderBloc(orderRepo: gh<_i24.OrderRepo>()));
   return getIt;
 }
 
-class _$AppModule extends _i29.AppModule {}
+class _$AppModule extends _i31.AppModule {}
 
-class _$SharedPrefsInjectionModule extends _i29.SharedPrefsInjectionModule {}
+class _$SharedPrefsInjectionModule extends _i31.SharedPrefsInjectionModule {}

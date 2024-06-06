@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:t_admin/core/utils/firebase_storage_utils.dart';
@@ -66,14 +65,26 @@ class TravelDataSourceImpl implements TravelDataSource {
   }
 
   @override
+  /// Get Travel Packages
+  @override
   Stream<List<TravelPackageModel>> getTravelPackages() {
-    // TODO: implement getTravelPackages
-    throw UnimplementedError();
+    try {
+      final data = firestore.collection('packages').snapshots();
+      final packages = data.map(
+        (event) => event.docs
+            .map((e) => TravelPackageModel.fromJson(e.data()))
+            .toList(),
+      );
+      return packages;
+    } catch (e, s) {
+      debugPrint(s.toString());
+      rethrow;
+    }
   }
 
   @override
   Future<void> updatePacakage(
-      {required TravelPackageModel travelPackageModel}) {
+      {required TravelPackageModel travelPackageModel,}) {
     // TODO: implement updatePacakage
     throw UnimplementedError();
   }

@@ -2,8 +2,7 @@
 class AppRoutes {
   AppRoutes._();
 
-  /// Note Screen
-  static const String note = '/note';
+
 
   /// Home Route
   static const String home = '/';

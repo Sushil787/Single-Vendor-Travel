@@ -6,26 +6,26 @@ import 'package:t_client/core/constants/route_constants.dart';
 import 'package:t_client/core/screens/splash_screen.dart';
 import 'package:t_client/core/screens/welcome/welcome_screen.dart';
 import 'package:t_client/features/chat/presentation/chat_screen.dart';
+import 'package:t_client/features/orders/presentation/check_out_screen.dart';
+import 'package:t_client/features/orders/presentation/order_screen.dart';
+import 'package:t_client/features/package/data/model/travel_package_model.dart';
 import 'package:t_client/features/package/presentation/ui/home/home_screen.dart';
 import 'package:t_client/features/package/presentation/ui/home/main_screen.dart';
+import 'package:t_client/features/package/presentation/ui/package/detail/package_detail_screen.dart';
+import 'package:t_client/features/package/presentation/ui/package/detail/panaromic_view.dart';
 import 'package:t_client/features/package/presentation/ui/search/search_screen.dart';
-
 import 'package:t_client/features/user/presentation/ui/login_screen.dart';
 import 'package:t_client/features/user/presentation/ui/profile_screen.dart';
 import 'package:t_client/features/user/presentation/ui/signup_screen.dart';
 
+/// NAvigatoro key
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 /// AppRouter
 class AppRouter {
-  // final FirebaseAuth _auth  = getIt<FirebaseAuth>();
   final GoRouter _router = GoRouter(
+    navigatorKey: navigatorKey,
     initialLocation: AppRoutes.splash,
-
-    // redirect: (context, state){
-    //   if(_auth.currentUser?.uid == null){
-
-    //   }
-    //   return null;
-    // },
     routes: [
       GoRoute(
         path: AppRoutes.home,
@@ -41,6 +41,25 @@ class AppRouter {
         name: AppRoutes.profile,
         builder: (context, state) => ProfileScreen(
           uid: state.extra! as String,
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.order,
+        name: AppRoutes.order,
+        builder: (context, state) => const OrderScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.panaromic,
+        name: AppRoutes.panaromic,
+        builder: (context, state) => PanaromicViewScreen(
+          imageUrl: state.extra! as String,
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.checkout,
+        name: AppRoutes.checkout,
+        builder: (context, state) => CheckoutScreen(
+          travelPackageModel: state.extra! as TravelPackageModel,
         ),
       ),
       GoRoute(
@@ -78,22 +97,18 @@ class AppRouter {
         name: AppRoutes.splash,
         builder: (context, state) => const SplashScreen(),
       ),
-       GoRoute(
+      GoRoute(
         path: AppRoutes.search,
         name: AppRoutes.search,
         builder: (context, state) => const SearchScreen(),
       ),
-      // GoRoute(
-      //   path: AppRoutes.note,
-      //   name: AppRoutes.note,
-      //   builder: (context, state) {
-      //     final args = state.extra as Map<String, dynamic>;
-      //     return NoteScreen(
-      //       createMode: args['createMode'] as bool,
-      //       note: args['note'] as NoteModel?,
-      //     );
-      //   },
-      // ),
+      GoRoute(
+        path: AppRoutes.packageDetail,
+        name: AppRoutes.packageDetail,
+        builder: (context, state) => PackageDetailScreen(
+          travelPackageModel: state.extra as TravelPackageModel,
+        ),
+      ),
     ],
   );
 
