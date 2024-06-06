@@ -115,7 +115,6 @@ class AppTheme {
       backgroundColor: Colors.white,
       side: BorderSide(
         color: LightColor.eclipse,
-        width: 1,
       ),
     ),
     colorScheme: ColorScheme.fromSwatch().copyWith(

@@ -1,10 +1,7 @@
 import 'dart:async';
-import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:t_client/core/constants/route_constants.dart';
@@ -16,9 +13,9 @@ import 'package:t_client/core/widgets/custom_image_widget.dart';
 import 'package:t_client/core/widgets/custom_textfield.dart';
 import 'package:t_client/core/widgets/ios_back_button.dart';
 import 'package:t_client/features/bookmark/presentation/bloc/bloc/bookmark_bloc.dart';
-import 'package:t_client/features/package/data/model/comment_model.dart';
 import 'package:t_client/features/package/data/model/travel_package_model.dart';
 import 'package:t_client/features/package/presentation/bloc/comment/comment_cubit.dart';
+import 'package:t_client/features/package/presentation/bloc/cubit/weather_cubit.dart';
 import 'package:t_client/features/package/presentation/ui/package/detail/widget/build_add_favourite.dart';
 import 'package:t_client/features/package/presentation/ui/package/detail/widget/comment_lists.dart';
 import 'package:t_client/features/package/presentation/ui/package/detail/widget/item_row.dart';
@@ -65,6 +62,11 @@ class _PackageDetailScreenState extends State<PackageDetailScreen> {
   void initState() {
     super.initState();
     context.read<BookmarkBloc>().getBookMarks();
+    context.read<WeatherCubit>().getWeather(
+          lat: widget.travelPackageModel.latitude.toString(),
+          long: widget.travelPackageModel.longitude.toString(),
+        );
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       uuid = await context.read<UserRepository>().getCurrentUId();
     });
@@ -194,6 +196,14 @@ class _PackageDetailScreenState extends State<PackageDetailScreen> {
                         buttonText: 'View 360 Panaromic View',
                       ),
                     ),
+                    VerticalGap.m,
+                    Text(
+                      'Current Weather of ${widget.travelPackageModel.location}',
+                      style: context.textTheme.bodyMedium
+                          ?.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    VerticalGap.s,
+                    buildWeather(),
                     BuildInclusiveExclusive(
                       title: 'Inclusive',
                       items: widget.travelPackageModel.inclusive,
@@ -230,11 +240,13 @@ class _PackageDetailScreenState extends State<PackageDetailScreen> {
                       child: CustomTextField(
                         suffixIcon: Icons.add,
                         onSuffixTap: (value) {
-                          context.read<CommentCubit>().addComment(
-                                comment: value,
-                                packageId: widget.travelPackageModel.uuid,
-                              );
-                          commenTController.clear();
+                          if (value.isNotEmpty) {
+                            context.read<CommentCubit>().addComment(
+                                  comment: value,
+                                  packageId: widget.travelPackageModel.uuid,
+                                );
+                            commenTController.clear();
+                          }
                         },
                         controller: commenTController,
                         hintText: 'Add Comment',
@@ -256,6 +268,41 @@ class _PackageDetailScreenState extends State<PackageDetailScreen> {
         ),
       ),
     );
+  }
+
+  Widget buildWeather() {
+    return BlocBuilder<WeatherCubit, WeatherState>(builder: (context, state) {
+      if (state is WeatherLoading) {
+        return const CircularProgressIndicator();
+      }
+      if (state is WeatherLoaded) {
+        final weather = state.weatherData;
+        return Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+              // color: Colors.red,
+              border: Border.all(color: LightColor.grey, width: .3),
+              borderRadius: const BorderRadius.all(Radius.circular(12)),),
+          // height: 100,
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Wind Speed ${weather.wind?.speed ?? 0} Miles/hour'),
+              Text('${weather.weather?.first.description ?? ""}  '),
+              Text(
+                'Current Temperature ${(weather.main!.temp! - 273.15).ceil()} ℃',
+              ),
+              Text(
+                'The maximum visibility is ${(weather.visibility ?? 0) / 1000} km',
+              ),
+              Text('Current Temperature ${weather.clouds?.all ?? ""} Kelvin'),
+            ],
+          ),
+        );
+      }
+      return const Text('Error Fetching weather data');
+    },);
   }
 
   /// Build Page

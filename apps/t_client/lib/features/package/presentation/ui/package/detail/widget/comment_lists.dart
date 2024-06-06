@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:t_client/features/package/presentation/bloc/comment/comment_cubit.dart';
@@ -26,6 +28,7 @@ class _BuildCommentsState extends State<BuildComments> {
       builder: (context, state) {
         if (state is CommentLoaded) {
           if (state.Comments.isNotEmpty) {
+            log(state.Comments.length.toString(), name: 'item count');
             // Check if comments list is not empty
             return ListView.builder(
               shrinkWrap: true,

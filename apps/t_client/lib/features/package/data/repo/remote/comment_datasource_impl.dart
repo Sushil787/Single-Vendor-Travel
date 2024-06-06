@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:t_client/core/constants/firebase_collections.dart';
 import 'package:t_client/features/package/data/model/comment_model.dart';
-import 'package:t_client/features/package/data/model/travel_package_model.dart';
 import 'package:t_client/features/package/domain/repo/comment_data_source.dart';
 import 'package:uuid/uuid.dart';
 
@@ -58,8 +57,10 @@ class CommentDataSourceImpl implements CommentDataSource {
 
   /// Add Comment
   @override
-  Future<void> addComments(
-      {required String packageId, required String comment}) async {
+  Future<void> addComments({
+    required String packageId,
+    required String comment,
+  }) async {
     try {
       const uuid = Uuid();
       final commentId = uuid.v4();
@@ -87,13 +88,30 @@ class CommentDataSourceImpl implements CommentDataSource {
   Future<void> deleteComment({
     required String commentId,
   }) async {
-    final data = await firebaseFirestore
-        .collection(comments)
-        .where('commentId', isEqualTo: commentId)
-        .get();
-    await data.docs.first.reference.delete();
+    try {
+      final data = await firebaseFirestore
+          .collection(comments)
+          .where('commentId', isEqualTo: commentId)
+          .get();
+      await data.docs.first.reference.delete();
+    } catch (e) {
+      rethrow;
+    }
+  }
 
-    try {} catch (e) {
+  @override
+  Future<void> updateComment(
+      {required String commentId,
+      required String packageId,
+      required String message}) async {
+    try {
+      final data = await firebaseFirestore
+          .collection(comments)
+          .where('commentId', isEqualTo: commentId)
+          .get();
+
+      await data.docs.first.reference.update({'comment': message});
+    } catch (e) {
       rethrow;
     }
   }

@@ -17,6 +17,7 @@ import 'package:t_client/features/chat/presentation/cubit/chat_cubit.dart';
 import 'package:t_client/features/orders/presentation/bloc/order_bloc.dart';
 import 'package:t_client/features/package/domain/repo/travel_data_source.dart';
 import 'package:t_client/features/package/presentation/bloc/comment/comment_cubit.dart';
+import 'package:t_client/features/package/presentation/bloc/cubit/weather_cubit.dart';
 import 'package:t_client/features/package/presentation/bloc/travel_bloc/travel_bloc.dart';
 import 'package:t_client/features/user/domain/repository/user_repository.dart';
 import 'package:t_client/features/user/presentation/cubit/credential/cubit/auth_cubit.dart';
@@ -60,6 +61,9 @@ void main() async {
           ),
           BlocProvider(
             create: (context) => getIt<AuthCubit>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt<WeatherCubit>(),
           ),
           BlocProvider(create: (context) => getIt<UpdateProfileCubit>()),
           BlocProvider(

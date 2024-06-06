@@ -8,4 +8,7 @@ class AppConstants {
 
   /// Is user first time
   static const showWelcomeScreen = 'showWelcomeScreen';
+
+  /// Api key for weather
+  static const appId = '14502e9f4d384d461acfa851bc1419bf';
 }

@@ -75,20 +75,20 @@ class PackageMetaInfoWidget extends StatelessWidget {
                 ),
               ),
               HorizontalGap.l,
-              BuildIconTextRow(
-                first: const Icon(
-                  Icons.comment,
-                  size: 18,
-                  color: LightColor.orange,
-                ),
-                text: Text(
-                  (travelPackageModel.reviews ?? []).length.toString(),
-                  style: context.textTheme.bodySmall?.copyWith(
-                    fontSize: 14,
-                    color: LightColor.grey,
-                  ),
-                ),
-              ),
+              // BuildIconTextRow(
+              //   first: const Icon(
+              //     Icons.comment,
+              //     size: 18,
+              //     color: LightColor.orange,
+              //   ),
+              //   text: Text(
+              //     travelPackageModel.reviews.toString(),
+              //     style: context.textTheme.bodySmall?.copyWith(
+              //       fontSize: 14,
+              //       color: LightColor.grey,
+              //     ),
+              //   ),
+              // ),
               const Spacer(),
               buildProductPrice(
                 context,

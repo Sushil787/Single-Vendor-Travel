@@ -1,8 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:t_client/core/constants/firebase_collections.dart';
+import 'package:t_client/core/helper/extension/context_extension.dart';
 import 'package:t_client/core/theme/app_colors.dart';
+import 'package:t_client/core/widgets/custom_textfield.dart';
 import 'package:t_client/features/package/data/model/comment_model.dart';
 import 'package:t_client/features/package/presentation/bloc/comment/comment_cubit.dart';
 import 'package:t_client/features/user/domain/repository/user_repository.dart';
@@ -32,6 +35,7 @@ class _CommentWidgetState extends State<CommentWidget> {
     });
   }
 
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,9 +57,13 @@ class _CommentWidgetState extends State<CommentWidget> {
                 ),
               )
             : CircleAvatar(
+                backgroundColor: Colors.teal,
                 radius: 40,
                 child: Center(
-                  child: Text(widget.commentModel.uname.characters.first),
+                  child: Text(
+                    widget.commentModel.uname.characters.first,
+                    style: const TextStyle(color: Colors.black),
+                  ),
                 ),
               ),
         title: Text(widget.commentModel.uname),
@@ -74,8 +82,45 @@ class _CommentWidgetState extends State<CommentWidget> {
                           );
                     },
                   ),
-                  // const PopupMenuItem<int>(
-                  //     value: 1, child: Text('update')),
+                  PopupMenuItem<int>(
+                      value: 1,
+                      child: const Text('update'),
+                      onTap: () async {
+                        await showDialog<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            controller.text = widget.commentModel.comment;
+                            return AlertDialog(
+                              backgroundColor: LightColor.whiteSmoke,
+                              title: const Text(
+                                'Update Comment',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              content: CustomTextField(
+                                controller: controller,
+                                hintText: 'Add Comment',
+                                suffixIcon: Icons.send,
+                                onSuffixTap: (value) async {
+                                  if (value.isNotEmpty) {
+                                    await context
+                                        .read<CommentCubit>()
+                                        .updateComment(
+                                          commentId:
+                                              widget.commentModel.commentId,
+                                          message: value,
+                                          packageId:
+                                              widget.commentModel.packageId,
+                                        );
+                                    Navigator.pop(context);
+                                  }
+                                },
+                              ),
+                            );
+                          },
+                        );
+                      }),
                 ],
               )
             : null,

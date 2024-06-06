@@ -38,10 +38,7 @@ _$TravelPackageModelImpl _$$TravelPackageModelImplFromJson(
               .toList() ??
           const [],
       isFeatured: json['isFeatured'] as bool? ?? false,
-      reviews: (json['reviews'] as List<dynamic>?)
-              ?.map((e) => CommentModel.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      reviews: json['reviews'] as int? ?? 0,
       packageRating: (json['packageRating'] as num?)?.toDouble() ?? 0,
     );
 

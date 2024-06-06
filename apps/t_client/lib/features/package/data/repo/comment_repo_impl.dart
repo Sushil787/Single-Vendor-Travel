@@ -12,8 +12,10 @@ class CommentRepoImpl implements CommentRepo {
   /// Comment Datasource
   final CommentDataSource commendDataSource;
   @override
-  Future<void> addComments(
-      {required String packageId, required String comment}) {
+  Future<void> addComments({
+    required String packageId,
+    required String comment,
+  }) {
     try {
       final data =
           commendDataSource.addComments(packageId: packageId, comment: comment);
@@ -37,6 +39,23 @@ class CommentRepoImpl implements CommentRepo {
   Future<List<CommentModel>> getComments({required String packageId}) {
     try {
       final data = commendDataSource.getComments(packageId: packageId);
+      return data;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> updateComment(
+      {required String commentId,
+      required String packageId,
+      required String message}) {
+    try {
+      final data = commendDataSource.updateComment(
+        packageId: packageId,
+        commentId: commentId,
+        message: message,
+    );
       return data;
     } catch (e) {
       rethrow;

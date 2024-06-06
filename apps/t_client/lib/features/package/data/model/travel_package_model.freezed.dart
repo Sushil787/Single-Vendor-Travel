@@ -48,7 +48,7 @@ mixin _$TravelPackageModel {
   ///  telephone other
   List<String> get inclusive => throw _privateConstructorUsedError;
   bool get isFeatured => throw _privateConstructorUsedError;
-  List<CommentModel> get reviews => throw _privateConstructorUsedError;
+  int get reviews => throw _privateConstructorUsedError;
   double get packageRating => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -83,7 +83,7 @@ abstract class $TravelPackageModelCopyWith<$Res> {
       int favourite,
       List<String> inclusive,
       bool isFeatured,
-      List<CommentModel> reviews,
+      int reviews,
       double packageRating});
 }
 
@@ -202,7 +202,7 @@ class _$TravelPackageModelCopyWithImpl<$Res, $Val extends TravelPackageModel>
       reviews: null == reviews
           ? _value.reviews
           : reviews // ignore: cast_nullable_to_non_nullable
-              as List<CommentModel>,
+              as int,
       packageRating: null == packageRating
           ? _value.packageRating
           : packageRating // ignore: cast_nullable_to_non_nullable
@@ -239,7 +239,7 @@ abstract class _$$TravelPackageModelImplCopyWith<$Res>
       int favourite,
       List<String> inclusive,
       bool isFeatured,
-      List<CommentModel> reviews,
+      int reviews,
       double packageRating});
 }
 
@@ -354,9 +354,9 @@ class __$$TravelPackageModelImplCopyWithImpl<$Res>
           : isFeatured // ignore: cast_nullable_to_non_nullable
               as bool,
       reviews: null == reviews
-          ? _value._reviews
+          ? _value.reviews
           : reviews // ignore: cast_nullable_to_non_nullable
-              as List<CommentModel>,
+              as int,
       packageRating: null == packageRating
           ? _value.packageRating
           : packageRating // ignore: cast_nullable_to_non_nullable
@@ -388,14 +388,13 @@ class _$TravelPackageModelImpl implements _TravelPackageModel {
       this.favourite = 0,
       final List<String> inclusive = const [],
       this.isFeatured = false,
-      final List<CommentModel> reviews = const [],
+      this.reviews = 0,
       this.packageRating = 0})
       : _tags = tags,
         _images = images,
         _highlights = highlights,
         _pickupAddress = pickupAddress,
-        _inclusive = inclusive,
-        _reviews = reviews;
+        _inclusive = inclusive;
 
   factory _$TravelPackageModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$TravelPackageModelImplFromJson(json);
@@ -490,15 +489,9 @@ class _$TravelPackageModelImpl implements _TravelPackageModel {
   @override
   @JsonKey()
   final bool isFeatured;
-  final List<CommentModel> _reviews;
   @override
   @JsonKey()
-  List<CommentModel> get reviews {
-    if (_reviews is EqualUnmodifiableListView) return _reviews;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_reviews);
-  }
-
+  final int reviews;
   @override
   @JsonKey()
   final double packageRating;
@@ -547,7 +540,7 @@ class _$TravelPackageModelImpl implements _TravelPackageModel {
                 .equals(other._inclusive, _inclusive) &&
             (identical(other.isFeatured, isFeatured) ||
                 other.isFeatured == isFeatured) &&
-            const DeepCollectionEquality().equals(other._reviews, _reviews) &&
+            (identical(other.reviews, reviews) || other.reviews == reviews) &&
             (identical(other.packageRating, packageRating) ||
                 other.packageRating == packageRating));
   }
@@ -575,7 +568,7 @@ class _$TravelPackageModelImpl implements _TravelPackageModel {
         favourite,
         const DeepCollectionEquality().hash(_inclusive),
         isFeatured,
-        const DeepCollectionEquality().hash(_reviews),
+        reviews,
         packageRating
       ]);
 
@@ -615,7 +608,7 @@ abstract class _TravelPackageModel implements TravelPackageModel {
       final int favourite,
       final List<String> inclusive,
       final bool isFeatured,
-      final List<CommentModel> reviews,
+      final int reviews,
       final double packageRating}) = _$TravelPackageModelImpl;
 
   factory _TravelPackageModel.fromJson(Map<String, dynamic> json) =
@@ -669,7 +662,7 @@ abstract class _TravelPackageModel implements TravelPackageModel {
   @override
   bool get isFeatured;
   @override
-  List<CommentModel> get reviews;
+  int get reviews;
   @override
   double get packageRating;
   @override

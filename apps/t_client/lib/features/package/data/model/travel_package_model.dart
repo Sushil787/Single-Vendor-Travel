@@ -36,7 +36,7 @@ class TravelPackageModel with _$TravelPackageModel {
     ///  telephone other
     @Default([]) List<String> inclusive,
     @Default(false) bool isFeatured,
-   @Default([])  List<CommentModel> reviews,
+   @Default(0)  int reviews,
     @Default(0) double packageRating,
   }) = _TravelPackageModel;
 

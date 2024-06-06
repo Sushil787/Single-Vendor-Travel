@@ -30,6 +30,21 @@ class CommentCubit extends Cubit<CommentState> {
     }
   }
 
+  /// Get All Comments
+  Future<void> updateComment({
+    required String commentId,
+    required String packageId,
+    required String message,
+  }) async {
+    try {
+      final data = await commentRepo.updateComment(
+          packageId: packageId, commentId: commentId, message: message);
+      await getComments(packageId: packageId);
+    } catch (e) {
+      emit(CommentState.failure(e.toString()));
+    }
+  }
+
   /// Add Comments
   Future<void> addComment({
     required String packageId,

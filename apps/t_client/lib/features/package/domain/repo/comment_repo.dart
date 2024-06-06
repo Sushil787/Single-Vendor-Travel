@@ -7,10 +7,16 @@ abstract class CommentRepo {
 
   /// Add Comment
   Future<void> addComments(
-      {required String packageId, required String comment});
+      {required String packageId, required String comment,});
 
   /// Delete Comment
   Future<void> deleteComment({
     required String commentId,
+  });
+  /// Update Comment Comment
+  Future<void> updateComment({
+    required String commentId,
+    required String packageId,
+    required String message,
   });
 }
