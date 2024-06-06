@@ -17,11 +17,3 @@ Future<Uint8List?> getUnit8List(
 
 
 
-
-// Get response with bytes:
-
-// final rs = await Dio().get<List<int>>(
-//   url,
-//   options: Options(responseType: ResponseType.bytes), // Set the response type to `bytes`.
-// );
-// print(rs.data); /

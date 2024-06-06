@@ -13,6 +13,9 @@ import 'package:t_admin/features/package/data/model/travel_package_model.dart';
 
 import 'package:t_admin/features/package/presentation/ui/add_package_screen.dart';
 import 'package:t_admin/features/package/presentation/ui/package_screen.dart';
+import 'package:t_admin/features/product/model/product_model.dart';
+import 'package:t_admin/features/product/presentation/ui/add_product_screen.dart';
+import 'package:t_admin/features/product/presentation/ui/product_screen.dart';
 import 'package:t_admin/features/user/presentation/ui/all_user_screen.dart';
 import 'package:t_admin/features/user/presentation/ui/profile_screen.dart';
 
@@ -41,6 +44,10 @@ class AppRouter {
               GoRoute(
                 path: AppRoutes.users,
                 builder: (context, state) => const AllUserScreen(),
+              ),
+              GoRoute(
+                path: AppRoutes.product,
+                builder: (context, state) => const ProductsScreen(),
               ),
               GoRoute(
                 path: AppRoutes.bookedScreen,
@@ -76,6 +83,14 @@ class AppRouter {
         path: AppRoutes.splash,
         name: AppRoutes.splash,
         builder: (context, state) => const SplashScreen(),
+      ),
+      GoRoute(
+        parentNavigatorKey: _parentKey,
+        path: AppRoutes.addProduct,
+        name: AppRoutes.addProduct,
+        builder: (context, state) => AddProductScreen(
+          productModel: state.extra as ProductModel?,
+        ),
       ),
       GoRoute(
         path: AppRoutes.profile,

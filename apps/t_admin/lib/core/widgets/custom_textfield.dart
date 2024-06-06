@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:t_admin/core/theme/app_colors.dart';
 
 /// Custon Text Field
 class CustomTextField extends StatefulWidget {
@@ -15,8 +16,7 @@ class CustomTextField extends StatefulWidget {
     this.onSuffixTap,
     this.validationMessage,
     TextEditingController? controller, // Change the default value
-  })  : controller = controller ??
-            TextEditingController();
+  }) : controller = controller ?? TextEditingController();
 
   /// Hint text
   final String hintText;
@@ -43,7 +43,6 @@ class CustomTextField extends StatefulWidget {
 
   /// Suffix Icon
   final IconData? suffixIcon;
-
 
   /// TextEditing controller for [TextFormField]
   final TextEditingController controller;
@@ -74,7 +73,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         color: Colors.black,
       ),
       textInputAction: TextInputAction.next,
-      cursorColor: const Color.fromARGB(31, 74, 68, 68),
+      cursorColor: LightColor.eclipse,
       cursorHeight: 20,
       maxLines: widget.maxLine,
       obscureText: widget.isPassword && !isVisible,
@@ -91,15 +90,16 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     ? const Icon(Icons.visibility)
                     : const Icon(Icons.visibility_off),
               )
-            : InkWell(
-                onTap: () {
-                  widget.onSuffixTap?.call(widget.controller.text);
-                  widget.controller.clear();
-                },
-                child: Icon(widget.suffixIcon),
-              ),
-        prefixIcon:
-            widget.prefixIcon != null ? Icon(widget.prefixIcon) : null,
+            : widget.onSuffixTap != null
+                ? InkWell(
+                    onTap: () {
+                      widget.onSuffixTap?.call(widget.controller.text);
+                      widget.controller.clear();
+                    },
+                    child: Icon(widget.suffixIcon),
+                  )
+                : null,
+        prefixIcon: widget.prefixIcon != null ? Icon(widget.prefixIcon) : null,
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(10),

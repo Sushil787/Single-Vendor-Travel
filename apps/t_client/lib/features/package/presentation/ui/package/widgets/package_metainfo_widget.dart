@@ -42,11 +42,14 @@ class PackageMetaInfoWidget extends StatelessWidget {
               size: 18,
               color: LightColor.grey,
             ),
-            text: Text(
-              travelPackageModel.location,
-              style: context.textTheme.bodySmall?.copyWith(
-                fontSize: 14,
-                color: LightColor.grey,
+            text: Expanded(
+              child: Text(
+                travelPackageModel.location,
+                style: context.textTheme.bodySmall?.copyWith(
+                  fontSize: 14,
+                  overflow: TextOverflow.ellipsis,
+                  color: LightColor.grey,
+                ),
               ),
             ),
           ),

@@ -12,6 +12,7 @@ import 'package:t_admin/features/chat/presentation/cubit/message/message_cubit.d
 import 'package:t_admin/features/chat/presentation/cubit/user/user_cubit.dart';
 import 'package:t_admin/features/order/presentation/bloc/booking_bloc.dart';
 import 'package:t_admin/features/package/presentation/bloc/travel_bloc.dart';
+import 'package:t_admin/features/product/presentation/cubit/product_cubit.dart';
 import 'package:t_admin/features/user/domain/repository/user_repository.dart';
 import 'package:t_admin/features/user/presentation/cubit/credential/auth_cubit.dart';
 import 'package:t_admin/features/user/presentation/cubit/profile/profile_cubit.dart';
@@ -32,7 +33,7 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   runApp(
     RepositoryProvider(
-      create: (context) =>  getIt<UserRepository>(),
+      create: (context) => getIt<UserRepository>(),
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -46,6 +47,9 @@ void main() async {
           ),
           BlocProvider(
             create: (context) => getIt<ProfileCubit>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt<ProductCubit>(),
           ),
           BlocProvider(
             create: (context) => getIt<UserCubit>(),

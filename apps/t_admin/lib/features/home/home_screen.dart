@@ -12,6 +12,7 @@ import 'package:t_admin/features/dashboard/presentation/ui/dashboard_screen.dart
 import 'package:t_admin/features/order/presentation/ui/booking_screen.dart';
 import 'package:t_admin/features/order/presentation/ui/cancle_request.dart';
 import 'package:t_admin/features/package/presentation/ui/package_screen.dart';
+import 'package:t_admin/features/product/presentation/ui/product_screen.dart';
 import 'package:t_admin/features/user/presentation/cubit/credential/auth_cubit.dart';
 import 'package:t_admin/features/user/presentation/cubit/profile/profile_cubit.dart';
 
@@ -27,6 +28,7 @@ List<Widget> pageList = const [
   PackageBookedScreen(),
   ChatScreen(),
   CancleRequestScreen(),
+  ProductsScreen(),
 ];
 
 /// Icons
@@ -37,16 +39,18 @@ List<IconData> icons = const [
   Icons.bookmark_outline,
   Icons.chat_outlined,
   Icons.cancel_outlined,
+  Icons.store
 ];
 
 /// Page Names
 List<String> pageName = const [
   'Dashboard',
   'All Users',
-  'Package',
-  'Booking',
+  'Packages',
+  'Orders',
   'Chat',
   'Cancle Request',
+  'Products'
 ];
 
 /// Home Screen
@@ -127,6 +131,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               return context.go('/${AppRoutes.chat}');
                             case 5:
                               return context.go('/${AppRoutes.cancleRequest}');
+                            case 6:
+                              return context.go('/${AppRoutes.product}');
                           }
                         },
                         child: Container(

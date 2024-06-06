@@ -11,6 +11,7 @@ class AppRoutes {
   /// Splash Screen
   static const String splash = '/splash';
 
+
   /// Login Router
   static const String login = '/login';
 
@@ -24,6 +25,12 @@ class AppRoutes {
 
   /// Cancle Request Screen
   static const String cancleRequest = 'cancle';
+
+  ///  Product Screen
+  static const String product = 'product';
+
+  /// Add Product  Screen
+  static const String addProduct = '/addProduct';
 
   /// User Booked Screen
   static const String bookedScreen = 'bookedScreen';
