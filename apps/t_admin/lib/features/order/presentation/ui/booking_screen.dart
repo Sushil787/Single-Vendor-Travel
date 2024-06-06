@@ -30,7 +30,7 @@ class _PackageScreenState extends State<PackageBookedScreen> {
             const SizedBox(
               height: 50,
               child: CustomLable(
-                lable: 'Orders',
+                lable: 'Bookings',
               ),
             ),
             Flexible(
@@ -61,7 +61,7 @@ class _PackageScreenState extends State<PackageBookedScreen> {
                       );
                     }
                     return const Center(
-                      child: Text('No orders yet'),
+                      child: Text('No Bookings yet'),
                     );
                   }
                   if (state is Error) {

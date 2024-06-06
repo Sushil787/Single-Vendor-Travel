@@ -116,7 +116,7 @@ class BuildProfileDetail extends StatelessWidget {
                 context.go('/${AppRoutes.home}');
               }
             },
-            buttonText: 'signout',
+            buttonText: 'Signout',
           ),
         ),
         // Padding(
@@ -128,7 +128,7 @@ class BuildProfileDetail extends StatelessWidget {
         //       }
         //       await context.read<ProfileCubit>().deleteAccount(uid: user.uid!);
         //     },
-        //     buttonText: 'delete account',
+        //     buttonText: 'Delete account',
         //   ),
         // ),
       ],

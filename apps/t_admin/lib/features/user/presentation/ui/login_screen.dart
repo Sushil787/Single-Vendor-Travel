@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('login', style: context.textTheme.headlineLarge),
+                  Text('  Login', style: context.textTheme.headlineLarge),
                   VerticalGap.s,
                   Divider(
                     thickness: 2,
@@ -50,23 +50,28 @@ class _LoginScreenState extends State<LoginScreen> {
                     key: formKey,
                     child: Column(
                       children: [
-                        CustomTextField(
-                          prefixIcon: Icons.email,
-                          hintText: 'Email',
-                          onChanged: (value) {
-                            email = value;
-                          },
-                          validator: (value) {
-                            if (value != null && value.isEmpty) {
-                              return 'please enter your email';
-                            }
-                            return null;
-                          },
-                        ),
+                        // SizedBox(
+                        //   width: context.width*.10,
+
+                          CustomTextField(
+                            prefixIcon: Icons.email,
+                            hintText: 'Email',
+                            onChanged: (value) {
+                              email = value;
+                            },
+                            validator: (value) {
+                              if (value != null && value.isEmpty) {
+                                return 'please enter your email';
+                              }
+                              return null;
+                            },
+                          ),
+                        // ),
                         VerticalGap.l,
-                        CustomTextField(
+                        CustomTextField( 
                           prefixIcon: Icons.password,
-                          hintText: 'password',
+                          
+                          hintText: ' Password',
                           onChanged: (value) {
                             password = value;
                           },
@@ -83,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                   ),
-                  VerticalGap.exl,
+                  VerticalGap.xxxl,
                   CustomElevatedButton(
                     isLoading: state is AuthLoading,
                     onButtonPressed: () {
@@ -94,9 +99,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             );
                       }
                     },
-                    buttonText: 'login',
+                    buttonText: 'Login',
                   ),
-                  VerticalGap.l,
+                  VerticalGap.xxxl,
                 ],
               );
             },
