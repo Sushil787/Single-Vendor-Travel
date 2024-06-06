@@ -17,13 +17,13 @@ class MediaAsset {
   /// banner image
   static const notuwaSplash = '$basePath/splash.gif';
 
-  /// notuwa image
+  /// Travello image
   static const notuwa = '$basePath/notuwa.png';
 
   /// place holder
   static const placeHolder = '$basePath/background.jpg';
 
-  /// notuwa image
+  /// Travello image
   static const logo = '$basePath/app_logo.png';
 
   /// Welcome image

@@ -32,21 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // SizedBox(
-            //   height: 70,
-            //   width: 240,
-            //   child: Image.asset(
-            //     MediaAsset.notuwaSplash,
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 50,
-            //   child: AnimatedTextKit(
-            //     animatedTexts: [
-
-            //     ],
-            //   ),
-            // ),
+           
             VerticalGap.m,
             SizedBox(
               height: 60,

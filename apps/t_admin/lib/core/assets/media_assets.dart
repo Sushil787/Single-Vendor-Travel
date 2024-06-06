@@ -9,12 +9,10 @@ class MediaAsset {
   static const googleImage = '$basePath/google.png';
 
 
-  /// notuwa image
-  static const notuwa = '$basePath/logo.png';
 
   /// place holder
   static const placeHolder = '$basePath/background.jpg';
 
-  /// notuwa image
+  /// Travello image
   static const logo = '$basePath/logo.png';
 }
