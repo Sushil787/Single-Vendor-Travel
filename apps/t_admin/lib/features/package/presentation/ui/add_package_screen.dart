@@ -388,6 +388,7 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
                                         longitude: double.parse(
                                           longitudeController.text,
                                         ),
+                                        highlights: higlights,
                                         inclusive: inclusive,
                                         packageName: nameController.text,
                                         location: locationController.text,
