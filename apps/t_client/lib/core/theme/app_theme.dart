@@ -7,7 +7,9 @@ class AppTheme {
   /// Light Theme
   static final ThemeData lightThemeData = ThemeData(
     fontFamily: GoogleFonts.poppins().fontFamily,
+    scaffoldBackgroundColor: Colors.white,
     primaryColor: LightColor.primaryColor,
+    // useMaterial3: true,
     iconTheme: const IconThemeData(color: LightColor.eclipse),
     appBarTheme: const AppBarTheme(
       backgroundColor: LightColor.backGroundColor,
@@ -23,7 +25,13 @@ class AppTheme {
         TargetPlatform.android: CupertinoPageTransitionsBuilder(),
       },
     ),
-
+    cardTheme: const CardTheme(
+      color: Colors.white,
+    ),
+  
+    navigationBarTheme: const NavigationBarThemeData(
+      backgroundColor: Colors.white,
+    ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: LightColor.primaryColor,
       selectedItemColor: LightColor.primaryColor,

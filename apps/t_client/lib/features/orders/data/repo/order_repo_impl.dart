@@ -27,7 +27,7 @@ class OrderRepo {
       const uuid = Uuid();
       final orderId = uuid.v4();
       final fcm = await FirebaseMessaging.instance.getToken();
-      log(name: 'prde', orderPackageModel.toJson().toString());
+      log(name: 'order', orderPackageModel.toJson().toString());
       final orderModel = orderPackageModel.copyWith(
         orderId: orderId,
         fcmToken: fcm,

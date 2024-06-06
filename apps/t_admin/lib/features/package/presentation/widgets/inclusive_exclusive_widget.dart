@@ -43,7 +43,7 @@ class BuildInclusiveExclusive extends StatelessWidget {
                   style: context.textTheme.displaySmall?.copyWith(
                       fontWeight: FontWeight.normal,
                       fontSize: 12,
-                      color: Colors.white),
+                      color: Colors.white,),
                 ),
               ),
             ),

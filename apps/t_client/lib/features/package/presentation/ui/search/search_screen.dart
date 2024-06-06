@@ -74,22 +74,18 @@ class _SearchScreenState extends State<SearchScreen> {
                       focusNode: focusNode,
                       onChanged: (value) {
                         packages.clear();
-
                         for (final element in remotePackages) {
-                          if (element.packageName
-                              .toLowerCase()
-                              .contains(value.toLowerCase())) {
+                          if (element.packageName.toLowerCase().contains(
+                                value.trim().toLowerCase(),
+                              )) {
                             packages.add(element);
                           }
                         }
                         _searchTimer?.cancel();
                         setState(() {});
-                        // Start a new timer for 1 second (adjust the duration
-                        //as needed)
+
                         _searchTimer =
                             Timer(const Duration(milliseconds: 1200), () {
-                          // Execute this code block after 1 second of
-                          // inactivity
                           if (value.length > 5) {
                             context.read<UserRepository>().addSearchHistory(
                                   searchQuery: value,

@@ -73,7 +73,6 @@ def return_json():
     if request.method == 'POST': 
        recommendations = recommend(uid)
     #    recommendation_json = jsonify({"recommended": json.dumps(recommendations)})
-
     return jsonify({"data": recommendations}), 200
 
 @app.route('/hello', methods=['GET']) 

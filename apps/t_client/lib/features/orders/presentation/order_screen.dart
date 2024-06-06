@@ -181,11 +181,24 @@ CustomElevatedButton cancleRequestButton(
                     'Cancle Travel Package',
                   ),
                   VerticalGap.s,
-                  Text(
-                    '''
+                  if (DateTime.now()
+                          .difference(DateTime.tryParse(order.createdAt!)!)
+                          .inHours >
+                      24)
+                    Text(
+                      '''
 Note, after cancelation of the travel package you will be refunded after deductiing 4% of your order cost''',
-                    style: context.textTheme.bodySmall?.copyWith(fontSize: 12),
-                  ),
+                      style: context.textTheme.bodySmall?.copyWith(
+                        fontSize: 12,
+                      ),
+                    )
+                  else
+                    Text(
+                      ''' Booked Package Cannot be cancled before 24 hr of booking''',
+                      style: context.textTheme.bodySmall?.copyWith(
+                        fontSize: 12,
+                      ),
+                    ),
                   VerticalGap.m,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -198,25 +211,29 @@ Note, after cancelation of the travel package you will be refunded after deducti
                         btnFontSize: 12,
                         backgroundColor: Colors.green.shade800,
                       ),
-                      CustomElevatedButton(
-                        backgroundColor: Colors.red.shade800,
-                        onButtonPressed: () {
-                          context.read<OrderBloc>().add(
-                                OrderEvent.updateOrder(
-                                  status: 'Cancle Request',
-                                  orderPackageModel: order,
-                                ),
-                              );
-                          context
-                            ..showSnackBar(
-                              message: 'Order Cancle Request Sent',
-                              toastType: ToastType.message,
-                            )
-                            ..pop();
-                        },
-                        buttonText: 'Cancle Package',
-                        btnFontSize: 12,
-                      ),
+                      if (DateTime.now()
+                              .difference(DateTime.tryParse(order.createdAt!)!)
+                              .inHours >
+                          24)
+                        CustomElevatedButton(
+                          backgroundColor: Colors.red.shade800,
+                          onButtonPressed: () {
+                            context.read<OrderBloc>().add(
+                                  OrderEvent.updateOrder(
+                                    status: 'Cancle Request',
+                                    orderPackageModel: order,
+                                  ),
+                                );
+                            context
+                              ..showSnackBar(
+                                message: 'Order Cancle Request Sent',
+                                toastType: ToastType.message,
+                              )
+                              ..pop();
+                          },
+                          buttonText: 'Cancle Package',
+                          btnFontSize: 12,
+                        )
                     ],
                   ),
                 ],

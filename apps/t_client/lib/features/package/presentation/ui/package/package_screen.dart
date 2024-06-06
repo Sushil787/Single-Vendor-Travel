@@ -40,7 +40,7 @@ class PackageScreen extends StatefulWidget {
 }
 
 class _PackageScreenState extends State<PackageScreen> {
-  FocusNode focusNode = FocusNode();
+  // FocusNode focusNode = FocusNode();
   @override
   void initState() {
     super.initState();
@@ -78,9 +78,9 @@ class _PackageScreenState extends State<PackageScreen> {
                     child: CustomTextField(
                       onTap: () {
                         context.push(AppRoutes.search);
-                        focusNode.dispose();
+                        // focusNode.dispose();
                       },
-                      focusNode: focusNode,
+                      // focusNode: focusNode,
                       prefixIcon: Icons.search,
                       hintText: 'Search place and explore',
                     ),

@@ -82,7 +82,7 @@ class _ProfileWidgetButtonState extends State<ProfileWidgetButton> {
               HorizontalGap.m,
               Expanded(
                 child: SizedBox(
-                  height: 40,
+                  height: 42,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,

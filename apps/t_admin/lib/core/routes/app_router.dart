@@ -1,11 +1,9 @@
 // ignore_for_file: cast_nullable_to_non_nullable
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:t_admin/core/constants/route_constants.dart';
 import 'package:t_admin/core/screens/splash_screen.dart';
-import 'package:t_admin/di/di_setup.dart';
 import 'package:t_admin/features/chat/presentation/ui/chat_screen.dart';
 import 'package:t_admin/features/dashboard/presentation/ui/dashboard_screen.dart';
 import 'package:t_admin/features/home/home_screen.dart';
@@ -45,6 +43,10 @@ class AppRouter {
                 builder: (context, state) => const AllUserScreen(),
               ),
               GoRoute(
+                path: AppRoutes.bookedScreen,
+                builder: (context, state) => const PackageBookedScreen(),
+              ),
+              GoRoute(
                 path: AppRoutes.cancleRequest,
                 builder: (context, state) => const CancleRequestScreen(),
               ),
@@ -61,10 +63,6 @@ class AppRouter {
                     ),
                   ),
                 ],
-              ),
-              GoRoute(
-                path: AppRoutes.bookedScreen,
-                builder: (context, state) => const PackageBookedScreen(),
               ),
               GoRoute(
                 path: AppRoutes.chat,
@@ -86,17 +84,8 @@ class AppRouter {
         ),
       ),
     ],
-    redirect: (context, state) {
-      final user = getIt<FirebaseAuth>().currentUser;
-      if (user?.uid == null || user!.uid.isEmpty) {
-        return AppRoutes.home;
-      }
-      return AppRoutes.login;
-    },
   );
 
   /// Router Getter
   GoRouter get router => _router;
 }
-
-

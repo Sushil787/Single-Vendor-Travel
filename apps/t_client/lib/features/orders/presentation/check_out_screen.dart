@@ -132,7 +132,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         ),
                         productIdentity: orderPackageModel.packageId ?? '',
                         productName: orderPackageModel.packageName ?? '',
-                        productUrl: 'https://www.google.com',
+                        productUrl: 'https://www.testurl.com',
                       ),
                       onSuccess: (_) async {
                         context.read<OrderBloc>().add(

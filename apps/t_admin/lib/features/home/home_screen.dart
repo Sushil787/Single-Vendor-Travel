@@ -59,7 +59,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedPageIndex = 0;
+  int _selectedPageIndex = 2;
 
   @override
   void initState() {

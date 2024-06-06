@@ -47,7 +47,7 @@ class TravelBloc extends Bloc<TravelEvent, TravelPackageState> {
   /// Travel Repository
   final TravelRepo travelRepo;
 
-  late int totalPackages;
+  late int totalPackages = 0;
 
   Future<void> _delete(
     Emitter<TravelPackageState> emit,

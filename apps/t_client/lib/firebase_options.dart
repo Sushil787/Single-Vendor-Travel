@@ -43,6 +43,7 @@ class DefaultFirebaseOptions {
           'DefaultFirebaseOptions have not been configured for linux - '
           'you can reconfigure this by running the FlutterFire CLI again.',
         );
+      // ignore: no_default_cases
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform.',
@@ -50,6 +51,7 @@ class DefaultFirebaseOptions {
     }
   }
 
+  ///
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDLVMI6KrfHTy7QHKbogWKyPD0oCu_QYYI',
     appId: '1:1055467771631:android:0574f77952fc69d317ad1a',
@@ -58,14 +60,17 @@ class DefaultFirebaseOptions {
     storageBucket: 'kura-777b6.appspot.com',
   );
 
+  ///
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDMTDeJ9_oGkR68-qHyVgycuDinJjB_jtQ',
     appId: '1:1055467771631:ios:ebc5c129978af09f17ad1a',
     messagingSenderId: '1055467771631',
     projectId: 'kura-777b6',
     storageBucket: 'kura-777b6.appspot.com',
-    androidClientId: '1055467771631-2fda7sj2snr7f6j4uotrdqjikq1nj5ms.apps.googleusercontent.com',
-    iosClientId: '1055467771631-1hbeiqv3r2u54lqkpii6e5r5fpl144ph.apps.googleusercontent.com',
+    androidClientId:
+        '1055467771631-2fda7sj2snr7f6j4uotrdqjikq1nj5ms.apps.googleusercontent.com',
+    iosClientId:
+        '1055467771631-1hbeiqv3r2u54lqkpii6e5r5fpl144ph.apps.googleusercontent.com',
     iosBundleId: 'com.app.tClient',
   );
 }

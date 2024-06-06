@@ -14,9 +14,9 @@ app = Flask(__name__)
 cred = credentials.Certificate("key.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
-
 travel_packages = []
 recommendations = []
+
 
 '''
 Get user search history from firebase database
@@ -27,8 +27,9 @@ def get_user_search_history(user_id)->list:
    history = collection.where(filter=FieldFilter('uid', '==', user_id)).get()
    for doc in history:
     user_search_history.append(doc.to_dict()['search'])
+   print(f'user search history -> {list(set(user_search_history))}')
    return list(set(user_search_history))
-    # return []
+    
 
 '''
 Get travel packages from firebase firestore
@@ -46,7 +47,7 @@ def prepate_dict():
     packages_dict = {}
     for package in travel_packages:
         packages_dict[package["uuid"]] = package["packageName"]
-    print(packages_dict)
+    # print(packages_dict)
     return packages_dict
 STOP_WORDS = set(["the", "and", "is", "in", "it", "to", "of", "this", "that", "for"])
 '''
@@ -84,7 +85,6 @@ def compute_tf_idf(document, vocabulary, cleaned_documents):
     terms = preprocess(document)
     tf_idf_vector = np.zeros(len(vocabulary))
     tf = calculate_tf(terms)
-
     for i, term in enumerate(vocabulary):
         term = remove_special_characters(term)
         if term in tf:
@@ -105,7 +105,6 @@ def calculate_tf(terms):
 # Compute Term Inverse Document frequency
 def calculate_idf(term, cleaned_documents):
     term = remove_special_characters(term).strip().lower()
-    
     # add one if the term is present in document
     num_documents_with_term = sum(
         1 for document in cleaned_documents if term in document.lower()
@@ -120,8 +119,19 @@ def calculate_idf(term, cleaned_documents):
 
 # cleaned document: ['first document', 'second document has more content', 'Another document with some unique content']
 # vocabulary: ['content', 'second', 'has', 'some', 'unique', 'with', 'more', 'first', 'document', 'Another']
+    '''
+    Given a search history and a set of documents, this function returns a list of recommendations based on their similarity to the search history.
+    
+    Parameters:
+    - search_history (str): The search history entered by the user.
+    - documents (dict): A dictionary containing the documents to be analyzed, where the keys are document IDs and the values are the documents themselves.
+    
+    Returns:
+    - recommendations (list): A list of tuples, where each tuple contains a document ID and its similarity score to the search history. The list is sorted in descending order of similarity scores.
+    '''
 def get_recommendations(search_history, documents):
     cleaned_documents = clean_documents(documents)
+    print(f'cleaned document {cleaned_documents}')
     vocabulary = list(set([term for document in cleaned_documents for term in document.split()]))
     print("from vocabulary")
     print(vocabulary)
@@ -130,16 +140,21 @@ def get_recommendations(search_history, documents):
     for key, document in documents.items():
         tf_idf_vector = compute_tf_idf(document, vocabulary, cleaned_documents)
         tfidf_matrix.append((key, tf_idf_vector))
-
+        
+    print(f'tfidf_matrix -> {tfidf_matrix}')
     search_tfidf = compute_tf_idf(search_history, vocabulary, cleaned_documents)
+    print(f'search_tfidf -> {search_tfidf}')
     similarities = []
     for _, doc_tfidf in tfidf_matrix:
+        print(f'consine similarity -> {cosine_similarity(search_tfidf, doc_tfidf)}')
         similarities.append(cosine_similarity(search_tfidf, doc_tfidf))
 
     sorted_indices = np.argsort(similarities)[::-1]
     print((tfidf_matrix[i][0], similarities[i]) for i in sorted_indices)
     recommendations = [(tfidf_matrix[i][0], similarities[i]) for i in sorted_indices]
+    print(f'recommendation-> {recommendations}')
     return recommendations
+
 
 # calculate Cosie similarity
 def cosine_similarity(vec1, vec2):
@@ -173,6 +188,8 @@ def recommend(uid)->list:
                         if package not in results:
                             results.append(package)
                         break
+    print(f'results -> {results}')
+    return results
 
 #     for search in user_search_history:
 #         recommendations = get_recommendations(search, packages_dict)
@@ -185,23 +202,18 @@ def recommend(uid)->list:
 #                     if package["uuid"] == doc:
 #                         results.append(package)
 #                         break
-    return results
-
-
 
 @app.route('/recommend', methods=['POST']) 
 def return_json(): 
-    print("hello")
     request_data = request.json
     uid = request_data.get('uid')
     if request.method == 'POST': 
-      #  recommendations = [] 
        recommendations =(recommend(uid))
        print(len(recommendations))
-
-       
     return jsonify({"data": recommendations}), 200
-
 
 if __name__ == '__main__': 
     app.run(host='0.0.0.0', port=6000,debug=True)
+    
+    
+    

@@ -39,18 +39,14 @@ def get_recommendations(searches, corpus, tfidf_matrix, vocabulary):
                 index = vocabulary.index(word)
                 search_tfidf[index] = (search_history.split().count(word) / len(search_history.split())) * \
                                       np.log(len(corpus) / (1 + sum([1 for doc in corpus if word in doc])))
-
         # Calculate cosine similarity with each document
         similarities = []
         for i, doc_tfidf in enumerate(tfidf_matrix):
             similarities.append(cosine_similarity(search_tfidf, doc_tfidf))
-
         # Sort documents based on similarity
         sorted_indices = np.argsort(similarities)[::-1]
-
         # Get recommended documents
         recommendations = [(corpus[i], similarities[i]) for i in sorted_indices]
-        
         all_recommendations.append(recommendations)
 
     return all_recommendations

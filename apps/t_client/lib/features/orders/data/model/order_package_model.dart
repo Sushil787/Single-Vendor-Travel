@@ -15,29 +15,31 @@ class OrderPackageModel {
     required this.pickupLocation,
     required this.orderStatus,
     required this.userId,
-
     this.fcmToken,
     this.paymentStatus = 'unpaid',
+    this.createdAt,
   });
 
   /// Create object from JSON
   factory OrderPackageModel.fromJson(Map<String, dynamic> json) {
     return OrderPackageModel(
-        orderId: json['orderId'] as String,
-        packageId: json['packageID'] as String,
-        totalAmount: json['totalAmount'] as String,
-        totalPerson: json['totalPerson'] as String,
-        totalDays: json['totalDays'] as int,
-        name: json['name'] as String,
-        phone: json['phone'] as String,
-        from: json['from'] as String,
-        to: json['to'] as String,
-        pickupLocation: json['pickupLocation'] as String,
-        packageName: json['packageName'] as String,
-        paymentStatus: json['paymentStatus'] as String,
-        orderStatus: json['orderStatus'] as String,
-        fcmToken: json['fcmToken'] as String,
-        userId: json['userId'] as String,);
+      orderId: json['orderId'] as String,
+      packageId: json['packageID'] as String,
+      totalAmount: json['totalAmount'] as String,
+      totalPerson: json['totalPerson'] as String,
+      totalDays: json['totalDays'] as int,
+      name: json['name'] as String,
+      phone: json['phone'] as String,
+      from: json['from'] as String,
+      to: json['to'] as String,
+      pickupLocation: json['pickupLocation'] as String,
+      packageName: json['packageName'] as String,
+      paymentStatus: json['paymentStatus'] as String,
+      orderStatus: json['orderStatus'] as String,
+      fcmToken: json['fcmToken'] as String,
+      userId: json['userId'] as String,
+      createdAt: json['createdAt'] as String?,
+    );
   }
 
   /// Package Name
@@ -85,6 +87,9 @@ class OrderPackageModel {
   /// to Date
   final String? to;
 
+  /// Created at
+  final String? createdAt;
+
   /// Convert object to JSON
   Map<String, dynamic> toJson() {
     return {
@@ -103,6 +108,7 @@ class OrderPackageModel {
       'orderStatus': orderStatus,
       'fcmToken': fcmToken,
       'userId': userId,
+      'createdAt': DateTime.now().toString()
     };
   }
 
@@ -139,7 +145,7 @@ class OrderPackageModel {
       to: to ?? this.to,
       orderStatus: orderStatus ?? this.orderStatus,
       fcmToken: fcmToken ?? this.fcmToken,
-      userId: userId??this.userId,
+      userId: userId ?? this.userId,
     );
   }
 }

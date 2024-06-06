@@ -20,6 +20,8 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   bool _isLoading = true;
+  String earning = '0';
+  String totalPackage = '0';
 
   @override
   void initState() {
@@ -35,6 +37,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         log(name: 'earning from dash', earning);
         context.read<TravelBloc>().add(const TravelEvent.get());
         context.read<BookingBloc>().add(const BookingEvent.getBookedPackage());
+        totalPackage = context.read<TravelBloc>().totalPackages.toString();
       }
     } finally {
       if (mounted) {
@@ -44,8 +47,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
       }
     }
   }
-
-  String earning = '0';
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +68,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
                 GrowthCard(
                   lable: 'Total Packages',
-                  number: context.read<TravelBloc>().totalPackages.toString(),
+                  number: totalPackage,
                 ),
                 GrowthCard(
                   lable: 'Total Booking',

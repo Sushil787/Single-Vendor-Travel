@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 import 'package:t_client/core/constants/firebase_collections.dart';
@@ -75,8 +77,8 @@ class BookmarkDataSourceImpl implements BookmarkDataSource {
       if (snapshot.docs.isNotEmpty) {
         final doc = snapshot.docs.first;
         final currentCount = int.tryParse(doc['favourite'].toString()) ?? 0;
+        log(name: 'current count', currentCount.toString());
         // Default to 0 if 'favourite' field doesn't exist
-
         await doc.reference.update({'favourite': currentCount + count});
       }
     } catch (e) {
