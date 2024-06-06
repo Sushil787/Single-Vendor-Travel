@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:panorama_viewer/panorama_viewer.dart';
 import 'package:t_client/core/helper/geolocator_permission.dart';
@@ -32,17 +33,26 @@ class _PanaromicViewScreenState extends State<PanaromicViewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return PanoramaViewer(
-        onViewChanged: (longitude, latitude, tilt) {
-          setState(() {
-            _lat = latitude;
-            _lng = longitude;
-          });
-        },
-        latitude: _lat,
-        longitude: _lng,
-        animSpeed: 0.1,
-        sensorControl: SensorControl.orientation,
-        child: Image.network(widget.imageUrl),);
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.light,
+      ),
+      child: Scaffold(
+        body: PanoramaViewer(
+          onViewChanged: (longitude, latitude, tilt) {
+            setState(() {
+              _lat = latitude;
+              _lng = longitude;
+            });
+          },
+          latitude: _lat,
+          longitude: _lng,
+          animSpeed: 0.1,
+          sensorControl: SensorControl.orientation,
+          child: Image.network(widget.imageUrl),
+        ),
+      ),
+    );
   }
 }

@@ -32,6 +32,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   // Create a Timer variable
   Timer? _searchTimer;
+  FocusNode focusNode = FocusNode();
 
   /// Remote Packages
   List<TravelPackageModel> remotePackages = [];
@@ -40,6 +41,12 @@ class _SearchScreenState extends State<SearchScreen> {
     super.initState();
     remotePackages = context.read<TravelBloc>().package;
     debugPrint(remotePackages.length.toString());
+  }
+
+  @override
+  void dispose() {
+    focusNode.dispose();
+    super.dispose();
   }
 
   @override
@@ -64,6 +71,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     child: CustomTextField(
                       controller: _controller,
                       hintText: 'Goa package',
+                      focusNode: focusNode,
                       onChanged: (value) {
                         packages.clear();
 

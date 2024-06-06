@@ -40,6 +40,7 @@ class PackageScreen extends StatefulWidget {
 }
 
 class _PackageScreenState extends State<PackageScreen> {
+  FocusNode focusNode = FocusNode();
   @override
   void initState() {
     super.initState();
@@ -49,105 +50,109 @@ class _PackageScreenState extends State<PackageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 32, left: 16, right: 16),
-      child: BlocConsumer<TravelBloc, TravelPackageState>(
-        listener: (context, state) {
-          if (state is TravelPackageError) {
-            context.showSnackBar(
-              message: state.message,
-              toastType: ToastType.error,
-            );
-          }
-        },
-        builder: (context, state) {
-          if (state is TravelPackageLoaded) {
-            packages = state.packages;
-            return CustomScrollView(
-              controller: widget.scrollController,
-              slivers: [
-                SliverToBoxAdapter(
-                  child: CustomAppBar(uid: widget.uid),
-                ),
-                const SliverToBoxAdapter(
-                  child: VerticalGap.l,
-                ),
-                SliverToBoxAdapter(
-                  child: CustomTextField(
-                    onTap: () {
-                      context.push(AppRoutes.search);
-                    },
-                    prefixIcon: Icons.search,
-                    hintText: 'Search place and explore',
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.only(top: 32, left: 16, right: 16),
+        child: BlocConsumer<TravelBloc, TravelPackageState>(
+          listener: (context, state) {
+            if (state is TravelPackageError) {
+              context.showSnackBar(
+                message: state.message,
+                toastType: ToastType.error,
+              );
+            }
+          },
+          builder: (context, state) {
+            if (state is TravelPackageLoaded) {
+              packages = state.packages;
+              return CustomScrollView(
+                controller: widget.scrollController,
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: CustomAppBar(uid: widget.uid),
                   ),
-                ),
-                SliverToBoxAdapter(
-                  child: Container(
-                    height: context.height * .39,
-                    margin: const EdgeInsets.only(top: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Featured Place',
-                          style: context.textTheme.headlineSmall
-                              ?.copyWith(fontWeight: FontWeight.bold),
-                        ),
-                        VerticalGap.s,
-                        FeaturedPageBuilder(
-                          travelPackageModels: state.packages,
-                        ),
-                      ],
+                  const SliverToBoxAdapter(
+                    child: VerticalGap.l,
+                  ),
+                  SliverToBoxAdapter(
+                    child: CustomTextField(
+                      onTap: () {
+                        context.push(AppRoutes.search);
+                        focusNode.dispose();
+                      },
+                      focusNode: focusNode,
+                      prefixIcon: Icons.search,
+                      hintText: 'Search place and explore',
                     ),
                   ),
-                ),
-                SliverToBoxAdapter(
-                  child: BlocBuilder<RecommendBloc, RecommendState>(
-                    builder: (context, state) {
-                      if (state is RecommendLoaded) {
-                        return state.packages.isEmpty
-                            ? const SizedBox.shrink()
-                            : Container(
-                                margin: const EdgeInsets.only(bottom: 8),
-                                child: RecentlyAddedPackages(
-                                  travelPackageModels: state.packages,
-                                  title: 'Package Recommended',
-                                ),
-                              );
-                      }
-                      if (state is RecommendLoading) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      return const SizedBox.shrink();
-                    },
+                  SliverToBoxAdapter(
+                    child: Container(
+                      height: context.height * .39,
+                      margin: const EdgeInsets.only(top: 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Featured Place',
+                            style: context.textTheme.headlineSmall
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          VerticalGap.s,
+                          FeaturedPageBuilder(
+                            travelPackageModels: state.packages,
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-                SliverToBoxAdapter(
-                  child: RecentlyAddedPackages(
-                    travelPackageModels: state.packages,
-                    title: 'Recently Added',
+                  SliverToBoxAdapter(
+                    child: BlocBuilder<RecommendBloc, RecommendState>(
+                      builder: (context, state) {
+                        if (state is RecommendLoaded) {
+                          return state.packages.isEmpty
+                              ? const SizedBox.shrink()
+                              : Container(
+                                  margin: const EdgeInsets.only(bottom: 8),
+                                  child: RecentlyAddedPackages(
+                                    travelPackageModels: state.packages,
+                                    title: 'Package Recommended',
+                                  ),
+                                );
+                        }
+                        if (state is RecommendLoading) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      },
+                    ),
                   ),
-                ),
-                SliverToBoxAdapter(
-                  child: Packages(
-                    packages: state.packages,
+                  SliverToBoxAdapter(
+                    child: RecentlyAddedPackages(
+                      travelPackageModels: state.packages,
+                      title: 'Recently Added',
+                    ),
                   ),
-                ),
-              ],
-            );
-          }
-          if (state is Loading) {
+                  SliverToBoxAdapter(
+                    child: Packages(
+                      packages: state.packages,
+                    ),
+                  ),
+                ],
+              );
+            }
+            if (state is Loading) {
+              return const Center(
+                child: CircularProgressIndicator.adaptive(),
+              );
+            }
             return const Center(
-              child: CircularProgressIndicator.adaptive(),
+              child: Text('Error Loading Data'),
             );
-          }
-          return const Center(
-            child: Text('Error Loading Data'),
-          );
-        },
+          },
+        ),
       ),
     );
   }

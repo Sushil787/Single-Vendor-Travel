@@ -16,7 +16,7 @@ class CustomTextField extends StatefulWidget {
     // this.formKey,
     this.validationMessage,
     TextEditingController? controller,
-    this.autoFocus,
+    this.focusNode,
     this.onTap,
     this.textInputType, // Change the default value
   }) : controller = controller ?? TextEditingController();
@@ -49,7 +49,7 @@ class CustomTextField extends StatefulWidget {
   final IconData? suffixIcon;
 
   /// Auto Focus
-  final bool? autoFocus;
+  final FocusNode? focusNode;
 
   /// onTap
   final VoidCallback? onTap;
@@ -71,10 +71,17 @@ class _CustomTextFieldState extends State<CustomTextField> {
   bool isVisible = false;
 
   @override
+  void dispose() {
+    super.dispose();
+
+
+  }
+
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
       keyboardType: widget.textInputType,
-      autofocus: widget.autoFocus ?? false,
+      focusNode: widget.focusNode,
       onTap: widget.onTap,
       controller: widget.controller,
       validator: widget.validator ??
