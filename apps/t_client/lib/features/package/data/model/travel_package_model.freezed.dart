@@ -41,8 +41,6 @@ mixin _$TravelPackageModel {
   int get favourite => throw _privateConstructorUsedError;
 
   /// Like included, food, bathroom ,wifi, ac , bottle water, newspaper
-  /// , bathrobe,
-  ///  telephone other
   List<String> get inclusive => throw _privateConstructorUsedError;
   bool get isFeatured => throw _privateConstructorUsedError;
   List<CommentModel>? get reviews => throw _privateConstructorUsedError;
@@ -443,13 +441,9 @@ class _$TravelPackageModelImpl implements _TravelPackageModel {
   final int favourite;
 
   /// Like included, food, bathroom ,wifi, ac , bottle water, newspaper
-  /// , bathrobe,
-  ///  telephone other
   final List<String> _inclusive;
 
   /// Like included, food, bathroom ,wifi, ac , bottle water, newspaper
-  /// , bathrobe,
-  ///  telephone other
   @override
   @JsonKey()
   List<String> get inclusive {
@@ -627,8 +621,6 @@ abstract class _TravelPackageModel implements TravelPackageModel {
   @override
 
   /// Like included, food, bathroom ,wifi, ac , bottle water, newspaper
-  /// , bathrobe,
-  ///  telephone other
   List<String> get inclusive;
   @override
   bool get isFeatured;

@@ -15,6 +15,7 @@ import 'package:t_client/features/package/presentation/ui/package/detail/package
 import 'package:t_client/features/package/presentation/ui/package/detail/panaromic_view.dart';
 import 'package:t_client/features/package/presentation/ui/search/search_screen.dart';
 import 'package:t_client/features/user/presentation/ui/login_screen.dart';
+import 'package:t_client/features/user/presentation/ui/password-reset/presentation/password_reset_screen.dart';
 import 'package:t_client/features/user/presentation/ui/profile_screen.dart';
 import 'package:t_client/features/user/presentation/ui/signup_screen.dart';
 
@@ -34,6 +35,13 @@ class AppRouter {
           return HomeScreen(
             uid: state.extra! as String,
           );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.forgotPassword,
+        name: AppRoutes.forgotPassword,
+        builder: (context, state) {
+          return const ForgotPasswordScreen();
         },
       ),
       GoRoute(

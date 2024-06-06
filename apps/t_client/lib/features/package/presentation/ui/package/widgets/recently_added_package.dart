@@ -11,8 +11,11 @@ import 'package:t_client/features/package/presentation/ui/package/widgets/discou
 /// Recently Added Package Widgets
 class RecentlyAddedPackages extends StatelessWidget {
   ///
-  const RecentlyAddedPackages(
-      {required this.travelPackageModels, required this.title, super.key,});
+  const RecentlyAddedPackages({
+    required this.travelPackageModels,
+    required this.title,
+    super.key,
+  });
 
   /// title
   final String title;

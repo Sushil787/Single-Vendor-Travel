@@ -106,6 +106,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       child: Column(
         children: [
           CustomTextField(
+            controller: TextEditingController(),
             prefixIcon: Icons.person,
             hintText: 'username',
             onChanged: (value) {

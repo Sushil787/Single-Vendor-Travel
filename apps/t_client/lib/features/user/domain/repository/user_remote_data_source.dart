@@ -3,9 +3,9 @@ import 'package:t_client/features/user/domain/entities/user_entity.dart';
 
 /// UserRemote Data Source
 abstract class UserRemoteDataSource {
-
   /// Update token
   Future<void> updateToken();
+
   /// Google Auth
   Future<void> googleAuth();
 
@@ -44,4 +44,7 @@ abstract class UserRemoteDataSource {
 
   /// Auth State Change Stream
   Stream<User?> authStateChange();
+
+  /// Store Search history
+  Future<void> addSearchHistory({required String searchQuery});
 }

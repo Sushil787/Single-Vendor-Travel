@@ -9,6 +9,9 @@ class TravelPackageState with _$TravelPackageState {
   const factory TravelPackageState.loaded({
     required List<TravelPackageModel> packages,
   }) = TravelPackageLoaded;
+  const factory TravelPackageState.recommendedloaded({
+    required List<TravelPackageModel> packages,
+  }) = RecommendedTravelPackageLoaded;
   const factory TravelPackageState.error({required String message}) =
       TravelPackageError;
 }

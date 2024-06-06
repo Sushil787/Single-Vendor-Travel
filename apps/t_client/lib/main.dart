@@ -15,6 +15,8 @@ import 'package:t_client/features/bookmark/presentation/bloc/bloc/bookmark_bloc.
 import 'package:t_client/features/chat/domain/chat_data_repo.dart';
 import 'package:t_client/features/chat/presentation/cubit/chat_cubit.dart';
 import 'package:t_client/features/orders/presentation/bloc/order_bloc.dart';
+import 'package:t_client/features/package/domain/repo/travel_data_source.dart';
+import 'package:t_client/features/package/presentation/bloc/recommend/recommend_bloc.dart';
 import 'package:t_client/features/package/presentation/bloc/travel_bloc/travel_bloc.dart';
 import 'package:t_client/features/user/domain/repository/user_repository.dart';
 import 'package:t_client/features/user/presentation/cubit/credential/cubit/auth_cubit.dart';
@@ -34,11 +36,15 @@ void main() async {
   runApp(
     MultiRepositoryProvider(
       providers: [
+        // getRecommended
         RepositoryProvider(
           create: (context) => getIt<ChatDataRepository>(),
         ),
         RepositoryProvider(
           create: (context) => getIt<UserRepository>(),
+        ),
+        RepositoryProvider(
+          create: (context) => getIt<TravelDataSource>(),
         ),
       ],
       child: MultiBlocProvider(
@@ -63,6 +69,9 @@ void main() async {
           ),
           BlocProvider(
             create: (context) => getIt<BookmarkBloc>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt<RecommendBloc>(),
           ),
         ],
         child: DevicePreview(

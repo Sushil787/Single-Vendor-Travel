@@ -2,142 +2,83 @@ import string
 from flask import Flask, jsonify, request 
 import firebase_admin 
 from firebase_admin import credentials, firestore
-import sqlite3
-con = sqlite3.connect("travel.db")
+from google.cloud.firestore_v1.base_query import FieldFilter
+import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import json
+
 app = Flask(__name__) 
 
 cred = credentials.Certificate("key.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
+user_search_history = []
+travel_packages = []
 
-CREATE_PACKAGE_TABLE = '''CREATE TABLE IF NOT EXISTS travel_packages (
-             uuid TEXT PRIMARY KEY,
-             packageType TEXT,
-             tags TEXT,
-             images TEXT,
-             featuredImage TEXT,
-             vrImage TEXT,
-             description TEXT,
-             latitude REAL,
-             longitude REAL,
-             perHeadPerNight REAL,
-             packageName TEXT,
-             location TEXT,
-             createdAt TEXT,
-             highlights TEXT,
-             discount REAL,
-             favourite INTEGER,
-             inclusive TEXT,
-             isFeatured INTEGER,
-             packageRating REAL)'''
 
-USER_SEARCH_HISTORY_TABLE = '''CREATE TABLE IF NOT EXISTS user_search_history (
-             id INTEGER PRIMARY KEY AUTOINCREMENT,
-             user_id TEXT,
-             search_query TEXT,
-             search_timestamp TEXT)'''
-
-GET_USER_SEARCH_HISTORY = '''
-SELECT * FROM user_search_history WHERE user_id = ?
 '''
-
-
-def create_table():
-    try:
-        cursor = con.cursor()
-        cursor.execute(CREATE_PACKAGE_TABLE)
-        cursor.execute(USER_SEARCH_HISTORY_TABLE)
-        
-    except sqlite3.Error as error:
-        print('Error -', error)
-        
-    finally:
-        print('SQLite Connection closed')
-
-        
-        
+Get travel packages from firebase firestore
 '''
-Insert Firestore Data into Database
+def get_travel_package_model()->list:
+    collection = db.collection('packages')
+    docs = collection.get()
+    for doc in docs:
+        travel_packages.append(doc.to_dict())
+    return travel_packages
+
+
 '''
-def insert_firestore_data_to_table():
-    try:
-        cursor = con.cursor()
-        cursor.execute(CREATE_PACKAGE_TABLE)
-        cursor.execute(USER_SEARCH_HISTORY_TABLE)
-        
-    except sqlite3.Error as error:
-        print('Error -', error)
-        
-    finally:
-        print('SQLite Connection closed')
+Get user search history from firebase database
+'''
+def get_user_search_history(user_id)->list:
+   collection =  db.collection('search_history')
+   history = collection.where(filter=FieldFilter('uid', '==', user_id)).get()
+   for doc in history:
+    user_search_history.append(doc.to_dict()['search'])
+   return user_search_history
 
 
 
-def get_search_hostory_from_table(id:string):
-    try:
-        cursor = con.cursor()
-        cursor.execute(GET_USER_SEARCH_HISTORY, (id,))
-        histories = cursor.fetchall()  # Fetch all rows
-        search_queries = [entry[2] for entry in histories]
-        concatenated_string = ', '.join(search_queries)
-        print(concatenated_string)
-        
-    except sqlite3.Error as error:
-        print('Error -', error)
-        
-    finally:
-        print('SQLite Connection closed')
-
+def recommend(uid)->list:
+    packages = get_travel_package_model()
+    search_history = get_user_search_history(uid)
     
+    # Preprocess data and convert to numerical vectors
+    vectorizer = TfidfVectorizer()
+    user_search_vectors = vectorizer.fit_transform(search_history)
+    package_descriptions = [package["packageName"] for package in packages]
+    package_description_vectors = vectorizer.transform(package_descriptions)
+    # Calculate cosine similarity
+    similarity_scores = cosine_similarity(user_search_vectors, package_description_vectors)
+    # Find indices of packages similar to user search history
+    print(similarity_scores)
 
-    
-    
+    similar_packages_indices = np.where(similarity_scores > 0.7)
+    # Recommend travel packages similar to user search history
+    recommendations = [travel_packages[i] for i in similar_packages_indices[1]]
 
-create_table() 
-get_search_hostory_from_table('xyz')
-@app.route('/search', methods=['POST'])
-def search():
-    cursor = con.cursor()
-    try:
-
-        if request.method == 'POST':
-            data = request.get_json()
-            time_stamp = data['search_timestamp']
-            search_query = data['search_query']
-            user_id = data['user_id']
-            cursor.execute("INSERT INTO user_search_history (user_id, search_query, search_timestamp) VALUES (?, ?, ?)",
-                           (user_id, search_query, time_stamp))
-            con.commit() 
-            # Return a response
-            return '',200
-
-        else:
-            # Handle other HTTP methods if necessary
-            return "Method not allowed", 405
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-    finally:
-        cursor.close()
+    print("Recommendations based on user search history:")
+    for recommendation in recommendations:
+          print(recommendation["packageName"])
+        # print(recommendation["packageName"], "-", recommendation["description"])
+    return recommendations
 
 
-
-
-
-@app.route('/returnjson', methods=['GET']) 
+# 'eSzgXnDPejSAd9swEfZd05CWWSr1'
+@app.route('/recommend', methods=['POST']) 
 def return_json(): 
-    if request.method == 'GET': 
-        packages = db.collection("packages").get()
-        data = []
-        for package in packages:
-            package_data = package.to_dict()
-            package_data['id'] = package.id
-            data.append(package_data)
-        
-        response = { 
-            "Modules": len(data),  # Number of packages
-            "data": data, 
-        } 
-        return jsonify(response), 200
+    request_data = request.json
+    uid = request_data.get('uid')
+    if request.method == 'POST': 
+       recommendations = recommend(uid)
+    #    recommendation_json = jsonify({"recommended": json.dumps(recommendations)})
+
+    return jsonify({"data": recommendations}), 200
+
+@app.route('/hello', methods=['GET']) 
+def get(): 
+    return jsonify({'hello':"boy"}), 200
 
 if __name__ == '__main__': 
     app.run(debug=True)

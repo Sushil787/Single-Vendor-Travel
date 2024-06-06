@@ -363,7 +363,8 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
                               formKeyLongitude.currentState!.validate() &&
                               formKeyDescription.currentState!.validate() &&
                               formKeyPrice.currentState!.validate() &&
-                              inclusive.isNotEmpty && higlights.isNotEmpty) {
+                              inclusive.isNotEmpty &&
+                              higlights.isNotEmpty) {
                             if (images.isNotEmpty &&
                                 featuredImage != null &&
                                 vrImage != null) {
@@ -392,7 +393,8 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
                                         location: locationController.text,
                                         isFeatured: isFeatured,
                                         discount: double.parse(
-                                            discountController.text,),
+                                          discountController.text,
+                                        ),
                                         tags: [],
                                         perHeadPerNight: double.parse(
                                           priceController.text,

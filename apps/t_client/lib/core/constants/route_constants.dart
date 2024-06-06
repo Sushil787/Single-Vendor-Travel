@@ -15,6 +15,8 @@ class AppRoutes {
 
   /// Home Route
   static const String home = '/';
+    /// Forgot Password
+  static const String forgotPassword = '/forgot-password';
 
   ///Signup Route
   static const String signup = '/signup';

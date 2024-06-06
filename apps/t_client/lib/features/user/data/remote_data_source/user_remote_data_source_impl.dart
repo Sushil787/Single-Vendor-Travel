@@ -275,4 +275,19 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
         .doc(firebaseAuth.currentUser!.uid)
         .update({'fcmToken': token});
   }
+
+  @override
+  Future<void> addSearchHistory({
+    required String searchQuery,
+  }) async {
+    final search = firebaseFirestore.collection(searchHistory);
+
+    // Check if the searchQuery already exists in the collection
+    final querySnapshot =
+        await search.where('search', isEqualTo: searchQuery).get();
+    if (querySnapshot.docs.isEmpty) {
+      final uid = firebaseAuth.currentUser!.uid;
+      await search.doc().set({'uid': uid, 'search': searchQuery});
+    }
+  }
 }

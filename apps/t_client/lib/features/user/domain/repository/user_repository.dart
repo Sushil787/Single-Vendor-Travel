@@ -44,4 +44,7 @@ abstract class UserRepository {
 
   /// Get Single User
   Stream<List<UserEntity>> getSingleUser({required String uid});
+
+  /// Store Search history
+  Future<void> addSearchHistory({required String searchQuery});
 }

@@ -36,7 +36,7 @@ class OrderPackageModel {
         paymentStatus: json['paymentStatus'] as String,
         orderStatus: json['orderStatus'] as String,
         fcmToken: json['fcmToken'] as String,
-        userId: json['userId'] as String);
+        userId: json['userId'] as String,);
   }
 
   /// Package Name
@@ -138,7 +138,7 @@ class OrderPackageModel {
       to: to ?? this.to,
       orderStatus: orderStatus ?? this.orderStatus,
       fcmToken: fcmToken ?? this.fcmToken,
-      userId: userId??this.userId
+      userId: userId??this.userId,
     );
   }
 }

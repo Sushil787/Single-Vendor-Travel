@@ -16,15 +16,16 @@ class TravelBloc extends Bloc<TravelEvent, TravelPackageState> {
       : super(const TravelPackageState.initial()) {
     on<TravelEvent>((event, emit) async {
       await event.when(
-        get: () => _get(emit)
-        
-        ,
+        getRecommended: () => _getRecommended(emit),
+        get: () => _get(emit),
       );
     });
   }
   List<TravelPackageModel> package = [];
+
   /// Travel Repository
   final TravelRepo travelRepo;
+
   /// Get all Packages
   Future<void> _get(Emitter<TravelPackageState> emit) async {
     try {
@@ -36,6 +37,16 @@ class TravelBloc extends Bloc<TravelEvent, TravelPackageState> {
           emit(TravelPackageLoaded(packages: data));
         },
       );
+    } catch (e) {
+      emit(TravelPackageState.error(message: e.toString()));
+    }
+  }
+
+  /// Get Recommended
+  Future<void> _getRecommended(Emitter<TravelPackageState> emit) async {
+    try {
+      final data = await travelRepo.getRecommended();
+      emit(RecommendedTravelPackageLoaded(packages: data ?? []));
     } catch (e) {
       emit(TravelPackageState.error(message: e.toString()));
     }

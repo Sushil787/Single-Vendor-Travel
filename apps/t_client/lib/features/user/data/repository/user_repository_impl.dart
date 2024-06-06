@@ -161,4 +161,17 @@ class UserRepositoryImpl implements UserRepository {
   Future<void> updateToken() async {
     await userRemoteDataSource.updateToken();
   }
+
+  @override
+  Future<void> addSearchHistory({
+    required String searchQuery,
+  }) async {
+    try {
+      await userRemoteDataSource.addSearchHistory(searchQuery: searchQuery);
+    } on FirebaseAuthException catch (e) {
+      throw FirebaseAuthException(code: e.code);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 }

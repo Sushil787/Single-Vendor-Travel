@@ -19,32 +19,38 @@ mixin _$TravelEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() get,
+    required TResult Function() getRecommended,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? get,
+    TResult? Function()? getRecommended,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? get,
+    TResult Function()? getRecommended,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Get value) get,
+    required TResult Function(GetRecommend value) getRecommended,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Get value)? get,
+    TResult? Function(GetRecommend value)? getRecommended,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Get value)? get,
+    TResult Function(GetRecommend value)? getRecommended,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -111,6 +117,7 @@ class _$GetImpl with DiagnosticableTreeMixin implements Get {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() get,
+    required TResult Function() getRecommended,
   }) {
     return get();
   }
@@ -119,6 +126,7 @@ class _$GetImpl with DiagnosticableTreeMixin implements Get {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? get,
+    TResult? Function()? getRecommended,
   }) {
     return get?.call();
   }
@@ -127,6 +135,7 @@ class _$GetImpl with DiagnosticableTreeMixin implements Get {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? get,
+    TResult Function()? getRecommended,
     required TResult orElse(),
   }) {
     if (get != null) {
@@ -139,6 +148,7 @@ class _$GetImpl with DiagnosticableTreeMixin implements Get {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Get value) get,
+    required TResult Function(GetRecommend value) getRecommended,
   }) {
     return get(this);
   }
@@ -147,6 +157,7 @@ class _$GetImpl with DiagnosticableTreeMixin implements Get {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Get value)? get,
+    TResult? Function(GetRecommend value)? getRecommended,
   }) {
     return get?.call(this);
   }
@@ -155,6 +166,7 @@ class _$GetImpl with DiagnosticableTreeMixin implements Get {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Get value)? get,
+    TResult Function(GetRecommend value)? getRecommended,
     required TResult orElse(),
   }) {
     if (get != null) {
@@ -169,12 +181,122 @@ abstract class Get implements TravelEvent {
 }
 
 /// @nodoc
+abstract class _$$GetRecommendImplCopyWith<$Res> {
+  factory _$$GetRecommendImplCopyWith(
+          _$GetRecommendImpl value, $Res Function(_$GetRecommendImpl) then) =
+      __$$GetRecommendImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetRecommendImplCopyWithImpl<$Res>
+    extends _$TravelEventCopyWithImpl<$Res, _$GetRecommendImpl>
+    implements _$$GetRecommendImplCopyWith<$Res> {
+  __$$GetRecommendImplCopyWithImpl(
+      _$GetRecommendImpl _value, $Res Function(_$GetRecommendImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetRecommendImpl with DiagnosticableTreeMixin implements GetRecommend {
+  const _$GetRecommendImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TravelEvent.getRecommended()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'TravelEvent.getRecommended'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetRecommendImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() get,
+    required TResult Function() getRecommended,
+  }) {
+    return getRecommended();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? get,
+    TResult? Function()? getRecommended,
+  }) {
+    return getRecommended?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? get,
+    TResult Function()? getRecommended,
+    required TResult orElse(),
+  }) {
+    if (getRecommended != null) {
+      return getRecommended();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Get value) get,
+    required TResult Function(GetRecommend value) getRecommended,
+  }) {
+    return getRecommended(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Get value)? get,
+    TResult? Function(GetRecommend value)? getRecommended,
+  }) {
+    return getRecommended?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Get value)? get,
+    TResult Function(GetRecommend value)? getRecommended,
+    required TResult orElse(),
+  }) {
+    if (getRecommended != null) {
+      return getRecommended(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetRecommend implements TravelEvent {
+  const factory GetRecommend() = _$GetRecommendImpl;
+}
+
+/// @nodoc
 mixin _$TravelPackageState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TravelPackageModel> packages) loaded,
+    required TResult Function(List<TravelPackageModel> packages)
+        recommendedloaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -183,6 +305,7 @@ mixin _$TravelPackageState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<TravelPackageModel> packages)? loaded,
+    TResult? Function(List<TravelPackageModel> packages)? recommendedloaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -191,6 +314,7 @@ mixin _$TravelPackageState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<TravelPackageModel> packages)? loaded,
+    TResult Function(List<TravelPackageModel> packages)? recommendedloaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -200,6 +324,8 @@ mixin _$TravelPackageState {
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
     required TResult Function(TravelPackageLoaded value) loaded,
+    required TResult Function(RecommendedTravelPackageLoaded value)
+        recommendedloaded,
     required TResult Function(TravelPackageError value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -208,6 +334,7 @@ mixin _$TravelPackageState {
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
     TResult? Function(TravelPackageLoaded value)? loaded,
+    TResult? Function(RecommendedTravelPackageLoaded value)? recommendedloaded,
     TResult? Function(TravelPackageError value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -216,6 +343,7 @@ mixin _$TravelPackageState {
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
     TResult Function(TravelPackageLoaded value)? loaded,
+    TResult Function(RecommendedTravelPackageLoaded value)? recommendedloaded,
     TResult Function(TravelPackageError value)? error,
     required TResult orElse(),
   }) =>
@@ -287,6 +415,8 @@ class _$InitialImpl with DiagnosticableTreeMixin implements Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TravelPackageModel> packages) loaded,
+    required TResult Function(List<TravelPackageModel> packages)
+        recommendedloaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -298,6 +428,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<TravelPackageModel> packages)? loaded,
+    TResult? Function(List<TravelPackageModel> packages)? recommendedloaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -309,6 +440,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<TravelPackageModel> packages)? loaded,
+    TResult Function(List<TravelPackageModel> packages)? recommendedloaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -324,6 +456,8 @@ class _$InitialImpl with DiagnosticableTreeMixin implements Initial {
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
     required TResult Function(TravelPackageLoaded value) loaded,
+    required TResult Function(RecommendedTravelPackageLoaded value)
+        recommendedloaded,
     required TResult Function(TravelPackageError value) error,
   }) {
     return initial(this);
@@ -335,6 +469,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements Initial {
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
     TResult? Function(TravelPackageLoaded value)? loaded,
+    TResult? Function(RecommendedTravelPackageLoaded value)? recommendedloaded,
     TResult? Function(TravelPackageError value)? error,
   }) {
     return initial?.call(this);
@@ -346,6 +481,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements Initial {
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
     TResult Function(TravelPackageLoaded value)? loaded,
+    TResult Function(RecommendedTravelPackageLoaded value)? recommendedloaded,
     TResult Function(TravelPackageError value)? error,
     required TResult orElse(),
   }) {
@@ -407,6 +543,8 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TravelPackageModel> packages) loaded,
+    required TResult Function(List<TravelPackageModel> packages)
+        recommendedloaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -418,6 +556,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<TravelPackageModel> packages)? loaded,
+    TResult? Function(List<TravelPackageModel> packages)? recommendedloaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -429,6 +568,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<TravelPackageModel> packages)? loaded,
+    TResult Function(List<TravelPackageModel> packages)? recommendedloaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -444,6 +584,8 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
     required TResult Function(TravelPackageLoaded value) loaded,
+    required TResult Function(RecommendedTravelPackageLoaded value)
+        recommendedloaded,
     required TResult Function(TravelPackageError value) error,
   }) {
     return loading(this);
@@ -455,6 +597,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
     TResult? Function(TravelPackageLoaded value)? loaded,
+    TResult? Function(RecommendedTravelPackageLoaded value)? recommendedloaded,
     TResult? Function(TravelPackageError value)? error,
   }) {
     return loading?.call(this);
@@ -466,6 +609,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
     TResult Function(TravelPackageLoaded value)? loaded,
+    TResult Function(RecommendedTravelPackageLoaded value)? recommendedloaded,
     TResult Function(TravelPackageError value)? error,
     required TResult orElse(),
   }) {
@@ -566,6 +710,8 @@ class _$TravelPackageLoadedImpl
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TravelPackageModel> packages) loaded,
+    required TResult Function(List<TravelPackageModel> packages)
+        recommendedloaded,
     required TResult Function(String message) error,
   }) {
     return loaded(packages);
@@ -577,6 +723,7 @@ class _$TravelPackageLoadedImpl
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<TravelPackageModel> packages)? loaded,
+    TResult? Function(List<TravelPackageModel> packages)? recommendedloaded,
     TResult? Function(String message)? error,
   }) {
     return loaded?.call(packages);
@@ -588,6 +735,7 @@ class _$TravelPackageLoadedImpl
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<TravelPackageModel> packages)? loaded,
+    TResult Function(List<TravelPackageModel> packages)? recommendedloaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -603,6 +751,8 @@ class _$TravelPackageLoadedImpl
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
     required TResult Function(TravelPackageLoaded value) loaded,
+    required TResult Function(RecommendedTravelPackageLoaded value)
+        recommendedloaded,
     required TResult Function(TravelPackageError value) error,
   }) {
     return loaded(this);
@@ -614,6 +764,7 @@ class _$TravelPackageLoadedImpl
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
     TResult? Function(TravelPackageLoaded value)? loaded,
+    TResult? Function(RecommendedTravelPackageLoaded value)? recommendedloaded,
     TResult? Function(TravelPackageError value)? error,
   }) {
     return loaded?.call(this);
@@ -625,6 +776,7 @@ class _$TravelPackageLoadedImpl
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
     TResult Function(TravelPackageLoaded value)? loaded,
+    TResult Function(RecommendedTravelPackageLoaded value)? recommendedloaded,
     TResult Function(TravelPackageError value)? error,
     required TResult orElse(),
   }) {
@@ -644,6 +796,185 @@ abstract class TravelPackageLoaded implements TravelPackageState {
   @JsonKey(ignore: true)
   _$$TravelPackageLoadedImplCopyWith<_$TravelPackageLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RecommendedTravelPackageLoadedImplCopyWith<$Res> {
+  factory _$$RecommendedTravelPackageLoadedImplCopyWith(
+          _$RecommendedTravelPackageLoadedImpl value,
+          $Res Function(_$RecommendedTravelPackageLoadedImpl) then) =
+      __$$RecommendedTravelPackageLoadedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<TravelPackageModel> packages});
+}
+
+/// @nodoc
+class __$$RecommendedTravelPackageLoadedImplCopyWithImpl<$Res>
+    extends _$TravelPackageStateCopyWithImpl<$Res,
+        _$RecommendedTravelPackageLoadedImpl>
+    implements _$$RecommendedTravelPackageLoadedImplCopyWith<$Res> {
+  __$$RecommendedTravelPackageLoadedImplCopyWithImpl(
+      _$RecommendedTravelPackageLoadedImpl _value,
+      $Res Function(_$RecommendedTravelPackageLoadedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? packages = null,
+  }) {
+    return _then(_$RecommendedTravelPackageLoadedImpl(
+      packages: null == packages
+          ? _value._packages
+          : packages // ignore: cast_nullable_to_non_nullable
+              as List<TravelPackageModel>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RecommendedTravelPackageLoadedImpl
+    with DiagnosticableTreeMixin
+    implements RecommendedTravelPackageLoaded {
+  const _$RecommendedTravelPackageLoadedImpl(
+      {required final List<TravelPackageModel> packages})
+      : _packages = packages;
+
+  final List<TravelPackageModel> _packages;
+  @override
+  List<TravelPackageModel> get packages {
+    if (_packages is EqualUnmodifiableListView) return _packages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_packages);
+  }
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TravelPackageState.recommendedloaded(packages: $packages)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TravelPackageState.recommendedloaded'))
+      ..add(DiagnosticsProperty('packages', packages));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RecommendedTravelPackageLoadedImpl &&
+            const DeepCollectionEquality().equals(other._packages, _packages));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_packages));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RecommendedTravelPackageLoadedImplCopyWith<
+          _$RecommendedTravelPackageLoadedImpl>
+      get copyWith => __$$RecommendedTravelPackageLoadedImplCopyWithImpl<
+          _$RecommendedTravelPackageLoadedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<TravelPackageModel> packages) loaded,
+    required TResult Function(List<TravelPackageModel> packages)
+        recommendedloaded,
+    required TResult Function(String message) error,
+  }) {
+    return recommendedloaded(packages);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<TravelPackageModel> packages)? loaded,
+    TResult? Function(List<TravelPackageModel> packages)? recommendedloaded,
+    TResult? Function(String message)? error,
+  }) {
+    return recommendedloaded?.call(packages);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<TravelPackageModel> packages)? loaded,
+    TResult Function(List<TravelPackageModel> packages)? recommendedloaded,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (recommendedloaded != null) {
+      return recommendedloaded(packages);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(TravelPackageLoaded value) loaded,
+    required TResult Function(RecommendedTravelPackageLoaded value)
+        recommendedloaded,
+    required TResult Function(TravelPackageError value) error,
+  }) {
+    return recommendedloaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(TravelPackageLoaded value)? loaded,
+    TResult? Function(RecommendedTravelPackageLoaded value)? recommendedloaded,
+    TResult? Function(TravelPackageError value)? error,
+  }) {
+    return recommendedloaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(TravelPackageLoaded value)? loaded,
+    TResult Function(RecommendedTravelPackageLoaded value)? recommendedloaded,
+    TResult Function(TravelPackageError value)? error,
+    required TResult orElse(),
+  }) {
+    if (recommendedloaded != null) {
+      return recommendedloaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RecommendedTravelPackageLoaded implements TravelPackageState {
+  const factory RecommendedTravelPackageLoaded(
+          {required final List<TravelPackageModel> packages}) =
+      _$RecommendedTravelPackageLoadedImpl;
+
+  List<TravelPackageModel> get packages;
+  @JsonKey(ignore: true)
+  _$$RecommendedTravelPackageLoadedImplCopyWith<
+          _$RecommendedTravelPackageLoadedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -724,6 +1055,8 @@ class _$TravelPackageErrorImpl
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TravelPackageModel> packages) loaded,
+    required TResult Function(List<TravelPackageModel> packages)
+        recommendedloaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -735,6 +1068,7 @@ class _$TravelPackageErrorImpl
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<TravelPackageModel> packages)? loaded,
+    TResult? Function(List<TravelPackageModel> packages)? recommendedloaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -746,6 +1080,7 @@ class _$TravelPackageErrorImpl
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<TravelPackageModel> packages)? loaded,
+    TResult Function(List<TravelPackageModel> packages)? recommendedloaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -761,6 +1096,8 @@ class _$TravelPackageErrorImpl
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
     required TResult Function(TravelPackageLoaded value) loaded,
+    required TResult Function(RecommendedTravelPackageLoaded value)
+        recommendedloaded,
     required TResult Function(TravelPackageError value) error,
   }) {
     return error(this);
@@ -772,6 +1109,7 @@ class _$TravelPackageErrorImpl
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
     TResult? Function(TravelPackageLoaded value)? loaded,
+    TResult? Function(RecommendedTravelPackageLoaded value)? recommendedloaded,
     TResult? Function(TravelPackageError value)? error,
   }) {
     return error?.call(this);
@@ -783,6 +1121,7 @@ class _$TravelPackageErrorImpl
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
     TResult Function(TravelPackageLoaded value)? loaded,
+    TResult Function(RecommendedTravelPackageLoaded value)? recommendedloaded,
     TResult Function(TravelPackageError value)? error,
     required TResult orElse(),
   }) {

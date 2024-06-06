@@ -10,4 +10,7 @@ abstract class TravelRepo {
 
   /// Add Category
   Future<void> addTravelCategory({required String category});
+
+  /// Add Category
+  Future<List<TravelPackageModel>?> getRecommended();
 }

@@ -8,6 +8,8 @@ import 'package:t_client/core/theme/app_colors.dart';
 import 'package:t_client/features/bookmark/presentation/bookmark_screen.dart';
 import 'package:t_client/features/chat/presentation/chat_screen.dart';
 import 'package:t_client/features/orders/presentation/order_screen.dart';
+import 'package:t_client/features/package/domain/repo/travel_data_source.dart';
+import 'package:t_client/features/package/presentation/bloc/recommend/recommend_bloc.dart';
 import 'package:t_client/features/package/presentation/bloc/travel_bloc/travel_bloc.dart';
 import 'package:t_client/features/package/presentation/ui/home/widget/selected_widget.dart';
 import 'package:t_client/features/package/presentation/ui/package/package_screen.dart';
@@ -45,6 +47,8 @@ class _HomeScreenState extends State<HomeScreen>
     context.read<UserRepository>().updateToken();
     context.read<ProfileCubit>().getProfile(uid: widget.uid);
     context.read<TravelBloc>().add(const Get());
+    context.read<RecommendBloc>().add(const Recommend());
+
     uid = widget.uid;
     scrollController.addListener(() {
       if (scrollController.position.userScrollDirection ==
@@ -177,6 +181,7 @@ class _HomeScreenState extends State<HomeScreen>
               )
             : const SizedBox.shrink(),
       ),
+      floatingActionButton: floatingButton(context),
     );
   }
 
@@ -185,7 +190,9 @@ class _HomeScreenState extends State<HomeScreen>
     return FloatingActionButton(
       backgroundColor: LightColor.eclipse,
       child: const Icon(Icons.add),
-      onPressed: () async {},
+      onPressed: () async {
+        await context.read<TravelDataSource>().getRecommended();
+      },
     );
   }
 

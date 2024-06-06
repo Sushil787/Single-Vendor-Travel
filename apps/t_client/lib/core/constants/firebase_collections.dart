@@ -25,3 +25,7 @@ const String userBookMarks = 'user_bookmarks';
 
 /// Collections for orders
 const String packageOrder = 'order';
+
+
+/// Collections for search history
+const String searchHistory = 'search_history';

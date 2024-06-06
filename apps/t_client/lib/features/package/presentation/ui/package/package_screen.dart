@@ -9,6 +9,7 @@ import 'package:t_client/core/helper/gap.dart';
 import 'package:t_client/core/theme/app_colors.dart';
 import 'package:t_client/core/widgets/custom_textfield.dart';
 import 'package:t_client/features/package/data/model/travel_package_model.dart';
+import 'package:t_client/features/package/presentation/bloc/recommend/recommend_bloc.dart';
 import 'package:t_client/features/package/presentation/bloc/travel_bloc/travel_bloc.dart';
 import 'package:t_client/features/package/presentation/ui/package/widgets/app_bar.dart';
 import 'package:t_client/features/package/presentation/ui/package/widgets/featured_place_widget.dart';
@@ -100,6 +101,22 @@ class _PackageScreenState extends State<PackageScreen> {
                         ),
                       ],
                     ),
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: BlocBuilder<RecommendBloc, RecommendState>(
+                    builder: (context, state) {
+                      if (state is RecommendLoaded) {
+                        return Container(
+                          margin: const EdgeInsets.only(bottom: 8),
+                          child: RecentlyAddedPackages(
+                            travelPackageModels: state.packages,
+                            title: 'Package Recommended',
+                          ),
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
                   ),
                 ),
                 SliverToBoxAdapter(

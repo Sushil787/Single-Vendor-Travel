@@ -18,9 +18,9 @@ class TravelRepoImpl implements TravelRepo {
   }
 
   @override
-  Stream<List<TravelPackageModel>> getTravelPackages()  {
+  Stream<List<TravelPackageModel>> getTravelPackages() {
     try {
-      final packages =  travelDataSource.getTravelPackages();
+      final packages = travelDataSource.getTravelPackages();
       return packages;
     } catch (e) {
       rethrow;
@@ -29,8 +29,17 @@ class TravelRepoImpl implements TravelRepo {
 
   @override
   Stream<List<TravelPackageModel>> searchPackage({required String search}) {
-     try {
+    try {
       return travelDataSource.searchPackage(search: search);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<TravelPackageModel>> getRecommended() {
+    try {
+      return travelDataSource.getRecommended();
     } catch (e) {
       rethrow;
     }

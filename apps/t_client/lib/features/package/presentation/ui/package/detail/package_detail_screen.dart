@@ -15,10 +15,9 @@ import 'package:t_client/features/bookmark/presentation/bloc/bloc/bookmark_bloc.
 import 'package:t_client/features/package/data/model/travel_package_model.dart';
 import 'package:t_client/features/package/presentation/ui/package/detail/widget/build_add_favourite.dart';
 import 'package:t_client/features/package/presentation/ui/package/detail/widget/item_row.dart';
-import 'package:t_client/features/package/presentation/ui/package/package_screen.dart';
 import 'package:t_client/features/package/presentation/ui/package/widgets/build_package_price.dart';
 import 'package:t_client/features/package/presentation/ui/package/widgets/icon_text_row.dart';
-import 'package:t_client/features/package/presentation/ui/package/widgets/recently_added_package.dart';
+import 'package:t_client/features/user/domain/repository/user_repository.dart';
 
 /// Package Detail Screen
 class PackageDetailScreen extends StatefulWidget {
@@ -57,10 +56,16 @@ class _PackageDetailScreenState extends State<PackageDetailScreen> {
   void initState() {
     super.initState();
     context.read<BookmarkBloc>().getBookMarks();
+
     if (mounted) {
       startTimer();
       _pageController = PageController();
     }
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await context.read<UserRepository>().addSearchHistory(
+            searchQuery: widget.travelPackageModel.packageName,
+          );
+    });
   }
 
   @override
@@ -214,10 +219,6 @@ class _PackageDetailScreenState extends State<PackageDetailScreen> {
                     BuildInclusiveExclusive(
                       title: 'Highlights',
                       items: widget.travelPackageModel.highlights,
-                    ),
-                    RecentlyAddedPackages(
-                      travelPackageModels: packages,
-                      title: 'You may also like',
                     ),
                   ],
                 ),
