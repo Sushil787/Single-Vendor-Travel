@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
@@ -32,6 +34,7 @@ class TravelDataSourceImpl implements TravelDataSource {
     required TravelPackageModel travelPackageModel,
   }) async {
     try {
+      log(travelPackageModel.toJson().toString());
       final firebaseStorageUitls = getIt<FirebaseStorageUitls>();
       final collectionRef = firestore.collection('packages');
       final featuredImageUrl = await firebaseStorageUitls.uploadImage(
@@ -57,9 +60,13 @@ class TravelDataSourceImpl implements TravelDataSource {
             )
             .toJson(),
       );
-    } on FirebaseException {
+    } on FirebaseException catch (e) {
+      log(name: 'firebase', e.toString());
+
       rethrow;
-    } on Exception {
+    } on Exception catch (e) {
+      log(name: 'exception', e.toString());
+
       rethrow;
     }
   }

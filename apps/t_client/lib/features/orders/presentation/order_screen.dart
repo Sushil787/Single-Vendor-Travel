@@ -154,8 +154,22 @@ Widget buildOrderWidget(
           first: 'Order Id: ${order.orderId}',
           second: ' ',
         ),
-        if (!order.orderStatus!.toLowerCase().contains('can'))
-          cancleRequestButton(context, order),
+        if (!order.orderStatus!.toLowerCase().contains('can') &&
+            !DateTime.parse(order.from!).isBefore(DateTime.now()))
+          cancleRequestButton(context, order, 'Request cancle')
+        else if (DateTime.parse(order.from!).isBefore(DateTime.now()) &&
+            order.orderStatus == 'confirmed')
+          Container(
+            height: 40,
+            alignment: Alignment.center,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4),
+              color: LightColor.eclipse,
+            ),
+            child: const Text('Visited',
+                style: TextStyle(color: Colors.white, fontSize: 14)),
+          )
       ],
     ),
   );
@@ -165,6 +179,7 @@ Widget buildOrderWidget(
 CustomElevatedButton cancleRequestButton(
   BuildContext context,
   OrderPackageModel order,
+  String btnTxt,
 ) {
   return CustomElevatedButton(
     onButtonPressed: () async {
@@ -178,13 +193,11 @@ CustomElevatedButton cancleRequestButton(
               child: Column(
                 children: [
                   const Text(
-                    'Cancle Travel Package',
+                    'cancel Travel Package',
                   ),
                   VerticalGap.s,
-                  if (DateTime.now()
-                          .difference(DateTime.tryParse(order.createdAt!)!)
-                          .inHours >
-                      24)
+                  if (DateTime.tryParse(order.from!)!.day - 1 !=
+                      DateTime.now().day)
                     Text(
                       '''
 Note, after cancelation of the travel package you will be refunded after deductiing 4% of your order cost''',
@@ -194,7 +207,7 @@ Note, after cancelation of the travel package you will be refunded after deducti
                     )
                   else
                     Text(
-                      ''' Booked Package Cannot be cancled before 24 hr of booking''',
+                      '''Booked Package Cannot be cancel one day before! \n Tomorrow is your travel date be prepared.''',
                       style: context.textTheme.bodySmall?.copyWith(
                         fontSize: 12,
                       ),
@@ -211,10 +224,8 @@ Note, after cancelation of the travel package you will be refunded after deducti
                         btnFontSize: 12,
                         backgroundColor: Colors.green.shade800,
                       ),
-                      if (DateTime.now()
-                              .difference(DateTime.tryParse(order.createdAt!)!)
-                              .inHours >
-                          24)
+                      if (DateTime.tryParse(order.from!)!.day - 1 !=
+                          DateTime.now().day)
                         CustomElevatedButton(
                           backgroundColor: Colors.red.shade800,
                           onButtonPressed: () {
@@ -226,12 +237,12 @@ Note, after cancelation of the travel package you will be refunded after deducti
                                 );
                             context
                               ..showSnackBar(
-                                message: 'Order Cancle Request Sent',
+                                message: 'Order Cancel Request Sent',
                                 toastType: ToastType.message,
                               )
                               ..pop();
                           },
-                          buttonText: 'Cancle Package',
+                          buttonText: 'Cancel Package',
                           btnFontSize: 12,
                         )
                     ],
@@ -243,8 +254,8 @@ Note, after cancelation of the travel package you will be refunded after deducti
         },
       );
     },
-    btnFontSize: 12,
-    buttonText: 'Request cancle',
+    btnFontSize: 14,
+    buttonText: btnTxt,
   );
 }
 
