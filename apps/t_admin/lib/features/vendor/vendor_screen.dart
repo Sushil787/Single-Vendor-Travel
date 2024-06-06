@@ -15,7 +15,7 @@ class _VendorScreenState extends State<VendorScreen> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar:AppBar(actions: [Text('Vendor'), HorizontalGap.l],) ,
+      appBar:AppBar(actions: const [Text('Vendor'), HorizontalGap.l],) ,
       ///      appBar:AppBar(title:Text('Vendor')) ,
 
       body: Column(

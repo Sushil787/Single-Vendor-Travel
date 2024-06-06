@@ -1,15 +1,9 @@
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "app_name",
-            "request": "launch",
-            "type": "dart",
-            "args": [
-                "-d",
-                "chrome",
-                "--debug"
-            ]
-        },
-    ]
-}
+{   
+ "version": "0.2.0",
+ "configurations": [{
+        "name": "Flutter",
+        "request": "launch",
+        "type": "dart",
+        "args": ["-d", "chrome","--web-port", "8000"],
+    }
+]}
