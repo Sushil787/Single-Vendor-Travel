@@ -2,27 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:t_admin/core/helper/extension/context_extension.dart';
 import 'package:t_admin/core/helper/gap.dart';
-import 'package:t_admin/core/theme/app_colors.dart';
 import 'package:t_admin/core/widgets/custom_button.dart';
 import 'package:t_admin/core/widgets/custom_textfield.dart';
+import 'package:t_admin/di/di_setup.dart';
 import 'package:t_admin/features/user/presentation/cubit/credential/auth_cubit.dart';
-import 'package:t_admin/features/vendor/vendor_login.dart';
+import 'package:t_admin/features/vendor/repo/vendor_repo.dart';
 
 /// Login Page
-class LoginScreen extends StatefulWidget {
+class VendorLogin extends StatefulWidget {
   ///
-  const LoginScreen({super.key});
+  const VendorLogin({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<VendorLogin> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<VendorLogin> {
   /// user Email
   String? email;
 
   /// user Password
   String? password;
+
+  final auth = getIt<VendorRepo>();
 
   /// Form Key
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -36,12 +38,10 @@ class _LoginScreenState extends State<LoginScreen> {
             horizontal: context.width * .3,
             vertical: context.height * .2,
           ),
-          child: BlocBuilder<AuthCubit, AuthState>(
-            builder: (context, state) {
-              return Column(
+          child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('  Login', style: context.textTheme.headlineLarge),
+                  Text('Vendor  Login', style: context.textTheme.headlineLarge),
                   VerticalGap.s,
                   Divider(
                     thickness: 2,
@@ -91,36 +91,22 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   VerticalGap.xxxl,
-                  CustomElevatedButton(
-                    isLoading: state is AuthLoading,
-                    onButtonPressed: () {
+                ValueListenableBuilder(valueListenable:isLoading , builder: (context, isLoading, child){
+                  return   CustomElevatedButton(
+                    isLoading: isLoading,
+                    onButtonPressed: () async{
                       if (formKey.currentState!.validate()) {
-                        context.read<AuthCubit>().signIn(
-                              email: email!,
-                              password: password!,
-                            );
+                        
+                       await auth.login(context, email: email??'', password: password??'');
                       }
                     },
                     buttonText: 'Login',
-                  ),
+                  );
+                }),
                   VerticalGap.xxxl,
-                  /// Vendor Login
-                //  InkWell(
-                //   onTap: (){
-                //     Navigator.push(context, MaterialPageRoute(builder: (context)=>constVendorLogin()));
-
-                //  },child:Container(
-                //   padding:const EdgeInsets.all(4),
-                //   decoration: BoxDecoration(
-                //     border: Border.all(color: LightColor.eclipse, width: .4,),
-                //     borderRadius: BorderRadius.circular(12)
-                    
-                //   ),
-                //   child: const Text('Vendor Login')),)
+               
                 ],
-              );
-            },
-          ),
+              ),
         ),
       ),
     );

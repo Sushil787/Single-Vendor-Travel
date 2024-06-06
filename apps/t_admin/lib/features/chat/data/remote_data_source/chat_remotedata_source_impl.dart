@@ -155,7 +155,7 @@ class ChatDataSourceImpl implements ChatDataSource {
         return event.docs.map(LatestMessageUser.fromSnapshot).toList();
       }).listen((event) {
         debugPrint(
-            event.first.userModel.toString() ?? 'jjjj' 'is message    ',);
+            event.first.userModel.toString(),);
       });
       return userCollection
           // .orderBy(descending: true, 'timestamp')

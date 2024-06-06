@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:t_admin/features/user/domain/entities/user_entity.dart';
 
 /// UserRepository interface class
+/// Function Defination
 abstract class UserRepository {
   /// Delete Account
   Future<void> deleteAccount({required String uid});

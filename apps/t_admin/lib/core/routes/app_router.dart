@@ -18,6 +18,7 @@ import 'package:t_admin/features/product/presentation/ui/add_product_screen.dart
 import 'package:t_admin/features/product/presentation/ui/product_screen.dart';
 import 'package:t_admin/features/user/presentation/ui/all_user_screen.dart';
 import 'package:t_admin/features/user/presentation/ui/profile_screen.dart';
+import 'package:t_admin/features/vendor/vendor_screen.dart';
 
 /// AppRouter
 class AppRouter {
@@ -85,6 +86,13 @@ class AppRouter {
         name: AppRoutes.splash,
         builder: (context, state) => const SplashScreen(),
       ),
+        GoRoute(
+        parentNavigatorKey:_parentKey ,
+        path: AppRoutes.vendor,
+        name: AppRoutes.vendor,
+        builder: (context, state) => const VendorScreen(),
+      ),
+
       GoRoute(
         parentNavigatorKey: _parentKey,
         path: AppRoutes.addProduct,
