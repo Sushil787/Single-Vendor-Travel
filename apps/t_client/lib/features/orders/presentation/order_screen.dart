@@ -224,7 +224,7 @@ Note, after cancelation of the travel package you will be refunded after deducti
                 ),
               ),
             );
-          });
+          },);
     },
     btnFontSize: 12,
     buttonText: 'Request cancle',

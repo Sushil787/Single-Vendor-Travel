@@ -13,6 +13,7 @@ import 'package:t_client/core/widgets/custom_image_widget.dart';
 import 'package:t_client/core/widgets/ios_back_button.dart';
 import 'package:t_client/features/bookmark/presentation/bloc/bloc/bookmark_bloc.dart';
 import 'package:t_client/features/package/data/model/travel_package_model.dart';
+import 'package:t_client/features/package/presentation/bloc/recommend/recommend_bloc.dart';
 import 'package:t_client/features/package/presentation/ui/package/detail/widget/build_add_favourite.dart';
 import 'package:t_client/features/package/presentation/ui/package/detail/widget/item_row.dart';
 import 'package:t_client/features/package/presentation/ui/package/widgets/build_package_price.dart';
@@ -65,6 +66,8 @@ class _PackageDetailScreenState extends State<PackageDetailScreen> {
       await context.read<UserRepository>().addSearchHistory(
             searchQuery: widget.travelPackageModel.packageName,
           );
+      // ignore: use_build_context_synchronously
+      context.read<RecommendBloc>().add(const Recommend());
     });
   }
 

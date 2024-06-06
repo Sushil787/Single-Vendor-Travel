@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,13 +12,11 @@ import 'package:t_client/di/di_setup.dart';
 import 'package:t_client/features/bookmark/presentation/bookmark_screen.dart';
 import 'package:t_client/features/chat/presentation/chat_screen.dart';
 import 'package:t_client/features/orders/presentation/order_screen.dart';
-import 'package:t_client/features/package/domain/repo/travel_data_source.dart';
 import 'package:t_client/features/package/presentation/bloc/recommend/recommend_bloc.dart';
 import 'package:t_client/features/package/presentation/bloc/travel_bloc/travel_bloc.dart';
 import 'package:t_client/features/package/presentation/ui/home/widget/selected_widget.dart';
 import 'package:t_client/features/package/presentation/ui/package/package_screen.dart';
 
-import 'package:t_client/features/user/domain/repository/user_repository.dart';
 import 'package:t_client/features/user/presentation/cubit/profile/cubit/profile_cubit.dart';
 import 'package:t_client/features/user/presentation/ui/widgets/profile_widget.dart';
 
@@ -40,17 +40,15 @@ class _HomeScreenState extends State<HomeScreen>
 
   /// To Hide and show bottom nav bar
   bool isVisible = true;
+
   @override
   void initState() {
     super.initState();
     updateKeepAlive();
     pageController = PageController();
-    context.read<UserRepository>().updateToken();
     context.read<ProfileCubit>().getProfile(uid: widget.uid);
     context.read<TravelBloc>().add(const Get());
     context.read<RecommendBloc>().add(const Recommend());
-    // getIt<SharedPreferences>().setBool('firstTime', true);
-
     uid = widget.uid;
     scrollController.addListener(() {
       if (scrollController.position.userScrollDirection ==
@@ -136,34 +134,6 @@ class _HomeScreenState extends State<HomeScreen>
                     icon: Icon(Icons.favorite_outline_outlined),
                     label: '',
                   ),
-                  // BottomNavigationBarItem(
-                  //   activeIcon: const SelectedIcon(
-                  //     iconData: Icons.notifications,
-                  //   ),
-                  //   icon: Stack(
-                  //     children: [
-                  //       const Icon(
-                  //         Icons.notifications_none_rounded,
-                  //         size: 30,
-                  //       ),
-                  //       Positioned(
-                  //         right: 6,
-                  //         top: 6,
-                  //         child: Container(
-                  //           decoration: const BoxDecoration(
-                  //             color: Colors.red,
-                  //             borderRadius: BorderRadius.all(
-                  //               Radius.circular(20),
-                  //             ),
-                  //           ),
-                  //           height: 10,
-                  //           width: 10,
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  //   label: '',
-                  // ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.shopping_bag_outlined),
                     activeIcon: SelectedIcon(
@@ -182,20 +152,21 @@ class _HomeScreenState extends State<HomeScreen>
               )
             : const SizedBox.shrink(),
       ),
-      // floatingActionButton: floatingButton(context),
+      floatingActionButton: floatingButton(context),
     );
   }
 
   /// Returns [FloatingActionButton] widget
-  // FloatingActionButton floatingButton(BuildContext context) {
-  //   return FloatingActionButton(
-  //     backgroundColor: LightColor.eclipse,
-  //     child: const Icon(Icons.add),
-  //     onPressed: () async {
-  //       await context.read<TravelDataSource>().getRecommended();
-  //     },
-  //   );
-  // }
+  FloatingActionButton floatingButton(BuildContext context) {
+    return FloatingActionButton(
+      backgroundColor: LightColor.eclipse,
+      child: const Icon(Icons.add),
+      onPressed: () async {
+        await getIt<SharedPreferences>().setBool('firstTime', true);
+        context.read<RecommendBloc>().add(const Recommend());
+      },
+    );
+  }
 
   /// Builds the profile according to Internet Status
   Widget profileBlock() {

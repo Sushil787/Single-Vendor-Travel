@@ -16,7 +16,6 @@ import 'package:t_client/features/package/presentation/ui/package/widgets/featur
 import 'package:t_client/features/package/presentation/ui/package/widgets/package_widget.dart';
 import 'package:t_client/features/package/presentation/ui/package/widgets/recently_added_package.dart';
 
-import 'package:t_client/features/user/domain/repository/user_repository.dart';
 import 'package:t_client/features/user/presentation/cubit/profile/cubit/profile_cubit.dart';
 
 /// Packages
@@ -44,7 +43,7 @@ class _PackageScreenState extends State<PackageScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<UserRepository>().updateToken();
+    // context.read<UserRepository>().updateToken();
     context.read<ProfileCubit>().getProfile(uid: widget.uid);
   }
 
@@ -107,12 +106,19 @@ class _PackageScreenState extends State<PackageScreen> {
                   child: BlocBuilder<RecommendBloc, RecommendState>(
                     builder: (context, state) {
                       if (state is RecommendLoaded) {
-                        return Container(
-                          margin: const EdgeInsets.only(bottom: 8),
-                          child: RecentlyAddedPackages(
-                            travelPackageModels: state.packages,
-                            title: 'Package Recommended',
-                          ),
+                        return state.packages.isEmpty
+                            ? const SizedBox.shrink()
+                            : Container(
+                                margin: const EdgeInsets.only(bottom: 8),
+                                child: RecentlyAddedPackages(
+                                  travelPackageModels: state.packages,
+                                  title: 'Package Recommended',
+                                ),
+                              );
+                      }
+                      if (state is RecommendLoading) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
                         );
                       }
                       return const SizedBox.shrink();

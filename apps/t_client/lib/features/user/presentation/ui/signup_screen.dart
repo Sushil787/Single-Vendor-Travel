@@ -54,13 +54,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     toastType: ToastType.error,
                   );
                 }
-                if (state is SignupSuccess) {
+                if (state is Authenticated) {
                   context
                     ..showSnackBar(
                       message: 'Signup successful',
                       toastType: ToastType.success,
                     )
-                    ..go(AppRoutes.home);
+                    ..go(AppRoutes.home, extra: state.uid);
                 }
               },
               builder: (context, state) {

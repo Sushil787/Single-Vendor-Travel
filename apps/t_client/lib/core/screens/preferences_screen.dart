@@ -8,6 +8,7 @@ import 'package:t_client/core/helper/gap.dart';
 import 'package:t_client/core/theme/app_colors.dart';
 import 'package:t_client/core/widgets/custom_button.dart';
 import 'package:t_client/di/di_setup.dart';
+import 'package:t_client/features/package/presentation/bloc/recommend/recommend_bloc.dart';
 import 'package:t_client/features/user/domain/repository/user_repository.dart';
 
 /// Get User Preferences If first time Visit
@@ -34,15 +35,15 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
 
   List<String> favourites = [];
   List<String> items = [
-    'Holiday',
-    'Homestay',
+    'Weekend',
+    'Villa',
     'Honeymoon',
-    'Nature',
-    'Religious',
+    'Rainforest',
+    'Ghampedada',
     'Fun',
     'Travel',
     'Hotel',
-    'Educational',
+    'Cottage',
   ];
   @override
   Widget build(BuildContext context) {
@@ -65,51 +66,52 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
             child: Padding(
               padding: const EdgeInsets.only(left: 8, right: 8),
               child: ListView.builder(
-                  padding: EdgeInsets.zero,
-                  shrinkWrap: true,
-                  itemCount: items.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: const EdgeInsets.symmetric(
-                        vertical: 4,
-                        horizontal: 8,
-                      ),
-                      child: Material(
-                        borderRadius: BorderRadius.circular(8),
-                        elevation: favourites.contains(items[index]) ? 10 : 0,
-                        child: ListTile(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(
-                              color: LightColor.eclipse,
-                            ),
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                itemCount: items.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(
+                      vertical: 4,
+                      horizontal: 8,
+                    ),
+                    child: Material(
+                      borderRadius: BorderRadius.circular(8),
+                      elevation: favourites.contains(items[index]) ? 10 : 0,
+                      child: ListTile(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          side: const BorderSide(
+                            color: LightColor.eclipse,
                           ),
-                          selectedTileColor: LightColor.orange,
-                          selected: favourites.contains(items[index]),
-                          title: Text(
-                            items[index],
-                            style: context.textTheme.bodyLarge?.copyWith(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: LightColor.eclipse,
-                            ),
+                        ),
+                        selectedTileColor: LightColor.orange,
+                        selected: favourites.contains(items[index]),
+                        title: Text(
+                          items[index],
+                          style: context.textTheme.bodyLarge?.copyWith(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: LightColor.eclipse,
                           ),
-                          onTap: () {
-                            if (favourites.contains(items[index])) {
-                              favourites.remove(items[index]);
-                              setState(() {});
-                              return;
-                            }
-                            favourites.add(items[index]);
+                        ),
+                        onTap: () {
+                          if (favourites.contains(items[index])) {
+                            favourites.remove(items[index]);
                             setState(() {});
                             return;
-                          },
-                        ),
+                          }
+                          favourites.add(items[index]);
+                          setState(() {});
+                          return;
+                        },
                       ),
-                    );
-                  }),
+                    ),
+                  );
+                },
+              ),
             ),
-          )
+          ),
         ],
       ),
       bottomNavigationBar: Container(
@@ -123,6 +125,7 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
                       searchQuery: element,
                     );
               });
+              context.read<RecommendBloc>().add(const Recommend());
               await context.push(AppRoutes.main);
               return;
             }

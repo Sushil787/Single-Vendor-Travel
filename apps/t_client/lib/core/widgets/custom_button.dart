@@ -12,8 +12,8 @@ class CustomElevatedButton extends StatelessWidget {
     this.btnVerticalPadding = 12.0,
     this.btnFontSize = 20.0,
     this.backgroundColor, // New optional parameter for background color
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   /// Callback called when button is pressed
   final VoidCallback onButtonPressed;

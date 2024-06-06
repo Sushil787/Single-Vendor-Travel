@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:t_client/features/bookmark/presentation/bloc/bloc/bookmark_bloc.dart';
 import 'package:t_client/features/package/data/model/travel_package_model.dart';
 import 'package:t_client/features/package/domain/repo/travel_repo.dart';
 
@@ -26,6 +27,7 @@ class RecommendBloc extends Bloc<RecommendEvent, RecommendState> {
   /// Get Recommended
   Future<void> _getRecommended(Emitter<RecommendState> emit) async {
     try {
+      emit(const RecommendLoading());
       final data = await travelRepo.getRecommended();
       emit(RecommendState.loaded(packages: data ?? []));
     } catch (e) {

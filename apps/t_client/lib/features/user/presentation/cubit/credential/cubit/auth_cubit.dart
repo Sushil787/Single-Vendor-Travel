@@ -70,7 +70,8 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       if (await networkInfo.isConnected()) {
         await userRepository.signUp(user: user);
-        emit(SignupSuccess());
+        final uid = await userRepository.getCurrentUId();
+        emit(Authenticated(uid: uid));
       } else {
         emit(const AuthFailure(message: 'No Internet Connection'));
       }
@@ -101,12 +102,14 @@ class AuthCubit extends Cubit<AuthState> {
 
   /// Watches the user auth state
   void authStateChanges() {
-    userRepository.authStateChange().listen((event) {
-      if (event?.uid != null) {
-        emit(Authenticated(uid: event!.uid));
-      }
-      debugPrint(event?.displayName.toString());
-    });
+    userRepository.authStateChange().listen(
+      (event) {
+        if (event?.uid != null) {
+          emit(Authenticated(uid: event!.uid));
+        }
+        debugPrint(event?.displayName.toString());
+      },
+    );
   }
 
   /// Sign Out

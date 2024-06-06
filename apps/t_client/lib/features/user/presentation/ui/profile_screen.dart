@@ -118,15 +118,15 @@ class BuildProfileDetail extends StatelessWidget {
           buttonText: 'signout',
         ),
         VerticalGap.m,
-        CustomElevatedButton(
-          onButtonPressed: () async {
-            if (context.mounted) {
-              GoRouter.of(context).pop();
-            }
-            await context.read<ProfileCubit>().deleteAccount(uid: user.uid!);
-          },
-          buttonText: 'delete account',
-        ),
+        // CustomElevatedButton(
+        //   onButtonPressed: () async {
+        //     if (context.mounted) {
+        //       GoRouter.of(context).pop();
+        //     }
+        //     await context.read<ProfileCubit>().deleteAccount(uid: user.uid!);
+        //   },
+        //   buttonText: 'delete account',
+        // ),
       ],
     );
   }

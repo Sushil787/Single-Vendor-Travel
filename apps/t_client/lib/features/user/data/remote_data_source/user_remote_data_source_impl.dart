@@ -283,11 +283,13 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
     final search = firebaseFirestore.collection(searchHistory);
 
     // Check if the searchQuery already exists in the collection
-    final querySnapshot =
-        await search.where('search', isEqualTo: searchQuery).get();
+    final uid = firebaseAuth.currentUser!.uid;
+    final querySnapshot = await search
+        .where('search', isEqualTo: searchQuery)
+        .where('uid', isEqualTo: uid)
+        .get();
     if (querySnapshot.docs.isEmpty) {
-      final uid = firebaseAuth.currentUser!.uid;
-      await search.doc().set({'uid': uid, 'search': searchQuery});
+      await search.add({'uid': uid, 'search': searchQuery});
     }
   }
 }

@@ -146,15 +146,15 @@ def get_recommendations(search_history, documents):
 
 def recommend(uid)->list:
     results = []
-
     user_search_history = get_user_search_history(uid)
+    print(user_search_history)
     get_travel_package_model()
     prepate_dict()
     for search in user_search_history:
         recommendations = get_recommendations(search, packages_dict)
         print(f"Search: {search}")
         for doc, similarity in recommendations:
-            if similarity > 0.5:
+            if similarity > 0.3:
                 for package in travel_packages:
                     print(package)
                     if package["uuid"] == doc:
