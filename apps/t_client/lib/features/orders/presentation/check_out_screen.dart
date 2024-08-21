@@ -14,6 +14,7 @@ import 'package:t_client/core/widgets/custom_button.dart';
 import 'package:t_client/core/widgets/custom_dropdown.dart';
 import 'package:t_client/core/widgets/custom_textfield.dart';
 import 'package:t_client/core/widgets/ios_back_button.dart';
+import 'package:t_client/di/env_config.dart';
 import 'package:t_client/features/orders/data/model/order_package_model.dart';
 import 'package:t_client/features/orders/presentation/bloc/order_bloc.dart';
 import 'package:t_client/features/orders/presentation/widgets/select_date.dart';
@@ -79,7 +80,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   Widget build(BuildContext context) {
     return KhaltiScope(
       navigatorKey: AppRouter().router.routerDelegate.navigatorKey,
-      publicKey: 'test_public_key_d5d9f63743584dc38753056b0cc737d5',
+      publicKey: EnvConfig.khaltiKey,
       builder: (context, key) {
         return Scaffold(
           bottomNavigationBar: Container(
@@ -142,7 +143,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 color: Colors.white,
                               ),
                               // height: context.height * .22,
-                               height: context.height * .29,
+                              height: context.height * .29,
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -227,9 +228,9 @@ If you cancel your order within 24 hours of the visit date, no refund is availab
                                             // addressController.dispose();
                                             // peopleController.dispose();
                                             context
-                                            ..pop()
-                                            ..pop()
-                                            ..pop();
+                                              ..pop()
+                                              ..pop()
+                                              ..pop();
                                           });
                                         },
                                         buttonText: 'Continue',
@@ -362,12 +363,14 @@ If you cancel your order within 24 hours of the visit date, no refund is availab
                     SelectProductWidget(
                       onTap: (productModels) {
                         log(
-                            name: 'selected product count  is ',
-                            productModels!.length.toString(),);
+                          name: 'selected product count  is ',
+                          productModels!.length.toString(),
+                        );
                         selectedProduct = productModels;
                         log(
-                            name: 'selected product count  is ',
-                            selectedProduct.length.toString(),);
+                          name: 'selected product count  is ',
+                          selectedProduct.length.toString(),
+                        );
                         onChangedProductSelection(productModels);
                       },
                     ),

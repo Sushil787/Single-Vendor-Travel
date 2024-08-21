@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!--
+
+<head>
+  <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
 
@@ -14,78 +15,80 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
-    <base href="/" />
+  <base href="/" />
 
-    <meta charset="UTF-8" />
-    <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
-    <meta name="description" content="A new Flutter project." />
-    <meta name="google-signin-client_id"
-    content="1055467771631-m3dslv6mh4htnkgcug8a021a1iuvfol0.apps.googleusercontent.com"
-    />
-    
-    <!-- iOS meta tags & icons -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="apple-mobile-web-app-title" content="t_admin" />
-    <link rel="apple-touch-icon" href="icons/Icon-192.png" />
+  <meta charset="UTF-8" />
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
+  <meta name="description" content="A new Flutter project." />
+  <meta name="google-signin-client_id"
+    content="1055467771631-m3dslv6mh4htnkgcug8a021a1iuvfol0.apps.googleusercontent.com" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png" />
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="t_admin" />
+  <link rel="apple-touch-icon" href="icons/Icon-192.png" />
 
-    <title>Admin</title>
-    <link rel="manifest" href="manifest.json" />
-    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
-    <!-- Firebase Auth SDK -->
-    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
-    <script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png" />
 
-      // The value below is injected by flutter build, do not touch.
-      const serviceWorkerVersion = null;
-    </script>
-    <script type="text/javascript">
-      window.flutterWebRenderer = "html";
+  <title>Admin</title>
+  <link rel="manifest" href="manifest.json" />
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+  <!-- Firebase Auth SDK -->
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
+  <script>
+
+    // The value below is injected by flutter build, do not touch.
+    const serviceWorkerVersion = null;
   </script>
-    <!-- This script adds the flutter initialization JS code -->
-  </head>
-  <body>
-    <script type="module">
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
+  <script type="text/javascript">
+    window.flutterWebRenderer = "html";
+  </script>
+  <!-- This script adds the flutter initialization JS code -->
+</head>
 
-      // Your web app's Firebase configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyAd4diJtO5D-BY6SXTcRyfGgL-EtO-jG3o",
-        authDomain: "kura-777b6.firebaseapp.com",
-        projectId: "kura-777b6",
-        storageBucket: "kura-777b6.appspot.com",
-        messagingSenderId: "1055467771631",
-        appId: "1:1055467771631:web:74e5c801b2f1e16217ad1a",
-        
-      };
-        
-      firebase.initializeApp(firebaseConfig);
-      // Initialize Firebase
+<body>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAd4diJtO5D-BY6SXTcRyfGgL-EtO-jG3o",
+      authDomain: "kura-777b6.firebaseapp.com",
+      projectId: "kura-777b6",
+      storageBucket: "kura-777b6.appspot.com",
+      messagingSenderId: "1055467771631",
+      appId: "1:1055467771631:web:74e5c801b2f1e16217ad1a",
+
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    // Initialize Firebase
     //  const app = initializeApp(firebaseConfig);
-    </script>
-    <script>
-      window.addEventListener('load', function (ev) {
-        // Download main.dart.js
-        _flutter.loader.loadEntrypoint({
-          serviceWorker: {
-            serviceWorkerVersion: serviceWorkerVersion,
-          },
-          onEntrypointLoaded: async function(engineInitializer) {
-            // Initialize the Flutter engine
-            let appRunner = await engineInitializer.initializeEngine();
-            // Run the app
-            await appRunner.runApp();
-          }
-        });
+  </script>
+  <script>
+    window.addEventListener('load', function (ev) {
+      // Download main.dart.js
+      _flutter.loader.loadEntrypoint({
+        entrypointUrl: "/main.dart.js", // <-- THIS LINE
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+          serviceWorkerUrl: "/flutter_service_worker.js?v=", // <-- THIS LINE
+        },
+        onEntrypointLoaded: function (engineInitializer) {
+          engineInitializer.initializeEngine().then(function (appRunner) {
+            appRunner.runApp();
+          });
+        }
       });
-    </script>
-    <script src="main.dart.js" type="application/javascript"></script>
+    });
+  </script>
+  <script src="main.dart.js" type="application/javascript"></script>
 
-  </body>
+</body>
+
 </html>
