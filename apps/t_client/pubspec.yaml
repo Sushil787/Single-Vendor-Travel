@@ -2,7 +2,6 @@ name: t_client
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 
 version: 1.0.0+1
@@ -52,7 +51,6 @@ dependencies:
   freezed_annotation: ^2.4.1
   json_serializable: ^6.7.1
   json_annotation: ^4.8.1
-  device_preview: ^1.1.0
   panorama_viewer: ^1.0.2
   geolocator: ^11.0.0
   shimmer: ^3.0.0

@@ -176,17 +176,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
                     const Spacer(),
-                    // Container(
-                    //   padding: const EdgeInsets.symmetric(
-                    //     horizontal: 2,
-                    //   ),
-                    //   width: context.width * .15,
-                    //   child: const Text(
-                    //     'Copyright @subodh\n Academic project 2024 under BIT computer science \n in the partial fulfillment of bachelor degree',
-                    //     style: TextStyle(
-                    //         fontWeight: FontWeight.w300, fontSize: 12),
-                    //   ),
-                    // )
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 2,
+                      ),
+                      width: context.width * .15,
+                      child: const Text(
+                        'Copyright @subodh\n Academic project 2024 under BIT computer science \n in the partial fulfillment of bachelor degree',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w300, fontSize: 12),
+                      ),
+                    )
                   ],
                 ),
                 Expanded(

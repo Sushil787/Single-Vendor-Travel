@@ -22,7 +22,8 @@ import 'package:t_client/features/user/presentation/ui/password-reset/presentati
 import 'package:t_client/features/user/presentation/ui/profile_screen.dart';
 import 'package:t_client/features/user/presentation/ui/signup_screen.dart';
 
-/// NAvigatoro key
+
+/// Navigator key
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 /// AppRouter
@@ -34,112 +35,167 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.home,
         name: AppRoutes.home,
-        builder: (context, state) {
-          return HomeScreen(
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: HomeScreen(
             uid: state.extra! as String,
-          );
-        },
+          ),
+        ),
       ),
       GoRoute(
         path: AppRoutes.forgotPassword,
         name: AppRoutes.forgotPassword,
-        builder: (context, state) {
-          return const ForgotPasswordScreen();
-        },
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: const ForgotPasswordScreen(),
+        ),
       ),
       GoRoute(
         path: AppRoutes.map,
         name: AppRoutes.map,
-        builder: (context, state) {
-          return const MapScreen();
-        },
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: const MapScreen(),
+        ),
       ),
       GoRoute(
         path: AppRoutes.profile,
         name: AppRoutes.profile,
-        builder: (context, state) => ProfileScreen(
-          uid: state.extra! as String,
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: ProfileScreen(
+            uid: state.extra! as String,
+          ),
         ),
       ),
       GoRoute(
         path: AppRoutes.preference,
         name: AppRoutes.preference,
-        builder: (context, state) => const UserPreferencesScreen(),
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: const UserPreferencesScreen(),
+        ),
       ),
       GoRoute(
         path: AppRoutes.order,
         name: AppRoutes.order,
-        builder: (context, state) => const OrderScreen(),
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: const OrderScreen(),
+        ),
       ),
       GoRoute(
         path: AppRoutes.panaromic,
         name: AppRoutes.panaromic,
-        builder: (context, state) => PanaromicViewScreen(
-          imageUrl: state.extra! as String,
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: PanaromicViewScreen(
+            imageUrl: state.extra! as String,
+          ),
         ),
       ),
       GoRoute(
         path: AppRoutes.checkout,
         name: AppRoutes.checkout,
-        builder: (context, state) => CheckoutScreen(
-          travelPackageModel: state.extra! as TravelPackageModel,
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: CheckoutScreen(
+            travelPackageModel: state.extra! as TravelPackageModel,
+          ),
         ),
       ),
       GoRoute(
         path: AppRoutes.welcome,
         name: AppRoutes.welcome,
-        pageBuilder: (context, state) => CustomTransitionPage<void>(
+        pageBuilder: (context, state) => FadeTransitionPage(
           key: state.pageKey,
           child: const WelcomeScreen(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-              FadeTransition(opacity: animation, child: child),
         ),
       ),
       GoRoute(
         path: AppRoutes.chat,
         name: AppRoutes.chat,
-        builder: (context, state) => const ChatScreen(),
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: const ChatScreen(),
+        ),
       ),
       GoRoute(
         path: AppRoutes.main,
         name: AppRoutes.main,
-        builder: (context, state) => const MainScreen(),
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: const MainScreen(),
+        ),
       ),
       GoRoute(
         name: AppRoutes.login,
         path: AppRoutes.login,
-        builder: (context, state) => const LoginScreen(),
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: const LoginScreen(),
+        ),
       ),
       GoRoute(
         name: AppRoutes.signup,
         path: AppRoutes.signup,
-        builder: (context, state) => const SignUpScreen(),
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: const SignUpScreen(),
+        ),
       ),
       GoRoute(
         path: AppRoutes.splash,
         name: AppRoutes.splash,
-        builder: (context, state) => const SplashScreen(),
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: const SplashScreen(),
+        ),
       ),
       GoRoute(
         path: AppRoutes.search,
         name: AppRoutes.search,
-        builder: (context, state) => const SearchScreen(),
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: const SearchScreen(),
+        ),
       ),
       GoRoute(
         path: AppRoutes.packageDetail,
         name: AppRoutes.packageDetail,
-        builder: (context, state) => PackageDetailScreen(
-          travelPackageModel: state.extra as TravelPackageModel,
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: PackageDetailScreen(
+            travelPackageModel: state.extra as TravelPackageModel,
+          ),
         ),
       ),
       GoRoute(
         path: AppRoutes.chatBot,
         name: AppRoutes.chatBot,
-        builder: (context, state) => const ChatBotScreen(),
-      )
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: const ChatBotScreen(),
+        ),
+      ),
     ],
   );
 
   /// Router Getter
   GoRouter get router => _router;
 }
+
+/// The `FadeTransitionPage` class is a custom transition page that applies a fade animation to its
+/// child widget.
+class FadeTransitionPage extends CustomTransitionPage<void> {
+  FadeTransitionPage({
+    required LocalKey super.key,
+    required super.child,
+  }) : super(
+          transitionsBuilder: (c, animation, a2, child) => FadeTransition(
+            opacity: animation.drive(CurveTween(curve: Curves.easeIn)),
+            child: child,
+          ),
+        );
+}
+

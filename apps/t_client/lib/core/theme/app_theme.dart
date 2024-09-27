@@ -7,6 +7,7 @@ class AppTheme {
   /// Light Theme
   static final ThemeData lightThemeData = ThemeData(
     fontFamily: GoogleFonts.poppins().fontFamily,
+    useMaterial3: true,
     scaffoldBackgroundColor: Colors.white,
     primaryColor: LightColor.primaryColor,
     iconTheme: const IconThemeData(color: LightColor.eclipse),

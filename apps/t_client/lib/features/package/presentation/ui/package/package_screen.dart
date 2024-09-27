@@ -65,6 +65,16 @@ class _PackageScreenState extends State<PackageScreen> {
             }
           },
           builder: (context, state) {
+            if (state is Loading) {
+              return const Center(
+                child: CircularProgressIndicator.adaptive(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                  LightColor.eclipse,
+                ) // Set the color here
+
+                    ),
+              );
+            }
             if (state is TravelPackageLoaded) {
               packages = state.packages;
               _chatEngine.botResponse.addAll(packages
@@ -149,11 +159,7 @@ class _PackageScreenState extends State<PackageScreen> {
                 ],
               );
             }
-            if (state is Loading) {
-              return const Center(
-                child: CircularProgressIndicator.adaptive(),
-              );
-            }
+
             return const Center(
               child: Text('Error Loading Data'),
             );

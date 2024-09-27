@@ -171,10 +171,10 @@ class _HomeScreenState extends State<HomeScreen>
       backgroundColor: LightColor.eclipse,
       child: const Icon(Icons.person),
       onPressed: () {
-        context.push(AppRoutes.chatBot);
+        // context.push(AppRoutes.chatBot);
         // await getIt<SharedPreferences>().setBool('firstTime', true);
         // // context.read<RecommendBloc>().add(const Recommend());
-        // await context.push(AppRoutes.map);
+        context.push(AppRoutes.map);
       },
     );
   }

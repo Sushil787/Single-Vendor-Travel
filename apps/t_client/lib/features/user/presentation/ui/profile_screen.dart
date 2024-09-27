@@ -56,33 +56,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18),
-        child: Center(
-          child: BlocConsumer<ProfileCubit, ProfileState>(
-            listener: (context, state) {
-              if (state is ProfileFailure) {
-                context.showSnackBar(
-                  message: state.message,
-                  toastType: ToastType.error,
-                );
-              }
-              if (state is AccDeleteSuccess) {
-                context.showSnackBar(
-                  message: state.message,
-                  toastType: ToastType.error,
-                );
-              }
-            },
-            builder: (context, state) {
-              if (state is ProfileLoading) {
-                return const CircularProgressIndicator();
-              }
-              if (state is ProfileLoaded) {
-                return BuildProfileDetail(
-                  user: state.currentUser,
-                );
-              }
-              return const Text('Error Loading Data');
-            },
+        child: SingleChildScrollView(
+          child: Center(
+            child: BlocConsumer<ProfileCubit, ProfileState>(
+              listener: (context, state) {
+                if (state is ProfileFailure) {
+                  context.showSnackBar(
+                    message: state.message,
+                    toastType: ToastType.error,
+                  );
+                }
+                if (state is AccDeleteSuccess) {
+                  context.showSnackBar(
+                    message: state.message,
+                    toastType: ToastType.error,
+                  );
+                }
+              },
+              builder: (context, state) {
+                if (state is ProfileLoading) {
+                  return const CircularProgressIndicator();
+                }
+                if (state is ProfileLoaded) {
+                  return BuildProfileDetail(
+                    user: state.currentUser,
+                  );
+                }
+                return const Text('Error Loading Data');
+              },
+            ),
           ),
         ),
       ),

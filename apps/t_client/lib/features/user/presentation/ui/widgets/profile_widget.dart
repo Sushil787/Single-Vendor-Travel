@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:t_client/core/helper/extension/context_extension.dart';
+import 'package:t_client/core/theme/app_colors.dart';
 import 'package:t_client/features/user/presentation/cubit/profile/cubit/profile_cubit.dart';
 
 /// Profile Widget Calss
@@ -22,8 +23,12 @@ class ProfileWidget extends StatelessWidget {
         child: Container(
           height: 52,
           width: 52,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             shape: BoxShape.circle,
+            border: Border.all(
+              color: LightColor.eclipse,
+              width: 2,
+            ),
           ),
           child: BlocBuilder<ProfileCubit, ProfileState>(
             builder: (context, state) {
