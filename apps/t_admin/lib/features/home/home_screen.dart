@@ -182,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       width: context.width * .15,
                       child: const Text(
-                        'Copyright @subodh\n Academic project 2024 under BIT computer science \n in the partial fulfillment of bachelor degree',
+                        'Copyright @Sushil787',
                         style: TextStyle(
                             fontWeight: FontWeight.w300, fontSize: 12),
                       ),
