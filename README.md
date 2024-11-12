@@ -20,17 +20,36 @@
 
 Refer to each folder (`apps/t_client` and `apps/t_admin`) for further documentation and setup instructions tailored to each app.
 
-## For Client and For Adming
+# Travello - Features
 
-## Features
-- Client and admin interface
-- User authentication and profile management
-- Real-time data updates
-- Secure file storage for travel documents and profile images
-- Geolocation and routing services
-- Push notifications for booking updates and alerts
+## End-user (Customer) Features
 
-***💻 Built with***
+The **t_client** mobile app is designed for end-users (customers) to manage their travel experiences. The following features are available:
+
+- **User Authentication (Register/Sign In)**: Customers can securely register or sign in to their account using Firebase Authentication.
+- **View Travel Packages**: Customers can browse a variety of travel packages available on the platform.
+- **Place Booking**: Customers can select a travel package and place a booking for the trip.
+- **Track Order**: Customers can track the status of their bookings and stay updated with any changes.
+- **Chat with Admin**: A chat feature enables direct communication between customers and admin for support or queries.
+- **Search Packages**: Customers can search for specific travel packages based on their preferences.
+- **Add Packages to Favorites**: Customers can save their favorite travel packages for future reference.
+- **Cancel or Request Booking Cancellation**: Customers have the ability to cancel bookings or request a cancellation with admin approval.
+- **Make Payments**: Secure payment processing is available for customers to pay for their bookings using Khalti.
+- **View Nearest Travel Destinations on Map**: Customers can view travel destinations on an interactive map, helping them find and explore destinations nearest to their current location.
+
+## Admin Features
+
+The **t_admin** web app is designed for administrators to manage the system and oversee user activities. The following features are available for admins:
+
+- **Sign In**: Admins can securely log in to the admin portal using Firebase Authentication.
+- **CRUD Operations for Travel Packages**: Admins can create, read, update, and delete travel packages, managing all the offerings available to customers.
+- **Change Booking Status**: Admins have the ability to modify the status of bookings, such as confirming, processing, or completing bookings.
+- **Cancel Booked Package**: Admins can cancel a customer's booking if needed.
+- **Chat with Client**: Admins can directly communicate with clients through the chat feature to assist with inquiries or provide support.
+
+These features provide a comprehensive and user-friendly travel management experience for both customers and admins.
+
+
 Tools, BASS and Framework used in the project:
 *   Flutter
 *   Firebase
@@ -97,11 +116,6 @@ Tools, BASS and Framework used in the project:
 - **flutter_bloc**: Used for managing the app's state across different components, ensuring clear state transitions and predictable behaviors.
 - **get_it**: Acts as a service locator for dependency injection, helping to manage and retrieve services and data classes from anywhere in the app.
 
-### Networking & API
-- **retrofit**: Provides a type-safe HTTP client for making API calls, simplifying communication between the client app and external servers.
-- **dio**: Used as the main HTTP client for making network requests, handling everything from GET/POST requests to file uploads and error handling.
-- **pretty_dio_logger**: Enhances `dio` with logging capabilities for better debugging of network requests.
-
 ### Payment Integration
 - **khalti_flutter**: Used for secure payment processing, allowing users to complete transactions directly in the app. Khalti integration ensures a smooth and secure transaction process, providing a trusted payment gateway for users to make online payments for bookings and other services.
 
@@ -114,21 +128,15 @@ Tools, BASS and Framework used in the project:
 
 ### Location & Mapping
 - **geolocator**: Provides real-time location tracking for users, assisting in calculating travel distances or nearby landmarks.
-- **open_route_service**: Supplies routing and navigation features within the app, allowing clients to find optimal travel routes and nearby attractions.
 - **latlong2**: Handles geographic location data, crucial for mapping functionalities and integrating with various geolocation-based services.
 - **flutter_osm_plugin** and **flutter_map**: Used for integrating interactive maps within the app, allowing users to view locations and itineraries visually on a map.
 
 ### Data Persistence & Caching
 - **hive** and **hive_flutter**: Provides lightweight, offline storage capabilities, which are ideal for storing small data sets like user preferences and session information.
-- **shared_preferences**: Used for storing simple key-value pairs such as user preferences or app settings.
-- **flutter_cache_manager**: Manages cached network images and other resources, improving performance by avoiding redundant network calls.
 
 ### User Interface & Experience
 - **google_fonts**: Allows for customizable fonts, enhancing the app’s design and readability.
 - **shimmer**: Provides a shimmer loading effect, creating an engaging placeholder while data is being loaded.
-- **flutter_svg**: Enables SVG rendering, useful for vector graphics and icons.
-- **flutter_screenutil**: Manages responsive UI design across different screen sizes and devices.
-- **ticket_widget**: Used for creating visual elements that resemble tickets, adding a travel-themed visual to booking details.
 - **panorama_viewer**: Allows users to explore panoramic images, enhancing user engagement with immersive visuals.
 
 ### Notifications & Updates
@@ -139,33 +147,20 @@ Tools, BASS and Framework used in the project:
 - **image_picker**: Lets users upload profile pictures or document images directly from their camera or gallery.
 - **connectivity_plus**: Detects network connectivity, prompting users in case of offline access.
 - **uuid**: Used for generating unique IDs, which are essential for data such as bookings or user sessions.
-- **screenshot**: Enables users to take screenshots of itineraries or booking details for offline access.
 
 ### Code Generation
 - **json_serializable** and **json_annotation**: Automatically generate code for serializing and deserializing JSON data, simplifying data exchange between the app and backend.
 - **freezed** and **freezed_annotation**: Provides immutable data classes and union types, essential for maintaining a clean data model.
 - **injectable** and **injectable_generator**: Helps in dependency injection, making the app modular and testable.
-- **build_runner**: A utility for code generation, used alongside `json_serializable`, `retrofit_generator`, and `freezed`.
+- **build_runner**: A utility for code generation, used alongside `json_serializable`, and `freezed`.
 
 ## Additional Information
 To run this project, ensure the required Firebase setup (Firebase Authentication, Firestore, and Firebase Storage) is configured, and dependencies are installed.
 
 
-
 ### Developer Note
 
-  
-
 - Adhere to coding standards and best practices established in the project.
-
-  
-
 - Thoroughly test new features and changes before integration.
-
-  
-
 - Regularly review and update documentation to reflect changes in the project.
-
-  
-
 ---
