@@ -18,24 +18,77 @@
   - **Content Management**: Tools to manage and update travel packages, destinations, and other app content.
   - **Reporting and Analytics**: Insights on bookings and user activity to aid in business decision-making.
 
-Refer to each folder (`t_client` and `t_admin`) for further documentation and setup instructions tailored to each app.
+Refer to each folder (`apps/t_client` and `apps/t_admin`) for further documentation and setup instructions tailored to each app.
 
 ## For Client and For Adming
+
 ## Features
+- Client and admin interface
+- User authentication and profile management
+- Real-time data updates
+- Secure file storage for travel documents and profile images
+- Geolocation and routing services
+- Push notifications for booking updates and alerts
 
-## t_client
-
-## t_admin
-
-
-
-<h3>💻 Built with</h3>
+***💻 Built with***
 Tools, BASS and Framework used in the project:
 *   Flutter
 *   Firebase
 *   Visual Studio Code
+*   Flutter Fire Cli
 *   Android Studio
 
+
+
+## Getting Started
+
+1. **Flutter SDK**
+ Ensure you have Flutter SDK version `>=3.0.5` installed. [Install Flutter](https://flutter.dev/docs/get-started/install) if not already set up.
+2. **FlutterFire CLI**
+ Install the FlutterFire CLI, which simplifies Firebase configuration for Flutter projects:
+   ```bash
+   dart pub global activate flutterfire_cli
+   ```
+3. **Clone the Repository**: Clone this repository to your local machine
+    ```bash
+    git clone https://github.com/Sushil787/Single-Vendor-Travel.git
+    cd travel_management_system/apps
+    ```
+    Since the project includes both a client app and an admin web app, you need to configure Firebase for both parts of the application.
+    ```bash
+    cd t_admin or cd t_client
+    ```
+  
+4. **Install Dependencies**
+ Install all project dependencies using the following command:
+    ```bash
+    flutter pub get
+      ```
+5. **Configure Firebase with FlutterFire CLI**
+    ```bash
+    flutterfire configure
+    ```
+    The FlutterFire CLI will generate a firebase_options.dart file with your Firebase configuration. Make sure this file is imported in your main.dart file for Firebase initialization.
+6. **Generate Code with build_runner**
+    The project uses generated models, Bloc state and event classes for state management. Run the following command to generate necessary files:
+    ```bash
+    flutter pub run build_runner build --delete-conflicting-outputs
+    ```
+    This will generate:
+    - Models for data management and serialization.
+    - State Classes and Bloc Files for managing app state and events. 
+    Note: Run this command every time you make changes to models, state, or event classes.
+
+7. **Run the App**
+    After configuring Firebase and generating the necessary files, you can now run the app:
+    ```bash
+    flutter run
+    ```
+
+
+## t_client
+
+## t_admin
 
 
 ## Important Packages
