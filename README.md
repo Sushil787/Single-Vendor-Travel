@@ -10,7 +10,7 @@
 
 
 # Travello - Features
-## End-user (Traveler) Features
+### End-user (Traveler) Features
 The **t_client** mobile app offers the following:
 
 - **Sign In/Register**: Secure user authentication.
@@ -24,7 +24,7 @@ The **t_client** mobile app offers the following:
 - **View Nearest Destinations on Map**: Interactive map to find nearby destinations.
 - **360 Panaromic View**: Traveler can view 360 panaromic view of destination in mobile app.
 
-## Admin Features
+### Admin Features
 
 The **t_admin** web app provides admin capabilities:
 
@@ -87,11 +87,6 @@ These features provide a comprehensive and user-friendly travel management exper
     ```bash
     flutter run
     ```
-
-
-## t_client
-
-## t_admin
 
 
 ## Important Packages
