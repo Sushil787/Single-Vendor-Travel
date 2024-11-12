@@ -1,63 +1,47 @@
+
 # Travello - Travel Management System
 
-**Travello**  is a travel management system built with Flutter, featuring both a mobile app for clients and a web app for admin management. Firebase serves as the backend, providing real-time updates, authentication, and secure data storage.
+**Travello** is a travel management system built with Flutter, providing a mobile app for clients and a web app for admin management. Firebase is used for authentication, real-time data, and secure storage.
 
-- **t_client**: A mobile app for clients to manage their travel bookings, view itineraries, and receive real-time updates. The app is built with Flutter and uses Firebase as the backend for authentication, data storage, and notifications.
-- **t_admin**: A web app for admins to manage bookings, oversee client information, and handle app content efficiently. This application is also built with Flutter, providing a cohesive administrative interface for the Travello system.
+- **t_client**: A mobile app for clients to manage travel bookings, view itineraries, and receive real-time updates.
+- **t_admin**: A web app for admins to manage bookings, client information, and content.
 
 ## Project Structure
 
-- **t_client**: Contains all the code and resources for the client-side mobile application, including:
-  - **User Authentication**: Secure user login and sign-up using Firebase Authentication.
-  - **Booking Management**: Tools for clients to view, modify, and cancel bookings.
-  - **Notifications**: Real-time alerts for booking confirmations, reminders, and travel updates.
-  - **Payment Integration**: Secure payment processing through Khalti for seamless in-app transactions.
-
-- **t_admin**: Contains the code and resources for the admin-side web application, featuring:
-  - **User and Booking Management**: Allows admins to manage client accounts, bookings, and service offerings.
-  - **Content Management**: Tools to manage and update travel packages, destinations, and other app content.
-  - **Reporting and Analytics**: Insights on bookings and user activity to aid in business decision-making.
-
-Refer to each folder (`apps/t_client` and `apps/t_admin`) for further documentation and setup instructions tailored to each app.
 
 # Travello - Features
+## End-user (Traveler) Features
+The **t_client** mobile app offers the following:
 
-## End-user (Customer) Features
-
-The **t_client** mobile app is designed for end-users (customers) to manage their travel experiences. The following features are available:
-
-- **User Authentication (Register/Sign In)**: Customers can securely register or sign in to their account using Firebase Authentication.
-- **View Travel Packages**: Customers can browse a variety of travel packages available on the platform.
-- **Place Booking**: Customers can select a travel package and place a booking for the trip.
-- **Track Order**: Customers can track the status of their bookings and stay updated with any changes.
-- **Chat with Admin**: A chat feature enables direct communication between customers and admin for support or queries.
-- **Search Packages**: Customers can search for specific travel packages based on their preferences.
-- **Add Packages to Favorites**: Customers can save their favorite travel packages for future reference.
-- **Cancel or Request Booking Cancellation**: Customers have the ability to cancel bookings or request a cancellation with admin approval.
-- **Make Payments**: Secure payment processing is available for customers to pay for their bookings using Khalti.
-- **View Nearest Travel Destinations on Map**: Customers can view travel destinations on an interactive map, helping them find and explore destinations nearest to their current location.
+- **Sign In/Register**: Secure user authentication.
+- **Browse Travel Packages**: View and search available packages.
+- **Place Bookings**: Select and book travel packages.
+- **Track Orders**: View booking status and updates.
+- **Chat with Admin**: Direct communication for support.
+- **Save Favorites**: Add packages to favorites for future reference.
+- **Cancel Bookings**: Request booking cancellations.
+- **Payments**: Secure payments via Khalti.
+- **View Nearest Destinations on Map**: Interactive map to find nearby destinations.
+- **360 Panaromic View**: Traveler can view 360 panaromic view of destination in mobile app.
 
 ## Admin Features
 
-The **t_admin** web app is designed for administrators to manage the system and oversee user activities. The following features are available for admins:
+The **t_admin** web app provides admin capabilities:
 
-- **Sign In**: Admins can securely log in to the admin portal using Firebase Authentication.
-- **CRUD Operations for Travel Packages**: Admins can create, read, update, and delete travel packages, managing all the offerings available to customers.
-- **Change Booking Status**: Admins have the ability to modify the status of bookings, such as confirming, processing, or completing bookings.
-- **Cancel Booked Package**: Admins can cancel a customer's booking if needed.
-- **Chat with Client**: Admins can directly communicate with clients through the chat feature to assist with inquiries or provide support.
+- **Sign In**: Secure admin login.
+- **User & Booking Management**: Manage client accounts and bookings.
+- **CRUD Travel Packages**: Create, read, update, and delete packages.
+- **Manage Booking Status**: Change booking status and cancel bookings.
+- **Chat with Clients**: Communicate directly with customers for support.
+
+# Tools and Technologies Used
+
+- **Flutter**
+- **Firebase** (Auth, Firestore, Storage)
+- **Khalti Payment Gateway** (for secure payments)
+- **Open Street Maps and Geolocation** (for location and mapping features)
 
 These features provide a comprehensive and user-friendly travel management experience for both customers and admins.
-
-
-Tools, BASS and Framework used in the project:
-*   Flutter
-*   Firebase
-*   Visual Studio Code
-*   Flutter Fire Cli
-*   Android Studio
-
-
 
 ## Getting Started
 
