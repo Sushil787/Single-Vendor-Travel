@@ -90,7 +90,7 @@ void main() async {
             create: (context) => getIt<BookmarkBloc>(),
           ),
         ],
-        child: MyApp(),
+        child: const MyApp(),
       ),
     ),
   );

@@ -1,47 +1,138 @@
 
-# Travello - Travel Management System
+# 🌍 **Travello - Travel Management System** 🧳
 
-**Travello** is a travel management system built with Flutter, providing a mobile app for clients and a web app for admin management. Firebase is used for authentication, real-time data, and secure storage.
+**Travello** is a **travel management system** built with **Flutter**, offering a seamless experience for clients and admins. Firebase powers its **authentication**, **real-time data**, and **secure storage**.
 
-- **t_client**: A mobile app for clients to manage travel bookings, view itineraries, and receive real-time updates.
-- **t_admin**: A web app for admins to manage bookings, client information, and content.
+---
 
-## Project Structure
+### 🛠️ **Project Structure**
+
+- **t_client**: A mobile app for clients to manage bookings, view itineraries, and get real-time updates.
+- **t_admin**: A web app for admins to manage bookings, client data, and content.
+
+---
+
+## ✨ **Travello Features**
+
+### 🚶 **End-user (Traveler) Features**
+The **t_client** mobile app offers:
+
+- 🛡️ **Sign In/Register**: Secure authentication.
+- 🗺️ **Browse Travel Packages**: View and search for travel deals.
+- 📅 **Place Bookings**: Reserve travel packages effortlessly.
+- 🚀 **Track Orders**: Stay updated on booking status.
+- 💬 **Chat with Admin**: Get support in real-time.
+- ❤️ **Save Favorites**: Bookmark favorite packages.
+- ❌ **Cancel Bookings**: Easy booking cancellations.
+- 💳 **Payments**: Secure Khalti payment gateway integration.
+- 📍 **Nearest Destinations Map**: Explore nearby locations interactively.
+- 🌅 **360 Panoramic View**: Immerse in destinations through a 360° experience.
+
+---
+
+### 📋 **Admin Features**
+The **t_admin** web app offers:
+
+- 🔐 **Sign In**: Secure admin authentication.
+- 👥 **User & Booking Management**: Manage client accounts and reservations.
+- ✏️ **CRUD Travel Packages**: Create, read, update, and delete travel deals.
+- 📌 **Manage Booking Status**: Update and cancel reservations.
+- 🗨️ **Chat with Clients**: Direct communication for support.
+
+---
+
+## ⚙️ **Tools & Technologies**
+
+- **Flutter** 
+- **Firebase**: Authentication, Firestore, Storage 
+- **Khalti Payment Gateway** 
+- **Open Street Maps & Geolocation** 
+
+---
+
+## 🧱 **Project Architecture**
+The architecture is divided into four main layers:
+
+1. **Data**  
+   Responsible for managing data-related logic such as API calls and database operations.
+   
+2. **Domain**  
+   Contains business logic, use cases, and entity models, ensuring separation from data sources.
+
+3. **Presentation**  
+   Handles UI components and state management.
+
+4. **Core**  
+   Holds reusable components and global configurations used across the app.
+
+---
+
+# 🛠️ **SOLID Principles in Flutter**
+
+ This project adheres to the **SOLID principles** through a well-structured layered architecture. Each layer has a specific responsibility, and the core folder encapsulates reusable components and global utilities, ensuring scalability, maintainability, and testability.
+
+---
+
+# 🔄 **SOLID Principle Breakdown**
+
+## 🛠️ Single Responsibility Principle (SRP)  
+Each class has a single, well-defined responsibility.  
+**Example**:  
+`AuthRepo` handles only Authentication.
+
+---
+
+## 🛠️ Open/Closed Principle (OCP)  
+Classes are open for extension but closed for modification.  
+**Example**:  
+Adding a new API endpoint without modifying existing code by creating a new method in `ApiClient`.
+
+---
+
+## 🛠️ Liskov Substitution Principle (LSP)  
+Subtypes must be substitutable for their base types.  
+**Example**:  
+`UserRepositoryImpl` seamlessly replaces `UserRepository`.
+
+---
+
+## 🛠️ Interface Segregation Principle (ISP)  
+Interfaces are small and specific to client needs.  
+**Example**:  
+Separate interfaces for `UserRepository` and `ProductRepository`.
+
+---
+
+## 🛠️ Dependency Inversion Principle (DIP)  
+High-level modules depend on abstractions, not concrete implementations.  
+**Example**:  
+`UserBloc` depends on the abstract `UserRepository` rather than `UserRepositoryImpl`.
 
 
-# Travello - Features
-### End-user (Traveler) Features
-The **t_client** mobile app offers the following:
 
-- **Sign In/Register**: Secure user authentication.
-- **Browse Travel Packages**: View and search available packages.
-- **Place Bookings**: Select and book travel packages.
-- **Track Orders**: View booking status and updates.
-- **Chat with Admin**: Direct communication for support.
-- **Save Favorites**: Add packages to favorites for future reference.
-- **Cancel Bookings**: Request booking cancellations.
-- **Payments**: Secure payments via Khalti.
-- **View Nearest Destinations on Map**: Interactive map to find nearby destinations.
-- **360 Panaromic View**: Traveler can view 360 panaromic view of destination in mobile app.
+## Folder Structure 
 
-### Admin Features
+lib/
+├── core/
+│   ├── widgets/
+│   ├── utils/
+│   ├── constants.dart
+│   ├── theme.dart
+│
+├── data/
+│   ├── repositories/
+│   ├── sources/
+│   ├── models/
+│
+├── domain/
+│   ├── entities/
+│   ├── usecases/
+│
+├── presentation/
+│   ├── screens/
+│   ├── blocs/
+│   ├── widgets/
 
-The **t_admin** web app provides admin capabilities:
-
-- **Sign In**: Secure admin login.
-- **User & Booking Management**: Manage client accounts and bookings.
-- **CRUD Travel Packages**: Create, read, update, and delete packages.
-- **Manage Booking Status**: Change booking status and cancel bookings.
-- **Chat with Clients**: Communicate directly with customers for support.
-
-# Tools and Technologies Used
-
-- **Flutter**
-- **Firebase** (Auth, Firestore, Storage)
-- **Khalti Payment Gateway** (for secure payments)
-- **Open Street Maps and Geolocation** (for location and mapping features)
-
-These features provide a comprehensive and user-friendly travel management experience for both customers and admins.
 
 ## Getting Started
 
@@ -142,4 +233,37 @@ To run this project, ensure the required Firebase setup (Firebase Authentication
 - Adhere to coding standards and best practices established in the project.
 - Thoroughly test new features and changes before integration.
 - Regularly review and update documentation to reflect changes in the project.
----
+
+
+
+
+## Screenshots 
+
+#### Mobile App
+<img src="images/image44.png" alt=" " width="300" style="margin: 4px;" />
+<img src="images/image34.png" alt=" " width="300" style="margin: 4px;" />
+
+<img src="images/image40.png" alt=" " width="300" style="margin: 4px;" />
+
+<img src="images/image54.png" alt=" " width="300" style="margin: 4px;" />
+
+<img src="images/image24.png" alt=" " width="300" style="margin: 4px;" />
+
+<img src="images/image52.png" alt=" " width="300" style="margin: 4px;" />
+
+<img src="images/khalti.png" alt=" " width="300" style="margin: 4px;" />
+<img src="images/image6.png" alt=" " width="300" style="margin: 4px;" />
+
+
+
+
+
+#### Web App
+
+![  ](images/image25.png)
+![  ](images/image31.png)
+![  ](images/image53.png)
+![  ](images/imagecopy.png)
+![  ](images/imagecopy5.png)
+![  ](images/imagecopy4.png)
+![  ](images/imagecopy3.png)
