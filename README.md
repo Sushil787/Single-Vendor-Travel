@@ -111,7 +111,7 @@ High-level modules depend on abstractions, not concrete implementations.
 
 
 ## Folder Structure 
-
+```
 lib/
 ├── core/
 │   ├── widgets/
@@ -133,6 +133,7 @@ lib/
 │   ├── blocs/
 │   ├── widgets/
 
+```
 
 ## Getting Started
 
