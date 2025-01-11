@@ -53,24 +53,24 @@ class DefaultFirebaseOptions {
 
   ///
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDLVMI6KrfHTy7QHKbogWKyPD0oCu_QYYI',
-    appId: '1:1055467771631:android:0574f77952fc69d317ad1a',
-    messagingSenderId: '1055467771631',
-    projectId: 'kura-777b6',
-    storageBucket: 'kura-777b6.appspot.com',
+    apiKey: ''your data'',
+    appId: ''your data'',
+    messagingSenderId: ''your data'',
+    projectId: 'your data',
+    storageBucket: 'your data',
   );
 
   ///
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDMTDeJ9_oGkR68-qHyVgycuDinJjB_jtQ',
-    appId: '1:1055467771631:ios:ebc5c129978af09f17ad1a',
-    messagingSenderId: '1055467771631',
-    projectId: 'kura-777b6',
-    storageBucket: 'kura-777b6.appspot.com',
+    apiKey: 'your data',
+    appId: 'your data',
+    messagingSenderId: 'your data',
+    projectId: 'your data',
+    storageBucket: 'your data',
     androidClientId:
-        '1055467771631-2fda7sj2snr7f6j4uotrdqjikq1nj5ms.apps.googleusercontent.com',
+        'your data',
     iosClientId:
-        '1055467771631-1hbeiqv3r2u54lqkpii6e5r5fpl144ph.apps.googleusercontent.com',
-    iosBundleId: 'com.app.tClient',
+        'your data'',
+    iosBundleId: 'your data',
   );
 }

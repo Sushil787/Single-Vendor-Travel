@@ -53,11 +53,11 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAd4diJtO5D-BY6SXTcRyfGgL-EtO-jG3o',
-    appId: '1:1055467771631:web:63f60db6efb9042017ad1a',
-    messagingSenderId: '1055467771631',
-    projectId: 'kura-777b6',
-    authDomain: 'kura-777b6.firebaseapp.com',
-    storageBucket: 'kura-777b6.appspot.com',
+    apiKey: 'your api key',
+    appId: 'your data',
+    messagingSenderId: 'your data',
+    projectId: 'your data',
+    authDomain: 'your data',
+    storageBucket: 'your data',
   );
 }
